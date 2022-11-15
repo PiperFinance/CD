@@ -1,0 +1,15 @@
+{
+    "name": "1inch",
+    "timestamp": "2022-04-06T22:19:09+00:00",
+    "version": {
+        "major": 145,
+        "minor": 0,
+        "patch": 0
+    },
+    "keywords": [
+        "1inch",
+        "default",
+        "list"
+    ],
+    "tokens": []
+}
