@@ -3,11 +3,9 @@
     "1inch": "https://wispy-bird-88a7.uniswap.workers.dev/?url=http://tokens.1inch.eth.link",
     "Aave": "https://wispy-bird-88a7.uniswap.workers.dev/?url=http://tokenlist.aave.eth.link",
     "Agora": "https://wispy-bird-88a7.uniswap.workers.dev/?url=http://datafi.theagora.eth.link",
-    "Agora": "https://wispy-bird-88a7.uniswap.workers.dev/?url=http://datafi.theagora.eth.link",
     "BA": "https://raw.githubusercontent.com/The-Blockchain-Association/sec-notice-list/master/ba-sec-list.json",
     "CMC-DEFI": "https://wispy-bird-88a7.uniswap.workers.dev/?url=http://defi.cmc.eth.link",
     "CMC-SC": "https://wispy-bird-88a7.uniswap.workers.dev/?url=http://stablecoin.cmc.eth.link",
-    "CMC-ERC20": "https://wispy-bird-88a7.uniswap.workers.dev/?url=http://erc20.cmc.eth.link",
     "CMC-ERC20": "https://wispy-bird-88a7.uniswap.workers.dev/?url=http://erc20.cmc.eth.link",
     "Compound": "https://raw.githubusercontent.com/compound-finance/token-list/master/compound.tokenlist.json",
     "DefiPrime": "https://defiprime.com/defiprime.tokenlist.json",
@@ -25,5 +23,9 @@
     "UMA": "https://umaproject.org/uma.tokenlist.json",
     "TokenSoftWrapped": "https://wispy-bird-88a7.uniswap.workers.dev/?url=http://wrapped.tokensoft.eth.link",
     "Zerion": "https://wispy-bird-88a7.uniswap.workers.dev/?url=http://tokenlist.zerion.eth.link",
+    "PancakeSwapDefault": "https://tokens.pancakeswap.finance/pancakeswap-default.json",
+    "PancakeSwapExtended": "https://tokens.pancakeswap.finance/pancakeswap-extended.json",
+    "PancakeSwap100": "https://tokens.pancakeswap.finance/pancakeswap-top-100.json",
+    "PancakeSwapAll": "https://tokens.coingecko.com/binance-smart-chain/all.json",
     "Zapper": "https://zapper.fi/api/token-list"
 }
