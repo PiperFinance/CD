@@ -3,8 +3,10 @@ import json
 import glob
 import time
 import logging
-import requests
 import difflib
+import pickle
+import requests
+from uuid import uuid4
 from pathlib import Path
 from web3 import Web3 #type:ignore
 from thefuzz import fuzz #type:ignore
@@ -12,6 +14,33 @@ from tqdm import tqdm
 
 logger = logging.getLogger(__name__)
 
+
+def _vai_tokens(via_token_list= "https://github.com/viaprotocol/tokenlists/blob/main/tokenlists/all.json?raw=true"):
+    chains  = requests.get(via_token_list).json()
+    _r = []
+    for chain_tokens in chains.values():
+        for token in chain_tokens:
+            if token['chainId'] == '1666600000' or token['chainId'] == 1666600000  : continue # harmoni
+            if int(token['chainId']) <= 0  : continue # solana or etc.
+            if token['address'] == "FvwEAhmxKfeiG8SnEvq42hc6whRyY3EFYAvebMqDNDGCgxN5Z" : continue #coingecko
+            if token['address'] == "0x" :  continue #coingecko
+            if not token['address']  :  continue # clover ???
+                
+            _r.append(token)
+    with open(os.path.join(os.getcwd() , "providers", "viaProtocol.json"), "w+") as f:
+        json.dump({
+            "name": "viaProtocol",
+            "timestamp": "2022-04-06T22:19:09+00:00",
+            "version": {
+                "major": 1,
+                "minor": 0,
+                "patch": 0
+            },
+            "keywords": [
+                "default"
+            ],
+            "tokens": _r
+        }, f)
 
 def fetch_tokens(out_dir="providers"):
     """Extra Info
@@ -39,7 +68,7 @@ def get_fetched_providers(search_dir="providers"):
     r = {}
     for file in glob.glob(os.path.join(os.getcwd(), search_dir, "*.json")):
         with open(os.path.join(os.getcwd(), search_dir, file)) as f:
-            r[file.replace(".json", "").split("/")[-1]] = json.load(f)
+            r[file.replace(".json", "").split(SPLLITER)[-1]] = json.load(f)
     return r
 
 
@@ -52,8 +81,30 @@ def check_token_data(token):
             _add = "0x77F86D401e067365dD911271530B0c90DeC3e0f7"
         case "0x06ae7A979D9818B64498c8acaFDd0ccc78bC6fd2#balances":
             _add = "0x06ae7A979D9818B64498c8acaFDd0ccc78bC6fd2"
+        case "FvwEAhmxKfeiG8SnEvq42hc6whRyY3EFYAvebMqDNDGCgxN5Z":
+            _
+    try:
+        token['address'] = Web3.toChecksumAddress(_add)
+    except Exception as e:
+        print(token , e)
+        # raise e
+        return None
         
-    token['address'] = Web3.toChecksumAddress(_add)
+    try:
+        old_symb = token['symbol']
+        token['symbol'] = _CONTRACTS[token['chainId']](token['address']).functions.symbol().call()
+        if old_symb != token['symbol']:
+            print(f"  {old_symb=}, {token['symbol']=} \t {token}")
+            # print(token['chainId'], token['address'], token['prov'], old_symb , token['symbol'])
+    except requests.exceptions.ConnectionError:
+        print(_CONTRACTS[token['chainId']](token['address']).web3.provider , token['chainId'])
+        return token
+    except Exception as e:
+        print(token['address'] , token['chainId'] , token['symbol'] , e)
+        # raise e
+        return None
+
+
     return token
 
 def provider_parser(providers_tokens, out_dir="out"):
@@ -63,9 +114,11 @@ def provider_parser(providers_tokens, out_dir="out"):
     chain_separated_and_merged_by_symbol = {}
     chain_separated_and_merged_by_name = {}
 
-    for provider, items in tqdm(providers_tokens.items()):
+    for provider, items in providers_tokens.items():
+        print(f"\nProvider: {provider}\n")
         for _token in tqdm(items["tokens"]):
             token = check_token_data(_token)
+            if token is None : continue
             if (chainId := token["chainId"]) not in chain_separated.keys():
                 chain_separated[chainId] = {}
                 chain_separated_and_merged_by_symbol[chainId] = {}
@@ -116,11 +169,38 @@ def provider_parser(providers_tokens, out_dir="out"):
         chain_separated_and_merged_by_name,
         all_tokens,
     )
+
+with open("token.abi") as f:
+    TOKEN_ABI = json.load(f)
+
 with open( os.path.join(Path(os.getcwd()).parent.absolute(), "chains" , "chains.json")) as f:
-    _CHAINS = { int(c['chainId']) : c for c in json.load(f)}
-     
+    _file = json.load(f)
+    _CHAINS = { int(c['chainId']) : c for c in _file}
+    _W3s ={ int(_c['chainId']) : Web3(Web3.HTTPProvider(_c['rpc'][0])) for _c in _file  if _c.get('rpc') }
+
+    _CONTRACTS = {}
+    for wc in _file:
+        if wc.get('rpc'):
+            w3 = Web3(Web3.HTTPProvider(wc.get('rpc')[-1]))
+            def _(_address, _w3=w3):
+                return _w3.eth.contract(_address , abi=TOKEN_ABI)
+            _.__name__ =  "F" + str(uuid4())
+            _CONTRACTS[int(wc['chainId'])] = _ 
+  
+if os.name == 'nt' : 
+    SPLLITER = "\\"
+else:
+    SPLLITER = "/"
+
 def chainId_to_chain_name(chainId):
-    return _CHAINS[int(chainId)]['name'] 
+    chain = _CHAINS[int(chainId)]
+    _ = str(chain.items()).lower()
+    is_test_net = False
+    for word in ["testnet" , "test" , "ropsten" , "rinkby" , "kovan" , "test-net" , "testy" , "test net" , "net-test"] :
+        if word in _ :
+            is_test_net = True
+            break
+    return f"{'T' if  is_test_net else 'F'}:{chain['name']}-{chainId}" 
 
 
 def token_symbol_matcher(*args):
@@ -137,9 +217,11 @@ def token_symbol_matcher(*args):
         token_symbols[token_symbol].append(token)
 
     final_result = {}
+    final_result_delete = {}
     print("\n----------------\nNow Input a Symbol to start searching!\n")
     while (user_input := input("[Symbol | 'q' ] >>> ")) != "q":
         user_selection = []
+        user_selection_delete = []
         token_indices = sorted(
             [
                 (i, symbol, fuzz.ratio(symbol, user_input), token, j)
@@ -168,41 +250,72 @@ def token_symbol_matcher(*args):
                         }
                         ) 
                                  for index , _ in  enumerate(sliced_res)]))
-            answer = input(f"[{user_input}] [{len(user_selection)}] [id | (id,...) | 'a' / 'all' | 'det' | 'q' ] >>> ")
-            i += 1
+            answer = input(f"[{user_input}] [{len(user_selection)}] [id | (id,...) | 'a' / 'all' | 'det' | 'q' | 'c' | 'd' ] >>> ")
             match answer:
-                case 'a' | 'all':
+                case 'a' | 'all' | 'A':
                     user_selection.extend([(_[0], _[4]) for _ in sliced_res])
-                case 'q':
+                    i += 1
+                case 'q' | 'Q':
+                    i += 1
                     break                    
-                case 'det':
+                case 'det' | 'DET':
                     print_detail = True
-                    i -= 1
                     continue
+                case 'c' | 'C':
+                    i += 1
+                    continue
+                case 'd' | 'D':
+                    addr = input("Which ones you want to delete dear hossein ? : ")
+                    try:
+                        addr = eval(addr)
+                        if isinstance(addr, int): 
+                            user_selection_delete.append((sliced_res[addr][0] , sliced_res[addr][4]))
+                        elif isinstance(addr, tuple | list | set ):
+                            user_selection_delete.extend(
+                                [
+                                    (sliced_res[_addr][0] , sliced_res[_addr][4])
+                                    for _addr in addr
+                                    ]
+                                )
+                    except :
+                        print("Unkown Command !")
 
                 case _ :
                     if answer:
-                        answer = eval(answer)
-                        if isinstance(answer, int): 
-                            user_selection.append((sliced_res[answer][0] , sliced_res[answer][4]))
-                        elif isinstance(answer, tuple | list | set ):
-                            user_selection.extend(
-                                [
-                                    (sliced_res[_answer][0] , sliced_res[_answer][4])
-                                    for _answer in answer
-                                    ]
-                                )
+                        try:
+                            answer = eval(answer)
+                            if isinstance(answer, int): 
+                                user_selection.append((sliced_res[answer][0] , sliced_res[answer][4]))
+                            elif isinstance(answer, tuple | list | set ):
+                                user_selection.extend(
+                                    [
+                                        (sliced_res[_answer][0] , sliced_res[_answer][4])
+                                        for _answer in answer
+                                        ]
+                                    )
+                        except :
+                            print("Unkown Command !")
                     print_detail = False
                     
         print("user_selection : ", user_selection)
         final_result[user_input] = []
+        final_result_delete[user_input] = []
+
         for t_i in token_indices:
             for selection in user_selection:
                 if selection[0] == t_i[0] and  selection[1] == t_i[4]:
                     final_result[user_input].append(t_i[3])
 
-    with open(f"match_res_{time.time()}.json","w") as f:
+        for t_i in token_indices:
+            for selection in user_selection_delete:
+                if selection[0] == t_i[0] and  selection[1] == t_i[4]:
+                    final_result_delete[user_input].append(t_i[3])
+
+    with open(os.path.join("matcher",f"match_res_{time.time()}.json"),"w+") as f:
         json.dump(final_result,f)
+                    
+    with open(os.path.join("matcher" , f"delete_res_{time.time()}.json"),"w+") as f:
+        json.dump(final_result_delete,f)
                     
                     
                         
@@ -214,14 +327,20 @@ if __name__ == "__main__":
     # print("\n####FETCHING TOKENS ....\n")
     
     # fetch_tokens()
+    # _vai_tokens()
     
     print("\n####PROCESSING TOKENS ....\n")
 
     _ = get_fetched_providers()
 
     print("\n####PROCESSING TOKENS ....\n")
-
+    
     _ = provider_parser(_)
+    with open("pk.dump", "wb") as f:
+        pickle.dump(_,f)
+
+    with open("pk.dump", "rb") as f:
+        _  = pickle.load(f)
 
     print("\n####MATCHING TOKENS ....\n")
     token_symbol_matcher(*_)
