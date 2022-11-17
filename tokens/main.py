@@ -5,6 +5,7 @@ import time
 import logging
 import requests
 import difflib
+from pathlib import Path
 from web3 import Web3 #type:ignore
 from thefuzz import fuzz #type:ignore
 from tqdm import tqdm
@@ -115,6 +116,11 @@ def provider_parser(providers_tokens, out_dir="out"):
         chain_separated_and_merged_by_name,
         all_tokens,
     )
+with open( os.path.join(Path(os.getcwd()).parent.absolute(), "chains" , "chains.json")) as f:
+    _CHAINS = { int(c['chainId']) : c for c in json.load(f)}
+     
+def chainId_to_chain_name(chainId):
+    return _CHAINS[int(chainId)]['name'] 
 
 
 def token_symbol_matcher(*args):
@@ -130,7 +136,6 @@ def token_symbol_matcher(*args):
             token_symbols[token_symbol] = []
         token_symbols[token_symbol].append(token)
 
-    # with open("matched_on_" + str(time.time()) + ".json") as f:
     final_result = {}
     print("\n----------------\nNow Input a Symbol to start searching!\n")
     while (user_input := input("[Symbol | 'q' ] >>> ")) != "q":
@@ -158,7 +163,7 @@ def token_symbol_matcher(*args):
                             _[3]
                             if print_detail
                             else
-                            {"add" : _[3]['address'], "chain":   _[3]['chainId'] , 'prov' : _[3].get('providers') }
+                            {"add" : _[3]['address'], "chain":   chainId_to_chain_name(_[3]['chainId']) , 'prov' : _[3].get('providers') }
                         )
                         }
                         ) 
@@ -195,7 +200,8 @@ def token_symbol_matcher(*args):
             for selection in user_selection:
                 if selection[0] == t_i[0] and  selection[1] == t_i[4]:
                     final_result[user_input].append(t_i[3])
-    with open("match_res.json","w") as f:
+
+    with open(f"match_res_{time.time()}.json","w") as f:
         json.dump(final_result,f)
                     
                     
