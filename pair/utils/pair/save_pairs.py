@@ -1,34 +1,35 @@
-import logging
 import json
+import logging
 from web3 import Web3
-from pycoingecko import CoinGeckoAPI
-from typing import List, Dict
+from typing import List, Dict, Tuple
 
+from .lp_price import get_reserves, get_total_supply, calculate_lp_price
+from .token_price import get_token_price
 from models import Chain, Pair
 from utils import abis
 
 
-async def save_all_pairs():
-    pairs = []
+def save_all_pairs():
     for chain_id in Chain.supported_chains():
         chain = Chain(chainId=chain_id)
-        factories = find_chain_factories(chain_id)
+        factories = get_chain_factories(chain_id)
         if not factories:
             continue
-        tokens = find_chain_tokens(chain_id)
+        tokens = get_chain_tokens(chain_id)
         if not tokens:
             continue
 
         for factory in factories:
-            pairs.extend(await save_chain_pairs(
+            chain_pairs = get_and_create_chain_pairs_objects(
                 chain,
                 factory.get("factory"),
                 factory.get("name"),
                 tokens
-            ))
+            )
+            save_chain_pairs(chain_id, chain_pairs)
 
 
-def find_chain_factories(chain_id: int):
+def get_chain_factories(chain_id: int) -> Dict:
     with open("utils/dexs.json") as f:
         factory_dict = json.load(f)
 
@@ -37,7 +38,7 @@ def find_chain_factories(chain_id: int):
             return factory_dict[key]
 
 
-def find_chain_tokens(chain_id: int):
+def get_chain_tokens(chain_id: int) -> Dict:
     with open("utils/tokens.json") as f:
         token_dict = json.load(f)
 
@@ -46,11 +47,11 @@ def find_chain_tokens(chain_id: int):
             return token_dict[key]
 
 
-async def save_chain_pairs(
+def get_and_create_chain_pairs_objects(
         chain: Chain,
         factory_address: str,
         dex_name: str,
-        tokens: List[Dict]):
+        tokens: List[Dict]) -> List[Pair]:
 
     factory_contract = chain.w3.eth.contract(
         Web3.toChecksumAddress(factory_address),
@@ -74,20 +75,24 @@ async def save_chain_pairs(
                 tokens[i].get("decimals"),
                 tokens[j].get("decimals")
             ]
+            symbols = [
+                tokens[i].get("sybmol"),
+                tokens[j].get("symbol")
+            ]
             token_prices = [
-                get_token_price(tokens[i].get("symbol")),
-                get_token_price(tokens[j].get("symbol"))
+                get_token_price(symbols[0]),
+                get_token_price(symbols[1])
             ]
 
-            decimals, token_prices = sort_pair_tokens(
-                pair_contract, [token0, token1], decimals, token_prices)
+            decimals, token_prices, symbols = sort_pair_tokens(
+                pair_contract, [token0, token1], decimals, token_prices, symbols)
             lp_price = calculate_lp_price(
                 reserves, decimals, token_prices, total_supply)
 
             pair_obj = Pair(**{
                 "chainId": chain.chainId,
                 "address": pair,
-                "name": f"{tokens[i].get('symbol')}-{tokens[j].get('symbol')}",
+                "name": f"{symbols[0]}-{symbols[1]}",
                 "dex": dex_name,
                 "decimals": decimals,
                 "reserves": [str(reserve) for reserve in reserves],
@@ -95,74 +100,38 @@ async def save_chain_pairs(
                 "price": lp_price
             })
 
-            await pair_obj.mongo_client.insert_one(pair_obj)
             pairs.append(pair_obj)
     return pairs
+
+
+def save_chain_pairs(chain_id: int, pairs: List[Pair]):
+    client =Pair.mongo_client(chain_id)
+    try:
+        client.delete_many()
+    except Exception as e:
+        logging.info(f"{str(e)} -> seems like there is no pair in mongo for {chain_id} chain.")
+    client.insert_many(pairs)
 
 
 def get_pair(
         factory_contract,
         token0: str,
-        token1: str):
+        token1: str) -> str:
     pair = factory_contract.functions.getPair(token0, token1).call()
     return pair
-
-
-def get_reserves(pair_contract):
-    reserve0, reserve1, timestamp = pair_contract.functions.getReserves().call()
-    return [reserve0, reserve1]
-
-
-def get_total_supply(pair_contract):
-    total_supply = pair_contract.functions.totalSupply().call()
-    return total_supply
 
 
 def sort_pair_tokens(
         pair_contract,
         tokens: List[str],
+        symbols: List[str],
         decimals: List[int],
-        prices: List[float]):
+        prices: List[float]) -> Tuple:
 
     token0 = pair_contract.functions.token0()
     if token0 == tokens[0]:
-        return decimals, prices
+        return decimals, prices, symbols
     decimals = decimals.reverse()
     prices = prices.reverse()
-    return decimals, prices
-
-
-def get_coins_id(symbol):
-    cg = CoinGeckoAPI()
-    coin_list = cg.get_coins_list()
-    for coin in coin_list:
-        if coin.get('symbol').upper() == symbol:
-            # cache_client().set(TokenID + symbol,
-            #                 coin.get('id'))
-            return coin.get('id')
-
-
-def get_token_price(symbol):
-    cg = CoinGeckoAPI()
-    try:
-        cg = CoinGeckoAPI()
-        token_id = get_coins_id(symbol)
-        coin_price = cg.get_price(
-            ids=token_id, vs_currencies='usd')
-        price = coin_price.get(token_id).get('usd')
-        return price
-
-    except Exception as e:
-        logging.warn(f'{str(e)} -> getting price of {symbol} failed')
-        return 0
-
-
-def calculate_lp_price(
-        reserves: List[int],
-        decimals: List[int],
-        prices: List[float],
-        total_supply: int):
-
-    lp_price = ((reserves[0] / decimals[0] * prices[0]) +
-                (reserves[1] / decimals[1] * prices[1])) / total_supply
-    return lp_price
+    symbols = symbols.reverse()
+    return decimals, prices, symbols

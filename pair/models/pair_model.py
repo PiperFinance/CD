@@ -14,6 +14,6 @@ class Pair(Chain):
     totalSupply: str
     price: Optional[str]
 
-    @property
-    def mongo_client(self):
-        return client(self.__class__.__name__, self.chainId)
+    @classmethod
+    def mongo_client(cls, chain_id: int):
+        return client(cls.__class__.__name__, chain_id)

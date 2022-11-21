@@ -1,7 +1,11 @@
+from typing import List, Optional
+
 from . import Chain
 from configs.mongo_config import client
 
 class Trx(Chain):
+    userAddress: str
+    labels: Optional[List[str]]
     blockNumber: str
     timeStamp: str
     hash: str
@@ -22,10 +26,9 @@ class Trx(Chain):
     input: str
     confirmations: str
 
-    @property
-    def description(self):
-        x = self.__class__.__name__
-        return client(self.__class__.__name__, self.chainId)
+    @classmethod
+    def mongo_client(cls, chain_id: int):
+        return client(cls.__class__.__name__, chain_id)
 
 
 

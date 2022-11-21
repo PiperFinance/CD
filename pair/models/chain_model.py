@@ -29,6 +29,6 @@ class Chain(BaseModel):
             rpc = chains[str(self.chainId)]["defaultRpcUrl"]
         return Web3(Web3.HTTPProvider(rpc))
 
-    @property
-    def mongo_client(self):
+    @classmethod
+    def mongo_client(cls, chain_id: int):
         raise NotImplementedError

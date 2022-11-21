@@ -1,0 +1,39 @@
+version: "3.7"
+services:
+
+  app:
+    hostname: app
+    build:
+      context: ./
+      dockerfile: app.Dockerfile
+    ports:
+      - 8800:8800
+    restart: always
+    depends_on:
+      - alpha
+    environment:
+      - PORT=8000
+      - DOMAIN=http://localhost:/8000
+      - CELERY_BROKER_URL=redis://redis:6379/4
+      - CELERY_RESULT_URL=redis://redis:6379/5
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_URL=redis://redis:6379
+    volumes:
+      - ./
+
+  worker:
+    hostname: worker
+    build:
+      context: ./
+      dockerfile: worker.Dockerfile
+    restart: always
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/4
+      - CELERY_RESULT_URL=redis://redis:6379/5
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_URL=redis://redis:6379
+      - WAIT_BEFORE=15
+
+
