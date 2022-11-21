@@ -11,22 +11,27 @@ from utils import abis
 
 def save_all_pairs():
     for chain_id in Chain.supported_chains():
-        chain = Chain(chainId=chain_id)
-        factories = get_chain_factories(chain_id)
-        if not factories:
-            continue
-        tokens = get_chain_tokens(chain_id)
-        if not tokens:
-            continue
+        save_chain_pairs(chain_id)
 
-        for factory in factories:
-            chain_pairs = get_and_create_chain_pairs_objects(
-                chain,
-                factory.get("factory"),
-                factory.get("name"),
-                tokens
-            )
-            save_chain_pairs(chain_id, chain_pairs)
+
+def save_chain_pairs(chain_id: int):
+    factories = get_chain_factories(chain_id)
+    if not factories:
+        return
+    tokens = get_chain_tokens(chain_id)
+    if not tokens:
+        return
+
+    chain = Chain(chainId=chain_id)
+
+    for factory in factories:
+        chain_pairs = get_and_create_chain_pairs_objects(
+            chain,
+            factory.get("factory"),
+            factory.get("name"),
+            tokens
+        )
+        insert_pairs(chain_id, chain_pairs)
 
 
 def get_chain_factories(chain_id: int) -> Dict:
@@ -104,12 +109,13 @@ def get_and_create_chain_pairs_objects(
     return pairs
 
 
-def save_chain_pairs(chain_id: int, pairs: List[Pair]):
-    client =Pair.mongo_client(chain_id)
+def insert_pairs(chain_id: int, pairs: List[Pair]):
+    client = Pair.mongo_client(chain_id)
     try:
         client.delete_many()
     except Exception as e:
-        logging.info(f"{str(e)} -> seems like there is no pair in mongo for {chain_id} chain.")
+        logging.info(
+            f"{str(e)} -> seems like there is no pair in mongo for {chain_id} chain.")
     client.insert_many(pairs)
 
 

@@ -7,21 +7,26 @@ from .decode import decode_trx_input_data
 
 
 def save_users_all_token_trxs(address: str):
+
     for chain_id in Chain.supported_chains():
-        trxs = get_users_chain_token_trxs(
-            chain_id,
-            address
-        )
-        if trxs in [None, []]:
-            return
-        trxs = create_trx_objects(
-            chain_id,
-            trxs
-        )
-        save_users_chain_token_trxs(
-            chain_id,
-            trxs
-        )
+        save_users_chain_token_trxs(chain_id, address)
+
+
+def save_users_chain_token_trxs(chain_id: int, address: str):
+    trxs = get_users_chain_token_trxs(
+        chain_id,
+        address
+    )
+    if trxs in [None, []]:
+        return
+    trxs = create_trx_objects(
+        chain_id,
+        trxs
+    )
+    insert_trxs(
+        chain_id,
+        trxs
+    )
 
 
 def get_users_chain_token_trxs(
@@ -67,10 +72,11 @@ def create_trx_objects(chain_id: int, address: str, users_trxs: List[Dict]) -> L
     return trxs
 
 
-def save_users_chain_token_trxs(chain_id: int, address: str, trxs: List[Trx]):
+def insert_trxs(chain_id: int, address: str, trxs: List[Trx]):
     client = Trx.mongo_client(chain_id)
     try:
         client.delete_many({"userAddress": address})
     except Exception as e:
-        logging.info(f"{str(e)} -> seems like {address} on {chain_id} chain, doesn't have any trx in mongo yet.")
+        logging.info(
+            f"{str(e)} -> seems like {address} on {chain_id} chain, doesn't have any trx in mongo yet.")
     client.insert_many(trxs)

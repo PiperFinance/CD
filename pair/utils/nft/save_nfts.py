@@ -8,14 +8,15 @@ from models import Chain, Nft
 
 def save_users_all_nfts(address: str):
     for chain_id in Chain.supported_chains():
-        chain = Chain(chainId=chain_id)
-        url = chain.url
-        api_keys = chain.api_keys
-        nft_trxs = get_users_chain_nft_trxs(address, url, api_keys)
-        users_nfts = find_to_trxs(address, nft_trxs)
-        users_nfts = remove_from_trxs(address, nft_trxs, users_nfts)
-        users_nfts = create_nft_objects(chain_id, address, users_nfts)
-        save_users_chain_nfts(chain_id, address, users_nfts)
+        save_users_chain_nfts(chain_id, address)
+
+
+def save_users_chain_nfts(chain_id: int, address: str):
+    nft_trxs = get_users_chain_nft_trxs(chain_id, address)
+    users_nfts = find_to_trxs(address, nft_trxs)
+    users_nfts = remove_from_trxs(address, nft_trxs, users_nfts)
+    users_nfts = create_nft_objects(chain_id, address, users_nfts)
+    insert_nfts(chain_id, address, users_nfts)
 
 
 def create_nft_objects(
@@ -33,10 +34,13 @@ def create_nft_objects(
 
 
 def get_users_chain_nft_trxs(
+    chain_id: int,
     address: str,
-    url: str,
-    api_keys: List[str],
 ) -> List:
+
+    chain = Chain(chainId=chain_id)
+    url = chain.url
+    api_keys = chain.api_keys
 
     data = {
         "address": address,
@@ -89,7 +93,7 @@ def remove_from_trxs(
     return users_nfts
 
 
-def save_users_chain_nfts(
+def insert_nfts(
     chain_id: int,
     address: str,
     nfts: List[Nft]
@@ -98,6 +102,7 @@ def save_users_chain_nfts(
     try:
         client.delete_many({"userAddress": address})
     except Exception as e:
-        logging.info(f"{str(e)} -> seems like {address} on {chain_id} chain, doesn't have any nfts in mongo yet.")
+        logging.info(
+            f"{str(e)} -> seems like {address} on {chain_id} chain, doesn't have any nfts in mongo yet.")
 
     client.insert_many(nfts)
