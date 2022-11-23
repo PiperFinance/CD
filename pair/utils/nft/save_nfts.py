@@ -13,8 +13,14 @@ def save_users_all_nfts(address: str):
 
 def save_users_chain_nfts(chain_id: int, address: str):
     nft_trxs = get_users_chain_nft_trxs(chain_id, address)
+    if nft_trxs in [None, []]:
+        return
     users_nfts = find_to_trxs(address, nft_trxs)
+    if users_nfts in [None, []]:
+        return
     users_nfts = remove_from_trxs(address, nft_trxs, users_nfts)
+    if users_nfts in [None, []]:
+        return
     users_nfts = create_nft_objects(chain_id, address, users_nfts)
     insert_nfts(chain_id, address, users_nfts)
 
@@ -22,7 +28,7 @@ def save_users_chain_nfts(chain_id: int, address: str):
 def create_nft_objects(
     chain_id: int,
     address: str,
-    users_nfts: Dict[Dict]
+    users_nfts: Dict
 ) -> List[Nft]:
     nfts = []
     for key, value in users_nfts.items():
@@ -46,7 +52,7 @@ def get_users_chain_nft_trxs(
         "address": address,
         "startblock": 0,
         "endblock": 99999999,
-        "page": 1000,
+        "page": 1,
         "offset": 10,
         "sort": "asc",
     }
@@ -56,7 +62,7 @@ def get_users_chain_nft_trxs(
             url = f"{url}?module=account&action=tokennfttx&apikey={api_key}"
             res = requests.post(url=url, data=data)
             res = res.json()
-            if res is not None and res.get("status") == "200":
+            if res is not None and res.get("message") == "OK":
                 return res.get("result")
 
         except Exception as e:
@@ -83,7 +89,7 @@ def find_to_trxs(
 def remove_from_trxs(
     address: str,
     nft_trxs: List[Dict],
-    users_nfts: Dict[Dict]
+    users_nfts: Dict
 ) -> Dict:
     for trx in nft_trxs:
         if Web3.toChecksumAddress(trx.get("from")) == Web3.toChecksumAddress(address):

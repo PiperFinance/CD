@@ -1,26 +1,30 @@
+import os
 import uvicorn
 from typing import List
 from fastapi import FastAPI
 
 
 from models import Trx, Pair, Nft
-from configs.redis_config import initialize
+from configs import redis_config
 from utils.nft.save_nfts import save_users_all_nfts
 from utils.nft.get_nfts import get_users_all_nfts, get_users_chain_nfts
 from utils.pair.get_pairs import get_all_pairs, get_chain_pairs
 from utils.transaction.save_transactions import save_users_all_token_trxs
 from utils.transaction.get_transactions import get_users_all_token_trxs, get_users_chain_token_trxs
-from .test_functions import _tt_
 
-REDIS_URL = "redis://localhost:6378"
+REDIS_URL = os.getenv("REDIS_URL") or "redis://localhost:6379"
 
 app = FastAPI()
 
 
 @app.on_event("startup")
 async def app_boot():
-    await initialize(REDIS_URL)
-    await _tt_()
+    await redis_config.initialize(REDIS_URL)
+    redis_config.isConnected()
+    from test_functions import _tt_
+
+    # await _tt_()
+
 
 
 @app.post("/save_users_trxs")

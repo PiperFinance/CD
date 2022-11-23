@@ -34,6 +34,26 @@ def save_chain_pairs(chain_id: int):
         insert_pairs(chain_id, chain_pairs)
 
 
+def save_chain_pairs_test(chain_id: int):
+    factories = get_chain_factories(chain_id)
+    if not factories:
+        return
+    tokens = get_chain_tokens(chain_id)
+    if not tokens:
+        return
+
+    chain = Chain(chainId=chain_id)
+
+    for factory in factories:
+        chain_pairs = get_and_create_chain_pairs_objects_test(
+            chain,
+            factory.get("factory"),
+            factory.get("name"),
+            tokens
+        )
+        insert_pairs(chain_id, chain_pairs)
+
+
 def get_chain_factories(chain_id: int) -> Dict:
     with open("utils/dexs.json") as f:
         factory_dict = json.load(f)
@@ -106,6 +126,73 @@ def get_and_create_chain_pairs_objects(
             })
 
             pairs.append(pair_obj)
+    return pairs
+
+
+def get_and_create_chain_pairs_objects_test(
+        chain: Chain,
+        factory_address: str,
+        dex_name: str,
+        tokens: List[Dict]) -> List[Pair]:
+
+    pairs = []
+    token_addresses = []
+    for token in tokens:
+        token_addresses.append(Web3.toChecksumAddress(token.get("address")))
+
+    factory_contract = chain.w3.eth.contract(
+        Web3.toChecksumAddress(factory_address),
+        abi=abis.factory_abi)
+
+    pairs_length = factory_contract.functions.allPairsLenght().call()
+
+    for i in range(pairs_length):
+        pair_address = factory_contract.functions.allPairs(i).call()
+        pair_contract = chain.w3.eth.contract(pair_address, abi=abis.pair_abi)
+        token0 = pair_contract.fucntions.token0().call()
+        if token0 not in token_addresses:
+            continue
+        token1 = pair_contract.fucntions.token1().call()
+        if token1 not in token_addresses:
+            continue
+
+        reserves = get_reserves(pair_contract)
+        total_supply = get_total_supply(pair_contract)
+
+        for token in tokens:
+            if token0 == Web3.toChecksumAddress(token.get("address")):
+                decimals0 = token.get("decimals")
+                symbol0 = token.get("symbol")
+
+            if token1 == Web3.toChecksumAddress(token.get("address")):
+                decimals1 = token.get("decimals")
+                symbol1 = token.get("symbol")
+
+            if decimals0 and decimals1:
+                break
+
+        if None in [decimals0, decimals1]:
+            continue
+
+        token_prices = [
+            get_token_price(symbol0),
+            get_token_price(symbol1)
+        ]
+
+        lp_price = calculate_lp_price(
+            reserves, [decimals0, decimals1], token_prices, total_supply)
+
+        pair_obj = Pair(**{
+            "chainId": chain.chainId,
+            "address": pair_address,
+            "name": f"{symbol0}-{symbol1}",
+            "dex": dex_name,
+            "decimals": [decimals0, decimals1],
+            "reserves": [str(reserve) for reserve in reserves],
+            "totalSupply": str(total_supply),
+            "price": lp_price
+        })
+        pairs.append(pair_obj)
     return pairs
 
 

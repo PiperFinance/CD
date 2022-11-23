@@ -1,3 +1,4 @@
+import logging
 from enum import Enum
 from typing import Dict
 import redis
@@ -45,6 +46,15 @@ async def initialize(url: str) -> bool:
     _CLIENT[0] = redis.from_url(
         url=url, db=0, decode_responses=True)
     _CLIENT_BYTES[0] = redis.from_url(url=url, db=0)
+
+
+def isConnected():
+    cache_client().set("connection", "up")
+    if cache_client().get("connection") == "up":
+        return True
+    print("REDIS IS NOT CONNECTED!")
+    logging.critical("REDIS IS NOT CONNECTED!")
+    return False
 
 
 def cache_client() -> Redis:

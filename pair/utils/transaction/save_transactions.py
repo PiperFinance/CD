@@ -21,6 +21,7 @@ def save_users_chain_token_trxs(chain_id: int, address: str):
         return
     trxs = create_trx_objects(
         chain_id,
+        address,
         trxs
     )
     insert_trxs(
@@ -42,7 +43,7 @@ def get_users_chain_token_trxs(
         "address": address,
         "startblock": 0,
         "endblock": 99999999,
-        "page": 1000,
+        "page": 1,
         "offset": 10,
         "sort": "asc",
     }
@@ -52,8 +53,8 @@ def get_users_chain_token_trxs(
             url = f"{url}?module=account&action=tokentx&apikey={api_key}"
             res = requests.post(url=url, data=data)
             res = res.json()
-            if res is not None and res.get("status") == "200":
-                return res
+            if res is not None and res.get("message") == "OK":
+                return res.get("result")
         except Exception as e:
             logging.exception(f"{e} -> API Key didn't work.")
             continue
