@@ -4,3 +4,4 @@ Pipfile.lock
 .env
 __pycache__/
 data/
+wait
