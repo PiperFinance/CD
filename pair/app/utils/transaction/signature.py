@@ -1,3 +1,4 @@
+import logging
 import requests
 from typing import Dict, List
 
@@ -7,9 +8,8 @@ from configs.redis_config import cache_client, RedisNamespace
 def cache_all_signatures():
     url = "https://www.4byte.directory/api/v1/signatures/"
 
-    res = res.json()
+    res = requests.get(url).json()
     count = res.get("count")
-    res = res.get("results")
 
     if count % 100 != 0:
         count = count // 100 + 2
@@ -21,7 +21,7 @@ def cache_all_signatures():
         return
 
     for i in range(count):
-        cache_signatures(url, i, i + 400)
+        res.append(cache_signatures(url, i, i + 400))
 
 
 def cache_signatures(url: str, start: int, end: int):
@@ -30,19 +30,26 @@ def cache_signatures(url: str, start: int, end: int):
     if int(last_page) > start:
         start = last_page
 
-    elif start == 1:
+    if start in [0, 1]:
+        start = 2
         res = get_single_page_signatures(url)
-        cache_single_page_signature(res.get("results"), 1)
+        if res not in [None, []]:
+            cache_single_page_signature(res, 1)
 
-    else:
-        for i in range(start, end):
-            res = get_single_page_signatures(url)
-            cache_single_page_signature(res.json(), i)
+    for i in range(start, end):
+        new_url = f"https://www.4byte.directory/api/v1/signatures/?page={i}"
+        res = get_single_page_signatures(new_url)
+        if res not in [None, []]:
+            cache_single_page_signature(res, i)
 
 
 def get_single_page_signatures(url: str):
-    res = requests.get(url)
-    return res.json()
+    try:
+        res = requests.get(url)
+        res = res.json()
+        return res.get("results")
+    except Exception as e:
+        logging.exception(e)
 
 
 def cache_single_page_signature(signatures: List[Dict], page_number: int):
@@ -60,9 +67,14 @@ def cache_single_page_signature(signatures: List[Dict], page_number: int):
 def get_signature(sig_hex: str) -> str:
     signature = cache_client().get(
         f'{RedisNamespace.FUNC_SIGNATURE}:{sig_hex}')
-    if not signature:
-        url = f"https://www.4byte.directory/api/v1/signatures/?hex_signature={sig_hex}"
-        res = requests.get(url)
-        res = res.get("results")[0].get("text_signature")
-        cache_client().set(f'{RedisNamespace.FUNC_SIGNATURE}:{sig_hex}', res)
-        return res
+    if signature:
+        return signature
+
+    url = f"https://www.4byte.directory/api/v1/signatures/?hex_signature={sig_hex}"
+    signature = requests.get(url)
+    signature = signature.json().get("results")
+    if signature not in [[], None]:
+        signature = signature[0].get("text_signature")
+        cache_client().set(
+            f'{RedisNamespace.FUNC_SIGNATURE}:{sig_hex}', signature)
+    return signature

@@ -62,7 +62,7 @@ def get_users_chain_nft_trxs(
             url = f"{url}?module=account&action=tokennfttx&apikey={api_key}"
             res = requests.post(url=url, data=data)
             res = res.json()
-            if res is not None and res.get("message") == "OK":
+            if res is not None and (res.get("message") == "OK" or res.get("message") == "No transactions found"):
                 return res.get("result")
 
         except Exception as e:

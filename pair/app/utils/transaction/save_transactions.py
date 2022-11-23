@@ -65,7 +65,9 @@ def create_trx_objects(chain_id: int, address: str, users_trxs: List[Dict]) -> L
 
     for trx in users_trxs:
         trx["userAddress"] = Web3.toChecksumAddress(address)
-        trx["labels"] = decode_trx_input_data(trx.get("input"))
+        labels = decode_trx_input_data(trx.get("input"))
+        if labels not in [[], None]:
+            trx["labels"] = labels
         trx["chainId"] = chain_id
         trx["fromAddress"] = trx.get("from")
         trxs.append(Trx(**trx))

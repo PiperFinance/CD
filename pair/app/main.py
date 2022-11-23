@@ -20,8 +20,8 @@ app = FastAPI()
 @app.on_event("startup")
 async def app_boot():
     await redis_config.initialize(REDIS_URL)
-    redis_config.isConnected()
-    from test_functions import _tt_
+    # redis_config.isConnected()
+    # from app.test_functions import _tt_
 
     # await _tt_()
 
