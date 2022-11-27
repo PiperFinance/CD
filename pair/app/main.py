@@ -2,6 +2,7 @@ import os
 import uvicorn
 from typing import List
 from fastapi import FastAPI
+# os.environ['PORT'] = "123654"
 
 
 from models import Trx, Pair, Nft, Signature
@@ -16,7 +17,7 @@ from utils.transaction.signature import save_signatures, get_signatures
 from utils.types import Address, HexStr, ChainId
 
 
-REDIS_URL = os.getenv("REDIS_URL") or "redis://localhost:6379"
+REDIS_URL = os.getenv("REDIS_URL") or "redis://localhost:6380"
 
 app = FastAPI()
 
@@ -24,7 +25,7 @@ app = FastAPI()
 @app.on_event("startup")
 async def app_boot():
     await redis_config.initialize(REDIS_URL)
-    # redis_config.isConnected()
+    redis_config.isConnected()
     # from test_functions import _tt_
 
     # await _tt_()
@@ -98,4 +99,4 @@ async def get_pairs(chain_id: ChainId):
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=12365)

@@ -52,14 +52,14 @@ def cache_last_cached_signature_page(
     page_number: int
 ):
     cache_client().set(
-        RedisNamespace.LAST_CACHED_SIG_PAGE,
+        str(RedisNamespace.LAST_CACHED_SIG_PAGE),
         page_number
     )
 
 
 def get_last_cached_signature_page_from_redis():
     try:
-        return cache_client().get(RedisNamespace.LAST_CACHED_SIG_PAGE)
+        return cache_client().get(str(RedisNamespace.LAST_CACHED_SIG_PAGE))
     except Exception as e:
         logging.exception(e)
 

@@ -32,9 +32,9 @@ def save_all_4bytes_signatures():
 
 def save_4bytes_signatures(url: Url, start: int, end: int):
     last_cached_page = get_last_cached_signature_page_from_redis()
-
-    if int(last_cached_page) > start:
-        start = last_cached_page
+    if last_cached_page:
+        if int(last_cached_page) > start:
+            start = last_cached_page
 
     if start in [0, 1]:
         start = 2

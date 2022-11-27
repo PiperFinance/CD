@@ -21,7 +21,7 @@ except:
     load_dotenv(".env")
 
 
-REDIS_URL = os.getenv("REDIS_URL") or "redis://127.0.0.1:6378"
+REDIS_URL = os.getenv("REDIS_URL") or "redis://127.0.0.1:6380"
 CELERY_BROKER_URL = os.getenv(
     "CELERY_BROKER_URL") or "redis://127.0.0.1:6378/8"
 CELERY_RESULT_URL = os.getenv(

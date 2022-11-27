@@ -4,7 +4,7 @@ import pymongo
 global _CLIENT
 _CLIENT = None
 
-MONGO_URL = os.getenv("MONGO_URL") or "mongodb://localhost:27017/"
+MONGO_URL = os.getenv("MONGO_URL") or "mongodb://localhost:27018/"
 
 
 
