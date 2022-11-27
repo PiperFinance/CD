@@ -24,7 +24,6 @@ services:
     hostname: worker
     build:
       context: ./worker
-      dockerfile: worker.Dockerfile
     restart: always
     depends_on:
       - mongo
@@ -59,8 +58,6 @@ services:
       - REDIS_PORT=6380
       - REDIS_URL=redis://redis:6380
 
-
-  
 
 networks:
   default:

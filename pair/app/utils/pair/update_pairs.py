@@ -15,8 +15,7 @@ def update_all_pairs():
 def update_chain_pairs(chain_id: int):
     chain = Chain(chainId=chain_id)
     client = Pair.mongo_client(chain_id)
-    query = {"chainId": chain_id}
-    pairs = client.find(query)
+    pairs = client.find()
     for pair in pairs:
         symbols = pair.name.split('-')
 

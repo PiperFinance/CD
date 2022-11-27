@@ -1,7 +1,8 @@
 uvicorn
 fastapi
 redis 
-pymongo 
+pymongo
+pygelf 
 odmantic 
 requests 
 web3 

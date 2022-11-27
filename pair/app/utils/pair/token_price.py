@@ -1,37 +1,29 @@
 import logging
 from pycoingecko import CoinGeckoAPI
 
-from configs.redis_config import cache_client, RedisNamespace
+from ..sync_redis import cache_coin_id, get_coin_id_from_redis
 
 
-def cache_coins_id():
-    cache_client().set(
-        f'{RedisNamespace.COINGECK_COIN_ID}:FTM',
-        'fantom'
-    )
+def save_coins_id():
+    cache_coin_id('FTM', 'fantom')
 
     cg = CoinGeckoAPI()
     coin_list = cg.get_coins_list()
     for coin in coin_list:
-        cache_client().set(
-            f'{RedisNamespace.COINGECK_COIN_ID}:{coin.get("symbol").upper()}',
-            coin.get('id')
-        )
+        cache_coin_id(coin.get("symbol"), coin.get("id"))
 
 
 def get_coins_id(symbol: str) -> str:
-    id = cache_client().get(
-        f'{RedisNamespace.COINGECK_COIN_ID}:{symbol}'
-    )
-    if not id:
-        if symbol == "FTM":
-            return "fantom"
+    id = get_coin_id_from_redis(symbol)
 
-        cg = CoinGeckoAPI()
-        coin_list = cg.get_coins_list()
-        for coin in coin_list:
-            if symbol == coin.get("symbol").upper():
-                return coin.get("id")
+    if id:
+        return id
+
+    cg = CoinGeckoAPI()
+    coin_list = cg.get_coins_list()
+    for coin in coin_list:
+        if symbol == coin.get("symbol").upper():
+            return coin.get("id")
     
 
 def get_token_price(symbol) -> float:

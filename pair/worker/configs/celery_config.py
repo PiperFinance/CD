@@ -1,5 +1,4 @@
 from celery import Celery
-from . import gelf_config
 from worker.schedules import all_schedules
 
 

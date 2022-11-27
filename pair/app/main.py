@@ -4,13 +4,15 @@ from typing import List
 from fastapi import FastAPI
 
 
-from models import Trx, Pair, Nft
+from models import Trx, Pair, Nft, Signature
 from configs import redis_config
 from utils.nft.save_nfts import save_users_all_nfts
 from utils.nft.get_nfts import get_users_all_nfts, get_users_chain_nfts
 from utils.pair.get_pairs import get_all_pairs, get_chain_pairs
 from utils.transaction.save_transactions import save_users_all_token_trxs
 from utils.transaction.get_transactions import get_users_all_token_trxs, get_users_chain_token_trxs
+from utils.transaction.signature import save_signatures, get_signatures
+
 
 REDIS_URL = os.getenv("REDIS_URL") or "redis://localhost:6379"
 
@@ -20,11 +22,21 @@ app = FastAPI()
 @app.on_event("startup")
 async def app_boot():
     await redis_config.initialize(REDIS_URL)
-    # redis_config.isConnected()
-    # from app.test_functions import _tt_
+    redis_config.isConnected()
+    # from test_functions import _tt_
 
     # await _tt_()
 
+
+@app.post("/save_func_selectors")
+async def save_func_selectors(signatures: List[Signature]):
+    save_signatures(signatures)
+    return {"message": "success"}
+
+
+@app.get("/get_func_selectors")
+async def get_func_selectors(hexs: List[str]):
+    return get_signatures(hexs)
 
 
 @app.post("/save_users_trxs")

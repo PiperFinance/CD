@@ -52,8 +52,8 @@ def get_users_chain_nft_trxs(
         "address": address,
         "startblock": 0,
         "endblock": 99999999,
-        "page": 1,
-        "offset": 10,
+        # "page": 1,
+        # "offset": 10,
         "sort": "asc",
     }
 
@@ -80,6 +80,7 @@ def find_to_trxs(
             users_nfts[trx.get("contractAddress")] = {
                 "id": trx.get("tokenID"),
                 "name": trx.get("tokenName"),
+                "symbol": trx.get("tokenSymbol"),
                 "decimal": trx.get("tokenDecimal")
             }
 

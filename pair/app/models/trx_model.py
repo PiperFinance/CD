@@ -1,11 +1,18 @@
-from typing import List, Optional
+from pydantic import BaseModel
+from typing import List, Optional, Union
 
 from . import Chain
 from configs.mongo_config import client
 
+
+class Label(BaseModel):
+    title: str
+    value: Union[str, int]
+
+
 class Trx(Chain):
     userAddress: str
-    labels: Optional[List[str]]
+    labels: Optional[List[Label]]
     blockNumber: str
     timeStamp: str
     hash: str
@@ -29,6 +36,3 @@ class Trx(Chain):
     @classmethod
     def mongo_client(cls, chain_id: int):
         return client(cls.__class__.__name__, chain_id)
-
-
-

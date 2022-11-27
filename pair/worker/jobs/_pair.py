@@ -1,9 +1,9 @@
 import logging
 from worker.worker import celery_instance, TaskWithRetry
-from utils.a2s import async_run
+from ..a2s import async_run
 
-from utils.pair.save_pairs import save_all_pairs
-from utils.pair.update_pairs import update_all_pairs
+from app.utils.pair.save_pairs import save_all_pairs
+from app.utils.pair.update_pairs import update_all_pairs
 
 
 @celery_instance.task(

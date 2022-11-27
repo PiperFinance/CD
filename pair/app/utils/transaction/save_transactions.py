@@ -3,7 +3,7 @@ import logging
 from web3 import Web3
 from typing import List, Dict
 from models import Trx, Chain
-from .decode import decode_trx_input_data
+from .decode_transaction_input import decode_trx_input_data
 
 
 def save_users_all_token_trxs(address: str):
@@ -43,8 +43,8 @@ def get_users_chain_token_trxs(
         "address": address,
         "startblock": 0,
         "endblock": 99999999,
-        "page": 1,
-        "offset": 10,
+        # "page": 1,
+        # "offset": 10,
         "sort": "asc",
     }
 
@@ -53,7 +53,7 @@ def get_users_chain_token_trxs(
             url = f"{url}?module=account&action=tokentx&apikey={api_key}"
             res = requests.post(url=url, data=data)
             res = res.json()
-            if res is not None and res.get("message") == "OK":
+            if res is not None and (res.get("message") == "OK" or res.get("message") == "No transactions found"):
                 return res.get("result")
         except Exception as e:
             logging.exception(f"{e} -> API Key didn't work.")
@@ -66,7 +66,7 @@ def create_trx_objects(chain_id: int, address: str, users_trxs: List[Dict]) -> L
     for trx in users_trxs:
         trx["userAddress"] = Web3.toChecksumAddress(address)
         labels = decode_trx_input_data(trx.get("input"))
-        if labels not in [[], None]:
+        if labels:
             trx["labels"] = labels
         trx["chainId"] = chain_id
         trx["fromAddress"] = trx.get("from")

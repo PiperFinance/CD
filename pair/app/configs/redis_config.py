@@ -23,9 +23,10 @@ class _Functions:
 
 
 class RedisNamespace(_Functions, Enum):
-    FUNC_SIGNATURE = "sig:"
     COINGECK_COIN_ID = "cid:"
     LAST_CACHED_SIG_PAGE = "lap:"
+    FOUR_BYTES_IGNATURE = "4si:"
+    SIGNATURE = "sig:"
 
     def __add__(self, v) -> str:
         if isinstance(v, str):

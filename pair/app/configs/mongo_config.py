@@ -1,7 +1,11 @@
+import os
 import pymongo
 
 global _CLIENT
 _CLIENT = None
+
+MONGO_URL = os.getenv("MONGO_URL") or "mongodb://localhost:27017/"
+
 
 
 def client(
@@ -10,7 +14,7 @@ def client(
 ):
     global _CLIENT
     if not _CLIENT:
-        _CLIENT = pymongo.MongoClient("mongodb://localhost:27017/")
+        _CLIENT = pymongo.MongoClient(MONGO_URL)
 
     db = _CLIENT[str(chain_id)]
     col = db[class_name]

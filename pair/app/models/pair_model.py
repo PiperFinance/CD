@@ -4,7 +4,6 @@ from . import Chain
 from configs.mongo_config import client
 
 
-
 class Pair(Chain):
     address: str
     name: str

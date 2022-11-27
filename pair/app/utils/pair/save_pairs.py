@@ -101,7 +101,7 @@ def get_and_create_chain_pairs_objects(
                 tokens[j].get("decimals")
             ]
             symbols = [
-                tokens[i].get("sybmol"),
+                tokens[i].get("symbol"),
                 tokens[j].get("symbol")
             ]
             token_prices = [

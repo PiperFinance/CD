@@ -9,11 +9,11 @@ from celery.signals import (
     worker_process_init
 )
 
-from app.utils.a2s import async_run
-from app.configs.celery_config import config
+from worker.a2s import async_run
+from worker.configs.celery_config import config
 from app.configs.redis_config import initialize
-from app.utils.transaction.signature import cache_all_signatures
-from app.utils.pair.token_price import cache_coins_id
+from app.utils.transaction.four_bytes_signature import save_all_4bytes_signatures
+from app.utils.pair.token_price import save_coins_id
 
 try:
     load_dotenv(os.path.dirname(os.path.realpath(__file__)) + "/.env")
@@ -38,9 +38,9 @@ celery_instance = config(
 def startup_task(sender=None, conf=None, **kwargs):
     async_run(initialize(REDIS_URL))
     logging.info("celery is initializing Redis.")
-    async_run(cache_all_signatures())
+    async_run(save_all_4bytes_signatures())
     logging.info("Function signatures are being added to MogoDB.")
-    cache_coins_id()
+    save_coins_id()
     logging.info("Coingecko coins ids are being cached in Redis.")
 
 
