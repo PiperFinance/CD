@@ -4,15 +4,16 @@ from web3 import Web3
 from typing import List, Dict
 from models import Trx, Chain
 from .decode_transaction_input import decode_trx_input_data
+from utils.types import Address, ChainId
 
 
-def save_users_all_token_trxs(address: str):
+def save_users_all_token_trxs(address: Address):
 
     for chain_id in Chain.supported_chains():
         save_users_chain_token_trxs(chain_id, address)
 
 
-def save_users_chain_token_trxs(chain_id: int, address: str):
+def save_users_chain_token_trxs(chain_id: ChainId, address: Address):
     trxs = get_users_chain_token_trxs(
         chain_id,
         address
@@ -31,8 +32,8 @@ def save_users_chain_token_trxs(chain_id: int, address: str):
 
 
 def get_users_chain_token_trxs(
-    chain_id: int,
-    address: str
+    chain_id: ChainId,
+    address: Address
 ) -> List[Dict]:
 
     chain = Chain(chainId=chain_id)
@@ -60,7 +61,10 @@ def get_users_chain_token_trxs(
             continue
 
 
-def create_trx_objects(chain_id: int, address: str, users_trxs: List[Dict]) -> List[Trx]:
+def create_trx_objects(
+        chain_id: ChainId,
+        address: Address,
+        users_trxs: List[Dict]) -> List[Trx]:
     trxs = []
 
     for trx in users_trxs:
@@ -75,7 +79,11 @@ def create_trx_objects(chain_id: int, address: str, users_trxs: List[Dict]) -> L
     return trxs
 
 
-def insert_trxs(chain_id: int, address: str, trxs: List[Trx]):
+def insert_trxs(
+    chain_id: ChainId,
+    address: Address,
+    trxs: List[Trx]
+):
     client = Trx.mongo_client(chain_id)
     try:
         client.delete_many({"userAddress": address})

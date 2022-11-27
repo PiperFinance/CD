@@ -4,14 +4,15 @@ from typing import List, Dict
 from web3 import Web3
 
 from models import Chain, Nft
+from utils.types import Address, ChainId
 
 
-def save_users_all_nfts(address: str):
+def save_users_all_nfts(address: Address):
     for chain_id in Chain.supported_chains():
         save_users_chain_nfts(chain_id, address)
 
 
-def save_users_chain_nfts(chain_id: int, address: str):
+def save_users_chain_nfts(chain_id: ChainId, address: Address):
     nft_trxs = get_users_chain_nft_trxs(chain_id, address)
     if nft_trxs in [None, []]:
         return
@@ -26,8 +27,8 @@ def save_users_chain_nfts(chain_id: int, address: str):
 
 
 def create_nft_objects(
-    chain_id: int,
-    address: str,
+    chain_id: ChainId,
+    address: Address,
     users_nfts: Dict
 ) -> List[Nft]:
     nfts = []
@@ -40,8 +41,8 @@ def create_nft_objects(
 
 
 def get_users_chain_nft_trxs(
-    chain_id: int,
-    address: str,
+    chain_id: ChainId,
+    address: Address,
 ) -> List:
 
     chain = Chain(chainId=chain_id)
@@ -71,7 +72,7 @@ def get_users_chain_nft_trxs(
 
 
 def find_to_trxs(
-    address: str,
+    address: Address,
     nft_trxs: List[Dict]
 ) -> Dict:
     users_nfts = {}
@@ -88,7 +89,7 @@ def find_to_trxs(
 
 
 def remove_from_trxs(
-    address: str,
+    address: Address,
     nft_trxs: List[Dict],
     users_nfts: Dict
 ) -> Dict:
@@ -101,8 +102,8 @@ def remove_from_trxs(
 
 
 def insert_nfts(
-    chain_id: int,
-    address: str,
+    chain_id: ChainId,
+    address: Address,
     nfts: List[Nft]
 ):
     client = Nft.mongo_client(chain_id)

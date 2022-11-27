@@ -7,6 +7,7 @@ from .lp_price import get_reserves, get_total_supply, calculate_lp_price
 from .token_price import get_token_price
 from models import Chain, Pair
 from utils import abis
+from utils.types import Address, Price, ChainId, Name, Symbol, Decimal, Contract
 
 
 def save_all_pairs():
@@ -14,7 +15,7 @@ def save_all_pairs():
         save_chain_pairs(chain_id)
 
 
-def save_chain_pairs(chain_id: int):
+def save_chain_pairs(chain_id: ChainId):
     factories = get_chain_factories(chain_id)
     if not factories:
         return
@@ -34,7 +35,7 @@ def save_chain_pairs(chain_id: int):
         insert_pairs(chain_id, chain_pairs)
 
 
-def save_chain_pairs_test(chain_id: int):
+def save_chain_pairs_test(chain_id: ChainId):
     factories = get_chain_factories(chain_id)
     if not factories:
         return
@@ -54,7 +55,7 @@ def save_chain_pairs_test(chain_id: int):
         insert_pairs(chain_id, chain_pairs)
 
 
-def get_chain_factories(chain_id: int) -> Dict:
+def get_chain_factories(chain_id: ChainId) -> Dict:
     with open("utils/dexs.json") as f:
         factory_dict = json.load(f)
 
@@ -63,7 +64,7 @@ def get_chain_factories(chain_id: int) -> Dict:
             return factory_dict[key]
 
 
-def get_chain_tokens(chain_id: int) -> Dict:
+def get_chain_tokens(chain_id: ChainId) -> Dict:
     with open("utils/tokens.json") as f:
         token_dict = json.load(f)
 
@@ -74,8 +75,8 @@ def get_chain_tokens(chain_id: int) -> Dict:
 
 def get_and_create_chain_pairs_objects(
         chain: Chain,
-        factory_address: str,
-        dex_name: str,
+        factory_address: Address,
+        dex_name: Name,
         tokens: List[Dict]) -> List[Pair]:
 
     factory_contract = chain.w3.eth.contract(
@@ -131,8 +132,8 @@ def get_and_create_chain_pairs_objects(
 
 def get_and_create_chain_pairs_objects_test(
         chain: Chain,
-        factory_address: str,
-        dex_name: str,
+        factory_address: Address,
+        dex_name: Name,
         tokens: List[Dict]) -> List[Pair]:
 
     pairs = []
@@ -196,7 +197,7 @@ def get_and_create_chain_pairs_objects_test(
     return pairs
 
 
-def insert_pairs(chain_id: int, pairs: List[Pair]):
+def insert_pairs(chain_id: ChainId, pairs: List[Pair]):
     client = Pair.mongo_client(chain_id)
     try:
         client.delete_many()
@@ -207,19 +208,19 @@ def insert_pairs(chain_id: int, pairs: List[Pair]):
 
 
 def get_pair(
-        factory_contract,
-        token0: str,
-        token1: str) -> str:
+        factory_contract: Contract,
+        token0: Address,
+        token1: Address) -> Address:
     pair = factory_contract.functions.getPair(token0, token1).call()
     return pair
 
 
 def sort_pair_tokens(
-        pair_contract,
-        tokens: List[str],
-        symbols: List[str],
-        decimals: List[int],
-        prices: List[float]) -> Tuple:
+        pair_contract: Contract,
+        tokens: List[Address],
+        symbols: List[Symbol],
+        decimals: List[Decimal],
+        prices: List[Price]) -> Tuple:
 
     token0 = pair_contract.functions.token0()
     if token0 == tokens[0]:

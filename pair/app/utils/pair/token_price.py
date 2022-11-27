@@ -2,6 +2,7 @@ import logging
 from pycoingecko import CoinGeckoAPI
 
 from ..sync_redis import cache_coin_id, get_coin_id_from_redis
+from utils.types import Symbol, Price
 
 
 def save_coins_id():
@@ -13,7 +14,7 @@ def save_coins_id():
         cache_coin_id(coin.get("symbol"), coin.get("id"))
 
 
-def get_coins_id(symbol: str) -> str:
+def get_coins_id(symbol: Symbol) -> str:
     id = get_coin_id_from_redis(symbol)
 
     if id:
@@ -24,9 +25,9 @@ def get_coins_id(symbol: str) -> str:
     for coin in coin_list:
         if symbol == coin.get("symbol").upper():
             return coin.get("id")
-    
 
-def get_token_price(symbol) -> float:
+
+def get_token_price(symbol: Symbol) -> Price:
     try:
         cg = CoinGeckoAPI()
         token_id = get_coins_id(symbol)

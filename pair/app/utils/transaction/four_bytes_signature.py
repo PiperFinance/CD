@@ -8,6 +8,7 @@ from ..sync_redis import (
     cache_last_cached_signature_page,
     get_last_cached_signature_page_from_redis
 )
+from utils.types import Url, HexStr
 
 
 def save_all_4bytes_signatures():
@@ -29,7 +30,7 @@ def save_all_4bytes_signatures():
         save_4bytes_signatures(url, i, i + 100)
 
 
-def save_4bytes_signatures(url: str, start: int, end: int):
+def save_4bytes_signatures(url: Url, start: int, end: int):
     last_cached_page = get_last_cached_signature_page_from_redis()
 
     if int(last_cached_page) > start:
@@ -67,7 +68,7 @@ def save_4bytes_single_page_signature(signatures: List[Dict], page_number: int):
     cache_last_cached_signature_page(page_number)
 
 
-def get_4bytes_single_signature(sig_hex: str) -> str:
+def get_4bytes_single_signature(sig_hex: HexStr) -> str:
     signature = get_4bytes_signature_from_redis(sig_hex)
     if signature:
         return signature

@@ -5,6 +5,7 @@ from ..sync_redis import (
     cache_func_sig_with_args,
     get_func_sig_with_args_from_redis
 )
+from utils.types import HexStr
 
 
 def save_signatures(signatures: List[Signature]):
@@ -15,7 +16,7 @@ def save_signatures(signatures: List[Signature]):
         )
 
 
-def get_signatures(hexs: List[str]) -> List[Signature]:
+def get_signatures(hexs: List[HexStr]) -> List[Signature]:
     signatures = []
 
     for hex in hexs:

@@ -5,6 +5,7 @@ from models import Pair, Chain
 from .lp_price import get_reserves, get_total_supply, calculate_lp_price
 from .token_price import get_token_price
 from utils import abis
+from utils.types import ChainId
 
 
 def update_all_pairs():
@@ -12,7 +13,7 @@ def update_all_pairs():
         update_chain_pairs(chain_id)
 
 
-def update_chain_pairs(chain_id: int):
+def update_chain_pairs(chain_id: ChainId):
     chain = Chain(chainId=chain_id)
     client = Pair.mongo_client(chain_id)
     pairs = client.find()
