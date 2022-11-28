@@ -4,7 +4,7 @@ from web3 import Web3
 from typing import List, Dict
 from models import Trx, Chain
 from .decode_transaction_input import decode_trx_input_data
-from utils.types import Address, ChainId
+from utils.types import Address, ChainId, MongoClient
 
 
 def save_users_all_token_trxs(address: Address):
@@ -20,13 +20,14 @@ def save_users_chain_token_trxs(chain_id: ChainId, address: Address):
     )
     if trxs in [None, []]:
         return
-    trxs = create_trx_objects(
+    trxs = create_trxs(
         chain_id,
         address,
         trxs
     )
     insert_trxs(
         chain_id,
+        address,
         trxs
     )
 
@@ -61,7 +62,7 @@ def get_users_chain_token_trxs(
             continue
 
 
-def create_trx_objects(
+def create_trxs(
         chain_id: ChainId,
         address: Address,
         users_trxs: List[Dict]) -> List[Trx]:
@@ -74,7 +75,7 @@ def create_trx_objects(
             trx["labels"] = labels
         trx["chainId"] = chain_id
         trx["fromAddress"] = trx.get("from")
-        trxs.append(Trx(**trx))
+        trxs.append(trx)
 
     return trxs
 
@@ -84,10 +85,35 @@ def insert_trxs(
     address: Address,
     trxs: List[Trx]
 ):
-    client = Trx.mongo_client(chain_id)
     try:
-        client.delete_many({"userAddress": address})
+        client = Trx.mongo_client(chain_id)
+        trxs = check_if_trx_exists(client, address, trxs)
+        client.insert_many(trxs)
     except Exception as e:
         logging.info(
             f"{str(e)} -> seems like {address} on {chain_id} chain, doesn't have any trx in mongo yet.")
-    client.insert_many(trxs)
+
+
+def check_if_trx_exists(
+    client: MongoClient,
+    address: Address,
+    trxs: List[Dict]
+):
+    try:
+        user_trxs = list(client.find({"userAddress": address}))
+
+        if user_trxs in [None, []]:
+            return trxs
+
+        trx_hashes = []
+
+        for user_trx in user_trxs:
+            trx_hashes.append(user_trx.get("hash"))
+
+        for trx in trxs:
+            if trx.get("hash") in trx_hashes:
+                trxs.remove(trx)
+    except Exception as e:
+        logging.exception(e)
+
+    return trxs

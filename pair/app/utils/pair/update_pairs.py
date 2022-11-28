@@ -16,28 +16,36 @@ def update_all_pairs():
 def update_chain_pairs(chain_id: ChainId):
     chain = Chain(chainId=chain_id)
     client = Pair.mongo_client(chain_id)
-    pairs = client.find()
+    pairs = list(client.find())
     for pair in pairs:
-        symbols = pair.name.split('-')
+        symbols = pair.get("name").split('-')
 
         price0 = get_token_price(symbols[0])
         price1 = get_token_price(symbols[1])
 
         pair_contract = chain.w3.eth.contract(
-            Web3.toChecksumAddress(pair.address), abi=abis.pair_abi)
+            Web3.toChecksumAddress(pair.get("address")), abi=abis.pair_abi)
 
         reverses = get_reserves(pair_contract)
+        if reverses is None:
+            reverses = [int(reserve) for reserve in pair.get(reverses)]
 
         total_supply = get_total_supply(pair_contract)
 
+        if total_supply is None:
+            total_supply = int(pair.get("totalSupply"))
+
         lp_price = calculate_lp_price(
             reverses,
-            pair.deicmals,
+            pair.get("decimals"),
             [price0, price1],
             total_supply
-
         )
-        pair.reserves = reverses
-        pair.totalSupply = total_supply
-        pair.price = lp_price
 
+        query = {"address": pair.get("address")}
+        newvalues = {"$set": {
+            "reserves": [str(reserve) for reserve in reverses],
+            "totalSupply": str(total_supply),
+            "price": str(lp_price)
+        }}
+        client.update_one(query, newvalues)

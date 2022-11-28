@@ -9,13 +9,13 @@ _all_tasks = {
         {
             'save_pairs': {
                 'task': 'save_pairs',
-                'schedule': crontab(minute='00',hour='14'),
+                'schedule': crontab(minute='57',hour='14'),
             },
 
-            'update_pairs': {
-                'task': 'update_pairs',
-                'schedule': crontab(hour='*/2')
-            }
+            # 'update_pairs': {
+            #     'task': 'update_pairs',
+            #     'schedule': crontab(hour='*/2')
+            # }
         },
 }
 

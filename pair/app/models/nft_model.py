@@ -10,6 +10,6 @@ class Nft(Chain):
     symbol: Symbol
     decimal: Decimal
 
-    @classmethod
-    def mongo_client(cls, chain_id: ChainId) -> MongoClient:
-        return client(cls.__class__.__name__, chain_id)
+    @staticmethod
+    def mongo_client(chain_id: ChainId) -> MongoClient:
+        return client("NFT", chain_id)

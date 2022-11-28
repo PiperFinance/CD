@@ -29,11 +29,11 @@ services:
       - mongo
       - redis
     environment:
-      - CELERY_BROKER_URL=redis://redis:6379/4
-      - CELERY_RESULT_URL=redis://redis:6379/5
+      - CELERY_BROKER_URL=redis://redis:6380/4
+      - CELERY_RESULT_URL=redis://redis:6380/5
       - REDIS_HOST=redis
-      - REDIS_PORT=6379
-      - REDIS_URL=redis://redis:6379
+      - REDIS_PORT=6380
+      - REDIS_URL=redis://redis:6380
       - WAIT_BEFORE=15
 
   app:

@@ -4,7 +4,7 @@ from typing import List, Dict
 from web3 import Web3
 
 from models import Chain, Nft
-from utils.types import Address, ChainId
+from utils.types import Address, ChainId, MongoClient
 
 
 def save_users_all_nfts(address: Address):
@@ -22,11 +22,11 @@ def save_users_chain_nfts(chain_id: ChainId, address: Address):
     users_nfts = remove_from_trxs(address, nft_trxs, users_nfts)
     if users_nfts in [None, []]:
         return
-    users_nfts = create_nft_objects(chain_id, address, users_nfts)
+    users_nfts = create_nfts(chain_id, address, users_nfts)
     insert_nfts(chain_id, address, users_nfts)
 
 
-def create_nft_objects(
+def create_nfts(
     chain_id: ChainId,
     address: Address,
     users_nfts: Dict
@@ -36,7 +36,7 @@ def create_nft_objects(
         value["userAddress"] = Web3.toChecksumAddress(address)
         value["chainId"] = chain_id
         value["address"] = Web3.toChecksumAddress(key)
-        nfts.append(Nft(**value))
+        nfts.append(value)
     return nfts
 
 
@@ -104,13 +104,38 @@ def remove_from_trxs(
 def insert_nfts(
     chain_id: ChainId,
     address: Address,
-    nfts: List[Nft]
+    nfts: List[Dict]
 ):
-    client = Nft.mongo_client(chain_id)
     try:
-        client.delete_many({"userAddress": address})
+        client = Nft.mongo_client(chain_id)
+        nfts = check_if_nft_exists(client, address, nfts)
+        client.insert_many(nfts)
+
     except Exception as e:
         logging.info(
             f"{str(e)} -> seems like {address} on {chain_id} chain, doesn't have any nfts in mongo yet.")
 
-    client.insert_many(nfts)
+
+def check_if_nft_exists(
+    client: MongoClient,
+    address: Address,
+    nfts: List[Dict]
+):
+    try:
+        user_nfts = list(client.find({"userAddress": address}))
+
+        if user_nfts in [None, []]:
+            return nfts
+
+        nft_addresses = []
+
+        for user_nft in user_nfts:
+            nft_addresses.append(user_nft.get("address"))
+
+        for nft in nfts:
+            if nft.get("address") in nft_addresses:
+                nfts.remove(nft)
+    except Exception as e:
+        logging.exception(e)
+
+    return nfts

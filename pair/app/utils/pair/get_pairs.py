@@ -1,3 +1,4 @@
+from typing import List, Dict
 from models import Chain, Pair
 
 
@@ -9,4 +10,12 @@ def get_all_pairs():
 
 def get_chain_pairs(chain_id: int):
     client = Pair.mongo_client(chain_id)
-    return client.find()
+    pairs = list(client.find())
+    return create_pair_objects(pairs)
+
+
+def create_pair_objects(pairs: List[Dict]):
+    pair_objs = []
+    for pair in pairs:
+        pair_objs.append(Pair(**pair))
+    return pair_objs

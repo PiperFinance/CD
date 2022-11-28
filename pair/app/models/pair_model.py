@@ -2,7 +2,7 @@ from typing import List, Optional
 
 from . import Chain
 from configs.mongo_config import client
-from utils.types import Address, BigInt, Price, ChainId, Name, Decimal, MongoClient
+from utils.types import Address, BigInt, ChainId, Name, Decimal, MongoClient
 
 
 class Pair(Chain):
@@ -12,8 +12,8 @@ class Pair(Chain):
     decimals: List[Decimal]
     reserves: List[BigInt]
     totalSupply: BigInt
-    price: Optional[Price]
+    price: Optional[BigInt]
 
-    @classmethod
-    def mongo_client(cls, chain_id: ChainId) -> MongoClient:
-        return client(cls.__class__.__name__, chain_id)
+    @staticmethod
+    def mongo_client(chain_id: ChainId) -> MongoClient:
+        return client("Pair", chain_id)

@@ -26,7 +26,7 @@ app = FastAPI()
 async def app_boot():
     await redis_config.initialize(REDIS_URL)
     redis_config.isConnected()
-    # from test_functions import _tt_
+    from test_functions import _tt_
 
     # await _tt_()
 
@@ -99,4 +99,4 @@ async def get_pairs(chain_id: ChainId):
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=12365)
+    uvicorn.run(app, host="0.0.0.0", port=12345)
