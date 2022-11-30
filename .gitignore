@@ -4,3 +4,8 @@ Pipfile.lock
 .env
 __pycache__/
 data/
+*.dump
+*.lock
+node_modules/
+*.pyc
+venv/
