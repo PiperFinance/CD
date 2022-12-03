@@ -3,7 +3,7 @@ from typing import List
 from web3 import Web3
 from pydantic import BaseModel
 
-from utils.types import ChainId, Url, ApiKey, Web3, MongoClient
+from utils.types import ChainId, Url, ApiKey, Web3, MongoClient, Name
 
 class Chain(BaseModel):
     chainId: ChainId
@@ -11,6 +11,12 @@ class Chain(BaseModel):
     @staticmethod
     def supported_chains() -> List[ChainId]:
         return [250, 1, 3, 4, 5, 10, 42, 137, 42161, 42220, 80001]
+
+    @property
+    def chain_name(self) -> Name:
+        with open("utils/chains.json") as f:
+            chains = json.load(f)
+            return chains[str(self.chainId)]["name"]
 
     @property
     def url(self) -> Url:

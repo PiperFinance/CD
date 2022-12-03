@@ -13,7 +13,10 @@ def save_users_all_token_trxs(address: Address):
         save_users_chain_token_trxs(chain_id, address)
 
 
-def save_users_chain_token_trxs(chain_id: ChainId, address: Address):
+def save_users_chain_token_trxs(
+    chain_id: ChainId,
+    address: Address
+):
     trxs = get_users_chain_token_trxs(
         chain_id,
         address
@@ -65,7 +68,8 @@ def get_users_chain_token_trxs(
 def create_trxs(
         chain_id: ChainId,
         address: Address,
-        users_trxs: List[Dict]) -> List[Trx]:
+        users_trxs: List[Dict]
+) -> List[Trx]:
     trxs = []
 
     for trx in users_trxs:
@@ -75,6 +79,7 @@ def create_trxs(
             trx["labels"] = labels
         trx["chainId"] = chain_id
         trx["fromAddress"] = trx.get("from")
+        trx["timeStamp"] = int(trx.get("timeStamp"))
         trxs.append(trx)
 
     return trxs
@@ -87,8 +92,10 @@ def insert_trxs(
 ):
     try:
         client = Trx.mongo_client(chain_id)
+        # client.drop()
         trxs = check_if_trx_exists(client, address, trxs)
-        client.insert_many(trxs)
+        if trxs not in [None, []]:
+            client.insert_many(trxs)
     except Exception as e:
         logging.info(
             f"{str(e)} -> seems like {address} on {chain_id} chain, doesn't have any trx in mongo yet.")
@@ -113,7 +120,7 @@ def check_if_trx_exists(
         for trx in trxs:
             if trx.get("hash") in trx_hashes:
                 trxs.remove(trx)
+        return trxs
     except Exception as e:
         logging.exception(e)
-
-    return trxs
+        return trxs

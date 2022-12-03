@@ -1,8 +1,8 @@
 from typing import List
 
 from models import Label
-from .four_bytes_signature import get_4bytes_single_signature
-from ..sync_redis import get_func_sig_with_args_from_redis
+from .four_bytes_function_selector import get_4bytes_single_function_selector
+from .get_function_selectors import get_function_selector
 
 
 def decode_trx_input_data(input: str) -> List[Label]:
@@ -11,7 +11,7 @@ def decode_trx_input_data(input: str) -> List[Label]:
 
     labels = []
 
-    func_sig_with_args = get_func_sig_with_args_from_redis(input[:11])
+    func_sig_with_args = get_function_selector(input[:11])
 
     if func_sig_with_args:
         labels.append(Label(**{
@@ -30,7 +30,7 @@ def decode_trx_input_data(input: str) -> List[Label]:
 
         return labels
 
-    func_sig = get_4bytes_single_signature(input[:11])
+    func_sig = get_4bytes_single_function_selector(input[:11])
 
     if func_sig:
         return [(Label(**{

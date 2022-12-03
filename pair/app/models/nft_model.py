@@ -1,6 +1,9 @@
+from typing import Optional
+
 from . import Chain
 from configs.mongo_config import client
 from utils.types import Address, ChainId, Id, Symbol, Name, Decimal, MongoClient
+
 
 class Nft(Chain):
     userAddress: Address
@@ -9,6 +12,8 @@ class Nft(Chain):
     name: Name
     symbol: Symbol
     decimal: Decimal
+    uri: Optional[str]
+    verified: bool = False
 
     @staticmethod
     def mongo_client(chain_id: ChainId) -> MongoClient:

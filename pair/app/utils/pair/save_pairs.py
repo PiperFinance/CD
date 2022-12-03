@@ -1,4 +1,5 @@
 import json
+import time
 import logging
 from web3 import Web3
 from typing import List, Dict, Tuple
@@ -7,7 +8,7 @@ from .lp_price import get_reserves, get_total_supply, calculate_lp_price
 from .token_price import get_token_price
 from models import Chain, Pair
 from utils import abis
-from utils.types import Address, Price, ChainId, Name, Symbol, Decimal, Contract, MongoClient
+from utils.types import Address, Price, ChainId, Name, Symbol, Decimal, Contract
 
 
 def save_all_pairs():
@@ -58,7 +59,8 @@ def get_and_create_chain_pairs(
         chain: Chain,
         factory_address: Address,
         dex_name: Name,
-        tokens: List[Dict]) -> List[Pair]:
+        tokens: List[Dict]
+) -> List[Pair]:
 
     factory_contract = chain.w3.eth.contract(
         Web3.toChecksumAddress(factory_address),
@@ -111,7 +113,10 @@ def get_and_create_chain_pairs(
     return pairs
 
 
-def insert_pairs(chain_id: ChainId, pairs: List[Pair]):
+def insert_pairs(
+    chain_id: ChainId,
+    pairs: List[Pair]
+):
     try:
         client = Pair.mongo_client(chain_id)
         client.delete_many()
@@ -124,8 +129,10 @@ def insert_pairs(chain_id: ChainId, pairs: List[Pair]):
 def get_pair(
         factory_contract: Contract,
         token0: Address,
-        token1: Address) -> Address:
+        token1: Address
+) -> Address:
     try:
+        time.sleep(1)
         pair = factory_contract.functions.getPair(token0, token1).call()
         return pair
     except Exception as e:
@@ -137,7 +144,8 @@ def sort_pair_tokens(
         tokens: List[Address],
         symbols: List[Symbol],
         decimals: List[Decimal],
-        prices: List[Price]) -> Tuple:
+        prices: List[Price]
+) -> Tuple:
     try:
         token0 = pair_contract.functions.token0()
         if token0 == tokens[1]:

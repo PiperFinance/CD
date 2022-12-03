@@ -3,7 +3,7 @@ from typing import List, Optional, Union
 
 from . import Chain
 from configs.mongo_config import client
-from utils.types import Address, StringBlockNumber, StringTimestamp, Symbol, Name, Decimal, MongoClient
+from utils.types import Address, StringBlockNumber, Symbol, Name, Decimal, MongoClient
 
 
 class Label(BaseModel):
@@ -15,7 +15,7 @@ class Trx(Chain):
     userAddress: Address
     labels: Optional[List[Label]]
     blockNumber: StringBlockNumber
-    timeStamp: StringTimestamp
+    timeStamp: int
     hash: str
     nonce: str
     blockHash: str

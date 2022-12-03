@@ -1,23 +1,35 @@
 from celery.schedules import crontab
-'''
-All celery Tasks
-'''
 
-_all_tasks = {
+from app.models import Chain
 
-    "Pair":
-        {
+
+def generate_tasks():
+    chain_ids = Chain.supported_chains()
+    tasks = {}
+
+    for chain_id in chain_ids:
+        name = Chain(chainId=chain_id).chain_name
+        tasks[name] = {
             'save_pairs': {
                 'task': 'save_pairs',
-                'schedule': crontab(minute='57',hour='14'),
+                'schedule': crontab(hour='*/24'),
+                'kwargs': {
+                        'chain_id': chain_id
+                }
             },
+            'update_pairs': {
+                'task': 'update_pairs',
+                'schedule': crontab(minute='*/30'),
+                'kwargs': {
+                        'chain_id': chain_id
+                }
+            }
 
-            # 'update_pairs': {
-            #     'task': 'update_pairs',
-            #     'schedule': crontab(hour='*/2')
-            # }
-        },
-}
+        }
+    return tasks
+
+
+_all_tasks = generate_tasks()
 
 
 all_schedules = {}

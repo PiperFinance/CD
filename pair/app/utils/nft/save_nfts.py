@@ -5,6 +5,7 @@ from web3 import Web3
 
 from models import Chain, Nft
 from utils.types import Address, ChainId, MongoClient
+from utils.abis import nft_abi
 
 
 def save_users_all_nfts(address: Address):
@@ -12,7 +13,10 @@ def save_users_all_nfts(address: Address):
         save_users_chain_nfts(chain_id, address)
 
 
-def save_users_chain_nfts(chain_id: ChainId, address: Address):
+def save_users_chain_nfts(
+    chain_id: ChainId,
+    address: Address
+):
     nft_trxs = get_users_chain_nft_trxs(chain_id, address)
     if nft_trxs in [None, []]:
         return
@@ -36,6 +40,19 @@ def create_nfts(
         value["userAddress"] = Web3.toChecksumAddress(address)
         value["chainId"] = chain_id
         value["address"] = Web3.toChecksumAddress(key)
+        try:
+            chain = Chain(chainId=chain_id)
+            nft_contract = chain.w3.eth.contract(
+                value.get("address"),
+                abi=nft_abi
+            )
+            id = value.get("id")
+            uri = nft_contract.functions.tokenURI(int(id)).call()
+            if uri:
+                value["uri"] = uri
+        except Exception as e:
+            logging.exception(e)
+
         nfts.append(value)
     return nfts
 
@@ -108,8 +125,10 @@ def insert_nfts(
 ):
     try:
         client = Nft.mongo_client(chain_id)
+        # client.drop()
         nfts = check_if_nft_exists(client, address, nfts)
-        client.insert_many(nfts)
+        if nfts not in [None, []]:
+            client.insert_many(nfts)
 
     except Exception as e:
         logging.info(
@@ -120,22 +139,24 @@ def check_if_nft_exists(
     client: MongoClient,
     address: Address,
     nfts: List[Dict]
-):
+) -> List[Dict]:
     try:
         user_nfts = list(client.find({"userAddress": address}))
 
         if user_nfts in [None, []]:
             return nfts
 
-        nft_addresses = []
+        nft_addresses_with_id = []
 
         for user_nft in user_nfts:
-            nft_addresses.append(user_nft.get("address"))
+            nft_addresses_with_id.append(
+                f"{user_nft.get('address')}_{user_nft.get('id')}"
+            )
 
         for nft in nfts:
-            if nft.get("address") in nft_addresses:
+            if f'{nft.get("address")}_{nft.get("id")}' in nft_addresses_with_id:
                 nfts.remove(nft)
+        return nfts
     except Exception as e:
         logging.exception(e)
-
-    return nfts
+        return nfts

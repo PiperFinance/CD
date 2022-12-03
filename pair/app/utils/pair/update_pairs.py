@@ -28,7 +28,7 @@ def update_chain_pairs(chain_id: ChainId):
 
         reverses = get_reserves(pair_contract)
         if reverses is None:
-            reverses = [int(reserve) for reserve in pair.get(reverses)]
+            reverses = [int(reserve) for reserve in pair.get("reverses")]
 
         total_supply = get_total_supply(pair_contract)
 

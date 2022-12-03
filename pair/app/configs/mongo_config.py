@@ -7,7 +7,6 @@ _CLIENT = None
 MONGO_URL = os.getenv("MONGO_URL") or "mongodb://localhost:27018/"
 
 
-
 def client(
     class_name: str,
     chain_id: int
@@ -20,6 +19,17 @@ def client(
     col = db[class_name]
     return col
 
+
+def function_selector_client(
+    class_name: str
+):
+    global _CLIENT
+    if not _CLIENT:
+        _CLIENT = pymongo.MongoClient(MONGO_URL)
+
+    db = _CLIENT[class_name]
+    col = db[class_name]
+    return col
 
 # def client(
 #     db_name: str,
