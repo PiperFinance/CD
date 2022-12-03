@@ -61,13 +61,13 @@ def get_from_list(items: list, item, default=None):
         return default
 
 
-MIN_LISTED_COUNT = 4
+MIN_LISTED_COUNT = 3
 global verified_count, literally_all_tokens_count
 verified_count = 0
 literally_all_tokens_count = 0
 
 
-def provider_data_merger(providers_tokens: Dict[str, providers.Provider], out_dir="out"):
+def provider_data_merger(providers_tokens: Dict[str, providers.Provider], out_dir="out", verify=None):
     """Sample Obj {"address": "0x006BeA43Baa3f7A6f765F14f10A1a1b08334EF45", "chainId": 1, "name": "Stox", "symbol": "STX", "decimals": 18, "logoURI": "https://tokens.1inch.io/0x006bea43baa3f7a6f765f14f10a1a1b08334ef45.png"}"""
     # For Having everything all at once
     all_tokens_providers: Dict[schema.Token, List[str]] = {}
@@ -99,7 +99,11 @@ def provider_data_merger(providers_tokens: Dict[str, providers.Provider], out_di
         if len(token.listedIn) > MIN_LISTED_COUNT:
             token.verify = True
             verified_count += 1
-        all_tokens.append(token)
+        if verify is not None:
+            if verify == token.verify:
+                all_tokens.append(token)
+        else:
+            all_tokens.append(token)
 
     for token in tqdm(all_tokens):
         if (chainId := token.chainId) not in chain_separated_and_merged_by_address:

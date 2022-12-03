@@ -9,4 +9,4 @@ from tokens import providers, fixture, utils
 
 
 utils.provider_data_merger(providers.get_fetched_providers(
-    "tokens/providers"), "tokens/out/")
+    "tokens/providers"), "tokens/outVerified/", True)
