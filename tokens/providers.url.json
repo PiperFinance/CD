@@ -27,5 +27,9 @@
     "PancakeSwapExtended": "https://tokens.pancakeswap.finance/pancakeswap-extended.json",
     "PancakeSwap100": "https://tokens.pancakeswap.finance/pancakeswap-top-100.json",
     "PancakeSwapAll": "https://tokens.coingecko.com/binance-smart-chain/all.json",
-    "Zapper": "https://zapper.fi/api/token-list"
+    "Zapper": "https://zapper.fi/api/token-list",
+    "LiFi": "https://li.quest/v1/tokens",
+    "Via": "https://github.com/viaprotocol/tokenlists/blob/main/tokenlists/all.json?raw=true",
+    "ViaAll": "https://github.com/viaprotocol/tokenlists/blob/main/all_tokens/all.json?raw=true",
+    "Natives": "~"
 }

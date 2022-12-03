@@ -7,148 +7,43 @@ import os
 import pickle
 import time
 from pathlib import Path
-from uuid import uuid4
-
 import requests
 from thefuzz import fuzz  # type:ignore
 from tqdm import tqdm
 from web3 import Web3  # type:ignore
 from web3.exceptions import ContractLogicError
 
+from tokens import schema
+
 logger = logging.getLogger(__name__)
 
 _cache = {}
 _failed_chains = []
 
-
-with open("token.abi") as f:
+# Token ABI
+with open("abi/token.abi") as f:
     TOKEN_ABI = json.load(f)
 
-with open(os.path.join(Path(os.getcwd()).parent.absolute(), "chains", "chains.json")) as f:
-    _file = json.load(f)
-    _CHAINS = {int(c['chainId']): c for c in _file}
-    _W3s = {int(_c['chainId']): Web3(Web3.HTTPProvider(_c['rpc'][0]))
-            for _c in _file if _c.get('rpc')}
+# Create Token contract objects  and w3 connections ...
+# use _W3s for w3 : map [chainId : int , w3]
+# use _CONTRACTS for w3 : map [chainId : int , contract obj]
+with open(os.path.join(Path(os.getcwd()), "chains", "mainnet.json")) as f:
+    mainnet_chains = json.load(f)
+    _CHAINS = {int(c['id']): c for c in mainnet_chains}
 
     _CONTRACTS = {}
-    for wc in _file:
-        if wc.get('rpc'):
-            rpc = wc.get('rpc')[0]
-            if "${INFURA_API_KEY}" in rpc:
-                rpc = rpc.replace("${INFURA_API_KEY}",
-                                  "31d72a42f19f4a39a6d831f8b331f875")
-            w3 = Web3(Web3.HTTPProvider(rpc))
+    for chain in mainnet_chains:
+        rpc = chain.get('rpcUrls')['default']
+        if "${INFURA_API_KEY}" in rpc:
+            rpc = rpc.replace("${INFURA_API_KEY}",
+                              "31d72a42f19f4a39a6d831f8b331f875")
+        w3 = Web3(Web3.HTTPProvider(rpc))
 
-            def _(_address, _w3=w3):
-                return _w3.eth.contract(_address, abi=TOKEN_ABI)
-            _.__name__ = "F" + str(uuid4())
-            _CONTRACTS[int(wc['chainId'])] = _
+        def _(_address, _w3=w3):
+            return _w3.eth.contract(_address, abi=TOKEN_ABI)  # type: ignore
+        _CONTRACTS[int(chain['id'])] = _
 
-
-
-def fetch_tokens(out_dir="providers"):
-    """Extra Info
-    Zapper Swagger : https://api.zapper.fi/api/static/index.html
-    """
-    providers_tokens = {}
-    with open("providers.url.json") as f:
-        providers = json.load(f)
-    for provider, url in tqdm(providers.items()):
-        r = requests.get(url)
-        if r.status_code == 200:
-            try:
-                res = r.json()
-                if "tokens" in res.keys():
-                    with open(os.path.join(out_dir, provider + ".json"), "w+") as f:
-                        json.dump(res, f)
-                    providers_tokens[provider] = res
-            except json.JSONDecodeError:
-                logger.error(f"Bad Request @ {provider} :  { r.text}")
-    return providers_tokens
-
-
-def get_fetched_providers(search_dir="providers"):
-    r = {}
-    for file in glob.glob(os.path.join(os.getcwd(), search_dir, "*.json")):
-        with open(os.path.join(os.getcwd(), search_dir, file)) as f:
-            r[file.replace(".json", "").split(
-                "\\" if os.name == 'nt' else "/")[-1]] = json.load(f)
-    return r
-
-
-def _token_key(token: dict):
-    return (token['address'], token['chainId'])
-
-
-def check_token_symbol(token, provider: Optional[str] = None):
-    if token['chainId'] in _failed_chains:
-        return token
-    try:
-
-        old_symb = token['symbol']
-        # Usage of cache
-        if (token_key := _token_key(token)) not in _cache:
-            _cache[token_key] = _CONTRACTS[token['chainId']](
-                token['address']).functions.symbol().call()
-        # Cache Old symbol
-        if provider:
-            token[provider + "_symbol"] = token['symbol']
-        token['symbol'] = _cache[token_key]
-        if old_symb != token['symbol']:
-            print(f"  old:{old_symb}, new:{token['symbol']} \t {token}")
-    except ContractLogicError as e:
-        print(" ", token, e)
-        return None
-    except (requests.exceptions.HTTPError, requests.exceptions.ConnectTimeout, requests.exceptions.ReadTimeout, requests.exceptions.ConnectionError):
-        _failed_chains.append(token['chainId'])
-        print("  ", _CONTRACTS[token['chainId']](
-            token['address']).web3.provider, token['chainId'])
-        return token
-    except Exception as e:
-        if "to C ssize_t" in str(e):
-            return token
-        else:
-            print("  ",  token['address'],
-                  token['chainId'], token['symbol'], e, type(e))
-            return None
-
-    return token
-
-
-def check_token_address(token):
-    _add = token['address']
-    match _add:
-        case "0xaa44051bdd76e251aab66dbbe82a97343b4d7da3#code":
-            _add = '0xaa44051bdd76e251aab66dbbe82a97343b4d7da3'
-        case "0x77F86D401e067365dD911271530B0c90DeC3e0f7/":
-            _add = "0x77F86D401e067365dD911271530B0c90DeC3e0f7"
-        case "0x06ae7A979D9818B64498c8acaFDd0ccc78bC6fd2#balances":
-            _add = "0x06ae7A979D9818B64498c8acaFDd0ccc78bC6fd2"
-    try:
-        token['address'] = Web3.toChecksumAddress(_add)
-    except Exception as e:
-        print(" Bad Address", e, token)
-        return None
-
-    return token
-
-
-def fix_fechted_providers(fetched_providers_data: dict):
-    for provider, data in fetched_providers_data.items():
-        _res_tokens = []
-        _bad_tokens = []
-        print(f"\nProvider: {provider}")
-        for token in tqdm(data['tokens']):
-            token = check_token_address(token)
-            if token is not None:
-                token = check_token_symbol(token)
-            if token is not None:
-                _res_tokens.append(token)
-            else:
-                _bad_tokens.append(token)
-        fetched_providers_data[provider]['tokens'] = _res_tokens
-        fetched_providers_data[provider]['bad_tokens'] = _bad_tokens
-    return fetched_providers_data
+# Cache Key
 
 
 def provider_data_merger(providers_tokens, out_dir="out"):
@@ -390,15 +285,17 @@ if __name__ == "__main__":
     # token_symbol_matcher(*_)  # type:ignore
     # take_a_dump(_, "token_symbol_matcher")
 
-    _ = take_a_dump(None, "token_symbol_matcher")
-    (
-        chain_separated,
-        chain_separated_and_merged_by_symbol,
-        chain_separated_and_merged_by_name,
-        all_tokens
-    ) = _
-    with open("_tokens.json", "w") as f:
-        json.dump(
-            list(chain_separated[1].values()),
-            f
-        )
+    # _ = take_a_dump(None, "token_symbol_matcher")
+    # (
+    #     chain_separated,
+    #     chain_separated_and_merged_by_symbol,
+    #     chain_separated_and_merged_by_name,
+    #     all_tokens
+    # ) = _
+    # with open("_tokens.json", "w") as f:
+    #     json.dump(
+    #         list(chain_separated[1].values()),
+    #         f
+    #     )
+
+    ...
