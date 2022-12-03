@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 class SetEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, BaseModel):
-            return obj.json()
+            return obj.dict()
         if isinstance(obj, set):
             return list(obj)
         return json.JSONEncoder.default(self, obj)
