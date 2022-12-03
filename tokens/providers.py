@@ -132,9 +132,11 @@ class LiFiProvider(Provider):
         return provider
 
 
+CHAINS_WITH_MULTICALL: List[int] = [1, 42, 4, 5, 3, 11155111, 10, 69, 420, 42161, 421613, 421611, 137, 80001, 100, 43114, 43113, 4002, 250, 56, 97, 1284, 1285, 1287,
+                                    1666600000, 25, 122, 19, 16, 114, 288, 1313161554, 592, 66, 128, 1088, 30, 31, 9001, 9000, 108, 18, 42262, 42220, 44787, 71402, 71401, 8217, 2001, 321, 106, 40]
+
+
 class NativeTokensProvider(Provider):
-    CHAINS_WITH_MULTICALL = [1, 42, 4, 5, 3, 11155111, 10, 69, 420, 42161, 421613, 421611, 137, 80001, 100, 43114, 43113, 4002, 250, 56, 97, 1284, 1285, 1287,
-                             1666600000, 25, 122, 19, 16, 114, 288, 1313161554, 592, 66, 128, 1088, 30, 31, 9001, 9000, 108, 18, 42262, 42220, 44787, 71402, 71401, 8217, 2001, 321, 106, 40]
 
     @classmethod
     def load(cls, url, provider_dir, name=None):
@@ -149,9 +151,9 @@ class NativeTokensProvider(Provider):
                 "symbol": "ETH",
                 "decimals": 18
             })
-            for chainId in cls.CHAINS_WITH_MULTICALL]
+            for chainId in CHAINS_WITH_MULTICALL]
 
-        cls(
+        return cls(
             name=name or "NativeTokens",
             timestamp=datetime.now().isoformat(),
             version={},
@@ -180,19 +182,15 @@ def fetch_tokens(providers_url_file=None, provider_dir=None) -> Dict[str, Provid
                 case "ViaAll":
                     providers[provider] = ViaProvider.load(
                         url, provider_dir, provider)
-                    continue
                 case "Via":
                     providers[provider] = ViaProvider.load(
                         url, provider_dir, provider)
-                    continue
                 case "LiFi":
                     providers[provider] = LiFiProvider.load(
                         url, provider_dir, provider)
-                    continue
                 case "Natives":
                     providers[provider] = NativeTokensProvider.load(
                         url, provider_dir, provider)
-                    continue
                 case _:
                     providers[provider] = Provider.load(
                         url, provider_dir, provider)

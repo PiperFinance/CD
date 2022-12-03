@@ -1,24 +1,33 @@
-from pycoingecko import CoinGeckoAPI
-from typing import Optional, Any
-import glob
+from typing import Any, List, Dict, Set
 import json
+import functools
 import logging
+from pydantic import BaseModel
 import os
 import pickle
 import time
 from pathlib import Path
-import requests
-from thefuzz import fuzz  # type:ignore
+from thefuzz import fuzz
 from tqdm import tqdm
-from web3 import Web3  # type:ignore
-from web3.exceptions import ContractLogicError
-
+from web3 import Web3
 from tokens import schema
+from tokens import providers
+from pydantic.json import pydantic_encoder
 
 logger = logging.getLogger(__name__)
 
-_cache = {}
-_failed_chains = []
+
+class SetEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, BaseModel):
+            return obj.json()
+        if isinstance(obj, set):
+            return list(obj)
+        return json.JSONEncoder.default(self, obj)
+
+
+dump = functools.partial(json.dump, cls=SetEncoder)
+
 
 # Token ABI
 with open("abi/token.abi") as f:
@@ -43,69 +52,115 @@ with open(os.path.join(Path(os.getcwd()), "chains", "mainnet.json")) as f:
             return _w3.eth.contract(_address, abi=TOKEN_ABI)  # type: ignore
         _CONTRACTS[int(chain['id'])] = _
 
-# Cache Key
+
+def get_from_list(items: list, item, default=None):
+    for _item in items:
+        if hash(_item) == hash(item):
+            return _item
+    else:
+        return default
 
 
-def provider_data_merger(providers_tokens, out_dir="out"):
+MIN_LISTED_COUNT = 4
+global verified_count, literally_all_tokens_count
+verified_count = 0
+literally_all_tokens_count = 0
+
+
+def provider_data_merger(providers_tokens: Dict[str, providers.Provider], out_dir="out"):
     """Sample Obj {"address": "0x006BeA43Baa3f7A6f765F14f10A1a1b08334EF45", "chainId": 1, "name": "Stox", "symbol": "STX", "decimals": 18, "logoURI": "https://tokens.1inch.io/0x006bea43baa3f7a6f765f14f10a1a1b08334ef45.png"}"""
-    all_tokens = []
-    chain_separated = {}
-    chain_separated_and_merged_by_symbol = {}
-    chain_separated_and_merged_by_name = {}
+    # For Having everything all at once
+    all_tokens_providers: Dict[schema.Token, List[str]] = {}
+    all_tokens: List[schema.Token] = []
+    # For Go portfolio scanner ...
+    chain_separated_v2: List[schema.ChainToken] = list()
+
+    chain_separated: Dict[int, set[schema.Token]] = {}
+    chain_separated_and_merged_by_address: Dict[int,
+                                                Dict[str, List[schema.Token]]] = {}
+    # For Human readable style of merging tokens ...
+    chain_separated_and_merged_by_symbol: Dict[int,
+                                               Dict[str, List[schema.Token]]] = {}
+    chain_separated_and_merged_by_name: Dict[int,
+                                             Dict[str, List[schema.Token]]] = {}
+
+    global verified_count, literally_all_tokens_count
 
     for provider, items in providers_tokens.items():
         print(f"\nProvider: {provider}\n")
-        for token in tqdm(items["tokens"]):
+        literally_all_tokens_count += len(items.tokens)
+        for token in tqdm(items.tokens):
+            if token not in all_tokens_providers:
+                all_tokens_providers[token] = []
+            all_tokens_providers[token].append(provider)
 
-            if (chainId := token["chainId"]) not in chain_separated.keys():
-                chain_separated[chainId] = {}
-                chain_separated_and_merged_by_symbol[chainId] = {}
-                chain_separated_and_merged_by_name[chainId] = {}
+    for token, token_providers in all_tokens_providers.items():
+        token.listedIn = token_providers
+        if len(token.listedIn) > MIN_LISTED_COUNT:
+            token.verify = True
+            verified_count += 1
+        all_tokens.append(token)
 
-            if (
-                token_symbol := token["symbol"]
-            ) not in chain_separated_and_merged_by_symbol[chainId]:
-                chain_separated_and_merged_by_symbol[chainId][token_symbol] = [
-                ]
+    for token in tqdm(all_tokens):
+        if (chainId := token.chainId) not in chain_separated_and_merged_by_address:
+            chain_separated[chainId] = set()
+            chain_separated_and_merged_by_symbol[chainId] = {}
+            chain_separated_and_merged_by_name[chainId] = {}
+            chain_separated_and_merged_by_address[chainId] = {}
 
-            if (token_name := token["name"]) not in chain_separated_and_merged_by_name[
-                chainId
-            ]:
-                chain_separated_and_merged_by_name[chainId][token_name] = []
+        if (token_symbol := token.symbol) not in chain_separated_and_merged_by_symbol[chainId]:
+            chain_separated_and_merged_by_symbol[chainId][token_symbol] = []
+        if (token_name := token.name) not in chain_separated_and_merged_by_name[chainId]:
+            chain_separated_and_merged_by_name[chainId][token_name] = []
+        if (token_address := token.address) not in chain_separated_and_merged_by_address[chainId]:
+            chain_separated_and_merged_by_address[chainId][token_address] = []
+        chain_separated_and_merged_by_address[chainId][token_address].append(
+            token)
+        chain_separated_and_merged_by_name[chainId][token_name].append(token)
+        chain_separated_and_merged_by_symbol[chainId][token_symbol].append(
+            token)
+        # if (get_from_list(chain_separated[chainId], token))
+        chain_separated[chainId].add(token)
 
-            if (token_address := token["address"]) not in chain_separated[chainId]:
+    print(f"\n\n --- Result ::: {len(chain_separated)} chains  ::: {verified_count} verified ::: {len(all_tokens)} total_saved ::: {len(all_tokens) - literally_all_tokens_count} duplicates")
+    for chain, tokens in chain_separated.items():
+        # for token in chain_separated[chain].values():
+        #     chain_tokens.append(token)
 
-                chain_separated[chainId][token_address] = {}
-                chain_separated[chainId][token_address]["providers"] = []
+        chain_separated_v2.append(schema.ChainToken(**{
+            "chainId": chain,
+            "tokens": list(tokens)
+        }))
 
-            chain_separated[chainId][token_address].update(**token)
-
-            chain_separated[chainId][token_address]["providers"].append(
-                provider)
-            chain_separated_and_merged_by_name[chainId][token_name].append(
-                token)
-            chain_separated_and_merged_by_symbol[chainId][token_symbol].append(
-                token)
-    for chain in chain_separated:
-        for token in chain_separated[chain].values():
-            all_tokens.append(token)
+    with open(
+        os.path.join(
+            out_dir, "chain_separated_v2.json"), "w+"
+    ) as f:
+        dump(chain_separated_v2, f)
 
     with open(
         os.path.join(
             out_dir, "chain_separated_and_merged_by_symbol.json"), "w+"
     ) as f:
-        json.dump(chain_separated_and_merged_by_symbol, f)
+        dump(chain_separated_and_merged_by_symbol, f)
 
     with open(
         os.path.join(out_dir, "chain_separated_and_merged_by_name.json"), "w+"
     ) as f:
-        json.dump(chain_separated_and_merged_by_name, f)
+        dump(chain_separated_and_merged_by_name, f)
 
     with open(os.path.join(out_dir, "chain_separated.json"), "w+") as f:
-        json.dump(chain_separated, f)
+        dump(chain_separated_and_merged_by_address, f)
+
+    with open(os.path.join(out_dir, "all_tokens.json"), "w+") as f:
+        dump(all_tokens, f)
+    # with open(os.path.join(out_dir, "mainnet_tokens.json"), "w+") as f:
+    #     _r = []
+    #     for chain in c
+    #     dump(_r, f)
 
     return (
-        chain_separated,
+        chain_separated_and_merged_by_address,
         chain_separated_and_merged_by_symbol,
         chain_separated_and_merged_by_name,
         all_tokens,
@@ -132,7 +187,7 @@ def token_symbol_matcher(*args):
         all_tokens,
     ) = args
     for token in all_tokens:
-        if (token_symbol := token["symbol"]) not in token_symbols:
+        if (token_symbol := token.symbol) not in token_symbols:
             token_symbols[token_symbol] = []
         token_symbols[token_symbol].append(token)
 
