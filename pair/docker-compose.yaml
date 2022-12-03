@@ -1,60 +1,66 @@
 version: "3.7"
 services:
-  # redis:
-  #   image: redis:alpine
-  #   hostname: redis
-  #   ports:
-  #     - 6378:6379
-  #   restart: always
-  #   volumes:
-  #     - "./data/redis:/data"
+  redis:
+    image: redis:alpine
+    hostname: redis
+    ports:
+      - 6380:6379
+    restart: always
+    volumes:
+      - "./data/redis:/data"
 
-  # mongo:
-  #   image: mvertes/alpine-mongo
-  #   hostname: backend_mongo
-  #   container_name: backend_mongo
-  #   volumes:
-  #     - ./data/mongodb:/data/db
-  #   command: mongod --port 27018 --bind_ip 0.0.0.0
-  #   ports:
-  #     - 27018:27018
-  #   restart: always
+  mongo:
+    image: mvertes/alpine-mongo
+    hostname: backend_mongo
+    container_name: backend_mongo
+    volumes:
+      - ./data/mongodb:/data/db
+    command: mongod --port 27018 --bind_ip 0.0.0.0
+    ports:
+      - 27018:27018
+    restart: always
 
   worker:
     hostname: worker
     build:
-      context: .
-      dockerfile: worker.Dockerfile
+      context: ./worker
     restart: always
+    depends_on:
+      - mongo
+      - redis
     environment:
-      - CELERY_BROKER_URL=redis://redis:6379/4
-      - CELERY_RESULT_URL=redis://redis:6379/5
+      - CELERY_BROKER_URL=redis://redis:6380/4
+      - CELERY_RESULT_URL=redis://redis:6380/5
       - REDIS_HOST=redis
-      - REDIS_PORT=6379
-      - REDIS_URL=redis://redis:6379
+      - REDIS_PORT=6380
+      - REDIS_URL=redis://redis:6380
       - WAIT_BEFORE=15
-    volumes:
-      - "./data"
 
   app:
     hostname: app
     build:
-      context: .
-      dockerfile: app.Dockerfile
+      context: ./app
     ports:
-      - 8800:8800
-    restart: always
+      - 12345:12345
+      - 8800:8000
+      - 8000:8000
+    # restart: always
+    # command: uvicorn main:app --host 0.0.0.0 --port 8800
+    depends_on:
+      - mongo
+      - redis
     environment:
-      - PORT=8000
-      - DOMAIN=http://localhost:/8000
-      - CELERY_BROKER_URL=redis://redis:6379/4
-      - CELERY_RESULT_URL=redis://redis:6379/5
+      - PORT=12345
+      # - DOMAIN=http://localhost:/8800
+      - CELERY_BROKER_URL=redis://redis:6380/4
+      - CELERY_RESULT_URL=redis://redis:6380/5
       - REDIS_HOST=redis
-      - REDIS_PORT=6379
-      - REDIS_URL=redis://redis:6379
-    volumes:
-      - "./data"
+      - REDIS_PORT=6380
+      - REDIS_URL=redis://redis:6380
 
 
-  
-
+networks:
+  default:
+    # Use a custom driver
+    driver: bridge
+    
