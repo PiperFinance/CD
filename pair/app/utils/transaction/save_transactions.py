@@ -7,17 +7,17 @@ from .decode_transaction_input import decode_trx_input_data
 from utils.types import Address, ChainId, MongoClient
 
 
-def save_users_all_token_trxs(address: Address):
+def save_user_all_token_trxs(address: Address):
 
     for chain_id in Chain.supported_chains():
-        save_users_chain_token_trxs(chain_id, address)
+        save_user_chain_token_trxs(chain_id, address)
 
 
-def save_users_chain_token_trxs(
+def save_user_chain_token_trxs(
     chain_id: ChainId,
     address: Address
 ):
-    trxs = get_users_chain_token_trxs(
+    trxs = get_user_chain_token_trxs(
         chain_id,
         address
     )
@@ -35,7 +35,7 @@ def save_users_chain_token_trxs(
     )
 
 
-def get_users_chain_token_trxs(
+def get_user_chain_token_trxs(
     chain_id: ChainId,
     address: Address
 ) -> List[Dict]:

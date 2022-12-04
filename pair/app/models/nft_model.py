@@ -2,7 +2,16 @@ from typing import Optional
 
 from . import Chain
 from configs.mongo_config import client
-from utils.types import Address, ChainId, Id, Symbol, Name, Decimal, MongoClient
+from utils.types import (
+    Address,
+    ChainId,
+    Id,
+    Symbol,
+    Name,
+    Decimal,
+    Price,
+    MongoClient
+)
 
 
 class Nft(Chain):
@@ -12,6 +21,7 @@ class Nft(Chain):
     name: Name
     symbol: Symbol
     decimal: Decimal
+    price: Optional[Price]
     uri: Optional[str]
     verified: bool = False
 

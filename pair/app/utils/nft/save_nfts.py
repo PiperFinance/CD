@@ -8,16 +8,16 @@ from utils.types import Address, ChainId, MongoClient
 from utils.abis import nft_abi
 
 
-def save_users_all_nfts(address: Address):
+def save_user_all_nfts(address: Address):
     for chain_id in Chain.supported_chains():
-        save_users_chain_nfts(chain_id, address)
+        save_user_chain_nfts(chain_id, address)
 
 
-def save_users_chain_nfts(
+def save_user_chain_nfts(
     chain_id: ChainId,
     address: Address
 ):
-    nft_trxs = get_users_chain_nft_trxs(chain_id, address)
+    nft_trxs = get_user_chain_nft_trxs(chain_id, address)
     if nft_trxs in [None, []]:
         return
     users_nfts = find_to_trxs(address, nft_trxs)
@@ -57,7 +57,7 @@ def create_nfts(
     return nfts
 
 
-def get_users_chain_nft_trxs(
+def get_user_chain_nft_trxs(
     chain_id: ChainId,
     address: Address,
 ) -> List:

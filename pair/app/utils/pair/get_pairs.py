@@ -17,7 +17,11 @@ def get_all_pairs(
 ):
     pairs = []
     for chain_id in Chain.supported_chains():
-        pairs.extend(get_chain_pairs(chain_id, skip, limit))
+        chain_pairs = get_chain_pairs(chain_id, skip, limit)
+        if chain_pairs not in [None, []]:
+            pairs.extend()
+
+    return pairs
 
 
 def get_chain_pairs_len(chain_id: ChainId) -> int:

@@ -1,55 +1,65 @@
 import logging
-from typing import List
 from fastapi import APIRouter
 
 from utils.nft.save_nfts import (
-    save_users_all_nfts,
-    save_users_chain_nfts
+    save_user_all_nfts,
+    save_user_chain_nfts
 )
-from utils.types import Address, ChainId
+from schemas.request_schemas import (
+    SaveUserData,
+    SaveUserChainData,
+    SaveUsersData,
+    SaveUsersChainData
+)
+from schemas.response_schema import BaseResponse
 
 routes = APIRouter()
 
 
-@routes.post("/save_users_nfts")
-async def save_users_nfts(user_address: Address):
-    try:
-        save_users_all_nfts(user_address)
-        return {"message": "success"}
-    except Exception as e:
-        logging.exception(e)
-
-
-@routes.post("/save_users_chain_nfts")
-async def save_single_users_chain_nfts(
-    chain_id: ChainId,
-    user_address: Address
+@routes.post("/save_user_nfts", response_model=BaseResponse)
+async def save_user_nfts(
+    request: SaveUserData
 ):
     try:
-        save_users_chain_nfts(chain_id, user_address)
-        return {"message": "success"}
+        save_user_all_nfts(request.user_address)
+        return BaseResponse()
     except Exception as e:
         logging.exception(e)
 
 
-@routes.post("/save_multipule_users_nfts")
-async def save_multipule_users_nfts(user_addresses: List[Address]):
+@routes.post("/save_user_chain_nfts", response_model=BaseResponse)
+async def save_single_user_chain_nfts(
+    request: SaveUserChainData
+):
     try:
-        for address in user_addresses:
-            save_users_all_nfts(address)
-        return {"message": "success"}
+        save_user_chain_nfts(
+            request.chain_id,
+            request.user_address
+        )
+        return BaseResponse()
     except Exception as e:
         logging.exception(e)
 
 
-@routes.post("/save_multipule_users_chain_nfts")
+@routes.post("/save_multipule_users_nfts", response_model=BaseResponse)
+async def save_multipule_users_nfts(
+    request: SaveUsersData
+):
+    try:
+        for address in request.user_addresses:
+            save_user_all_nfts(address)
+        return BaseResponse()
+    except Exception as e:
+        logging.exception(e)
+
+
+@routes.post("/save_multipule_users_chain_nfts", response_model=BaseResponse)
 async def save_multipule_users_chain_nfts(
-    chain_id: ChainId,
-    user_addresses: List[Address]
+    request: SaveUsersChainData
 ):
     try:
-        for address in user_addresses:
-            save_users_chain_nfts(chain_id, address)
-        return {"message": "success"}
+        for address in request.user_addresses:
+            save_user_chain_nfts(request.chain_id, address)
+        return BaseResponse()
     except Exception as e:
         logging.exception(e)

@@ -1,5 +1,4 @@
 import logging
-from typing import List
 from fastapi import APIRouter
 
 from utils.pair.get_pairs import (
@@ -8,8 +7,9 @@ from utils.pair.get_pairs import (
     get_chain_pairs_len,
     get_chain_pairs
 )
-from models import Pair
+from schemas.response_schema import PairList
 from utils.types import ChainId
+
 
 routes = APIRouter()
 
@@ -22,34 +22,43 @@ async def get_pairs_len() -> int:
         logging.exception(e)
 
 
-@routes.get("/get_pairs", response_model=Pair)
+@routes.get("/get_pairs", response_model=PairList)
 async def get_pairs(
     page_size: int,
     page_number: int
-) -> List[Pair]:
+):
     try:
         skip = page_size * (page_number - 1)
-        return get_all_pairs(skip, page_size)
+        result = get_all_pairs(skip, page_size)
+        return PairList(**{"result": result})
     except Exception as e:
         logging.exception(e)
 
 
 @routes.get("/get_chain_pairs_len")
-async def get_single_chain_pairs_len(chain_id: ChainId) -> int:
+async def get_single_chain_pairs_len(
+    chain_id: ChainId
+) -> int:
     try:
-        return get_chain_pairs_len(chain_id)
+        result = get_chain_pairs_len(chain_id)
+        return PairList(**{"result": result})
     except Exception as e:
         logging.exception(e)
 
 
-@routes.get("/get_chain_pairs", response_model=Pair)
+@routes.get("/get_chain_pairs", response_model=PairList)
 async def get_single_chain_pairs(
     chain_id: ChainId,
     page_size: int,
     page_number: int
-) -> List[Pair]:
+):
     try:
         skip = page_size * (page_number - 1)
-        return get_chain_pairs(chain_id, skip, page_size)
+        result = get_chain_pairs(
+            chain_id,
+            skip,
+            page_size
+        )
+        return PairList(**{"result": result})
     except Exception as e:
         logging.exception(e)
