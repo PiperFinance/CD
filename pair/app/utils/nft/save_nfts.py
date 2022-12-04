@@ -126,16 +126,15 @@ def insert_nfts(
     try:
         client = Nft.mongo_client(chain_id)
         # client.drop()
-        nfts = check_if_nft_exists(client, address, nfts)
+        nfts = check_if_nfts_exist(client, address, nfts)
         if nfts not in [None, []]:
             client.insert_many(nfts)
 
     except Exception as e:
-        logging.info(
-            f"{str(e)} -> seems like {address} on {chain_id} chain, doesn't have any nfts in mongo yet.")
+        logging.exception(e)
 
 
-def check_if_nft_exists(
+def check_if_nfts_exist(
     client: MongoClient,
     address: Address,
     nfts: List[Dict]

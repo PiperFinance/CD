@@ -8,7 +8,7 @@ from .lp_price import get_reserves, get_total_supply, calculate_lp_price
 from .token_price import get_token_price
 from models import Chain, Pair
 from utils import abis
-from utils.types import Address, Price, ChainId, Name, Symbol, Decimal, Contract
+from utils.types import Address, Price, ChainId, Name, Symbol, Decimal, Contract, MongoClient
 
 
 def save_all_pairs():
@@ -115,15 +115,34 @@ def get_and_create_chain_pairs(
 
 def insert_pairs(
     chain_id: ChainId,
-    pairs: List[Pair]
+    pairs: List[Dict]
 ):
     try:
         client = Pair.mongo_client(chain_id)
-        client.delete_many()
+        pairs = check_if_pairs_exist(client, pairs)
+        if pairs in [None, []]:
+            return
         client.insert_many(pairs)
     except Exception as e:
-        logging.info(
-            f"{str(e)} -> seems like there is no pair in mongo for {chain_id} chain.")
+        logging.exception(e)
+
+
+def check_if_pairs_exist(
+    client: MongoClient,
+    pairs: List[Dict]
+) -> List[Dict]:
+    existing_pairs = list(client.find())
+    if existing_pairs in [None, []]:
+        return pairs
+    pair_addresses = []
+    for existing_pair in existing_pairs:
+        pair_addresses.append(existing_pair.get("address"))
+
+    for pair in pairs:
+        if pair.get("address") in pair_addresses:
+            pairs.remove(pair)
+
+    return pairs
 
 
 def get_pair(

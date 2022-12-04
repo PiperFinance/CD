@@ -93,15 +93,14 @@ def insert_trxs(
     try:
         client = Trx.mongo_client(chain_id)
         # client.drop()
-        trxs = check_if_trx_exists(client, address, trxs)
+        trxs = check_if_trxs_exist(client, address, trxs)
         if trxs not in [None, []]:
             client.insert_many(trxs)
     except Exception as e:
-        logging.info(
-            f"{str(e)} -> seems like {address} on {chain_id} chain, doesn't have any trx in mongo yet.")
+        logging.exception(e)
 
 
-def check_if_trx_exists(
+def check_if_trxs_exist(
     client: MongoClient,
     address: Address,
     trxs: List[Dict]
