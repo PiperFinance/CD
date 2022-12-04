@@ -5,7 +5,15 @@ from app.models import Chain
 
 def generate_tasks():
     chain_ids = Chain.supported_chains()
-    tasks = {}
+    tasks = {"save_func_selectors":
+             {
+                 'func_selector': {
+                     'task': 'save_func_selectors',
+                     'schedule': crontab(hour='*/24')
+
+                 }
+             }
+             }
 
     for chain_id in chain_ids:
         name = Chain(chainId=chain_id).chain_name
@@ -24,7 +32,6 @@ def generate_tasks():
                         'chain_id': chain_id
                 }
             }
-
         }
     return tasks
 

@@ -43,7 +43,7 @@ async def get_single_chain_pairs_len(chain_id: ChainId) -> int:
 
 
 @routes.get("/get_chain_pairs", response_model=Pair)
-async def get_pairs(
+async def get_single_chain_pairs(
     chain_id: ChainId,
     page_size: int,
     page_number: int

@@ -15,7 +15,7 @@ routes = APIRouter()
 
 
 @routes.get("/get_users_trxs_len")
-async def get_users_trx_list(user_address: Address) -> int:
+async def get_users_trxs_len(user_address: Address) -> int:
     try:
         return get_users_all_token_trxs_len(user_address)
     except Exception as e:
@@ -23,7 +23,7 @@ async def get_users_trx_list(user_address: Address) -> int:
 
 
 @routes.get("/get_users_trxs", response_model=Trx)
-async def get_users_trx_list(
+async def get_users_trxs(
     user_address: Address,
     page_size: int,
     page_number: int
@@ -36,7 +36,7 @@ async def get_users_trx_list(
 
 
 @routes.get("/get_users_chain_trxs_len")
-async def get_users_trx_list(
+async def get_users_chain_trxs_len(
     chain_id: int,
     user_address: Address
 ) -> int:
@@ -47,7 +47,7 @@ async def get_users_trx_list(
 
 
 @routes.get("/get_users_chain_trxs", response_model=Trx)
-async def get_users_trx_list(
+async def get_users_chain_trxs(
     chain_id: int,
     user_address: str,
     page_size: int,
@@ -61,7 +61,7 @@ async def get_users_trx_list(
 
 
 @routes.get("/get_multipule_users_trxs_len")
-async def get_multipule_users_trx_list_len(
+async def get_multipule_users_trxs_len(
     user_addresses: List[Address]
 ) -> int:
     try:
@@ -91,7 +91,7 @@ async def get_multipule_users_trxs(
 
 
 @routes.get("/get_multipule_users_chain_trxs_len")
-async def get_multipule_users_trx_list(
+async def get_multipule_users_chain_trxs_len(
     chain_id: int,
     user_addresses: List[Address]
 ) -> int:

@@ -37,7 +37,7 @@ async def get_users_nfts(
 
 
 @routes.get("/get_users_chain_nfts_len")
-async def get_single_users_chain_nfts(
+async def get_single_users_chain_nfts_len(
     chain_id: ChainId,
     user_address: Address
 ) -> int:
@@ -92,7 +92,7 @@ async def get_multipule_users_nfts(
 
 
 @routes.get("/get_multipule_users_chain_nfts_len")
-async def get_single_users_chain_nfts(
+async def get_multipule_users_chain_nfts_len(
     chain_id: ChainId,
     user_addresses: List[Address]
 ) -> int:
