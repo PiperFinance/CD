@@ -1,0 +1,34 @@
+
+ --- Result ::: 31 chains  ::: 5152 verified ::: 5184 total_saved ::: 38676 duplicates ::: Chains :
+
+         --- 1  :::  ETH  :::  2142 :::  {'Set', 'TokenNameService', 'Aave', 'DefiPrime', 'Uniswap', 'BA', 'Compound', 'Via', 'ViaAll', 'Zerion', 'LiFi', 'CMC-SC', 'Messari', 'Dharma', 'CMC-ERC20', 'Agora', '1inch', 'MyCrypto', 'Furucombo', 'Optimism', 'Gemini', 'UMA', 'CoinGecko', 'CMC-DEFI', 'Kleros', 'Natives', 'RollSocialMoney', 'TokenSoftWrapped'}
+         --- 1284  :::  MOON  :::  27 :::  {'Via', 'ViaAll', 'Natives', 'LiFi'}
+         --- 42161  :::  ETH  :::  131 :::  {'Natives', 'Via', 'ViaAll', 'LiFi', 'Uniswap'}
+         --- 56  :::  BSC  :::  1032 :::  {'Natives', 'PancakeSwapDefault', 'PancakeSwap100', 'Via', 'ViaAll', 'PancakeSwapAll', 'LiFi', 'PancakeSwapExtended'}
+         --- 66  :::  okxchain  :::  48 :::  {'Via', 'ViaAll', 'Natives', 'LiFi'}
+         --- 250  :::  FTM  :::  242 :::  {'Via', 'ViaAll', 'Natives', 'LiFi'}
+         --- 42220  :::  CELO  :::  69 :::  {'Natives', 'Via', 'ViaAll', 'LiFi', 'Uniswap'}
+         --- 10  :::  ETH  :::  100 :::  {'Natives', 'Optimism', 'Via', 'ViaAll', 'LiFi', 'Uniswap'}
+         --- 137  :::  Polygon  :::  655 :::  {'Natives', 'Via', 'ViaAll', 'LiFi', 'Uniswap'}
+         --- 43114  :::  AVAX  :::  311 :::  {'Via', 'ViaAll', 'Natives', 'LiFi'}
+         --- 1285  :::  MOON  :::  50 :::  {'Via', 'ViaAll', 'Natives', 'LiFi'}
+         --- 25  :::  CRO  :::  48 :::  {'Natives', 'LiFi', 'ViaAll', 'Via'}
+         --- 1313161554  :::  NEAR  :::  80 :::  {'Via', 'ViaAll', 'Natives', 'LiFi'}
+         --- 100  :::  GNO  :::  209 :::  {'Via', 'ViaAll', 'Natives', 'LiFi'}
+         --- 122  :::  FUSE  :::  24 :::  {'Via', 'ViaAll', 'Natives', 'LiFi'}
+         --- 1666600000  :::  Harmony  :::  1 :::  {'Natives'}
+         --- 19  :::  SGB  :::  1 :::  {'Natives'}
+         --- 288  :::  ETH  :::  1 :::  {'Natives'}
+         --- 592  :::  ASTR  :::  1 :::  {'Natives'}
+         --- 128  :::  Heco  :::  1 :::  {'Natives'}
+         --- 1088  :::  ETH  :::  1 :::  {'Natives'}
+         --- 30  :::  RSK  :::  1 :::  {'Natives'}
+         --- 9001  :::  Evmos  :::  1 :::  {'Natives'}
+         --- 108  :::  TT  :::  1 :::  {'Natives'}
+         --- 42262  :::  Emerald  :::  1 :::  {'Natives'}
+         --- 71402  :::  GWT  :::  1 :::  {'Natives'}
+         --- 8217  :::  KLAY  :::  1 :::  {'Natives'}
+         --- 2001  :::  milkAda  :::  1 :::  {'Natives'}
+         --- 321  :::  KCC  :::  1 :::  {'Natives'}
+         --- 106  :::  Velas  :::  1 :::  {'Natives'}
+         --- 40  :::  TLOS  :::  1 :::  {'Natives'}

@@ -33,12 +33,14 @@ dump = functools.partial(json.dump, cls=SetEncoder)
 with open("abi/token.abi") as f:
     TOKEN_ABI = json.load(f)
 
+
 # Create Token contract objects  and w3 connections ...
 # use _W3s for w3 : map [chainId : int , w3]
 # use _CONTRACTS for w3 : map [chainId : int , contract obj]
 with open(os.path.join(Path(os.getcwd()), "chains", "mainnet.json")) as f:
     mainnet_chains = json.load(f)
     _CHAINS = {int(c['id']): c for c in mainnet_chains}
+    _MAINNET_CHAINS_ID = {int(c['id']) for c in mainnet_chains}
 
     _CONTRACTS = {}
     for chain in mainnet_chains:
@@ -61,14 +63,22 @@ def get_from_list(items: list, item, default=None):
         return default
 
 
-MIN_LISTED_COUNT = 3
+MIN_LISTED_COUNT = 2
 global verified_count, literally_all_tokens_count
 verified_count = 0
 literally_all_tokens_count = 0
 
 
-def provider_data_merger(providers_tokens: Dict[str, providers.Provider], out_dir="out", verify=None):
-    """Sample Obj {"address": "0x006BeA43Baa3f7A6f765F14f10A1a1b08334EF45", "chainId": 1, "name": "Stox", "symbol": "STX", "decimals": 18, "logoURI": "https://tokens.1inch.io/0x006bea43baa3f7a6f765f14f10a1a1b08334ef45.png"}"""
+def provider_data_merger(
+        providers_tokens: Dict[str, providers.Provider], out_dir="out", verify=None, include_testnet=False):
+    """
+    Merges given providers
+    Tokens follow schema.Token     
+    Exceptions:
+    - Natives
+    - StableCoins 
+        - CMC-SC
+    """
     # For Having everything all at once
     all_tokens_providers: Dict[schema.Token, List[str]] = {}
     all_tokens: List[schema.Token] = []
@@ -90,6 +100,8 @@ def provider_data_merger(providers_tokens: Dict[str, providers.Provider], out_di
         print(f"\nProvider: {provider}\n")
         literally_all_tokens_count += len(items.tokens)
         for token in tqdm(items.tokens):
+            if (not include_testnet) and token.chainId not in _MAINNET_CHAINS_ID:
+                continue
             if token not in all_tokens_providers:
                 all_tokens_providers[token] = []
             all_tokens_providers[token].append(provider)
@@ -99,7 +111,10 @@ def provider_data_merger(providers_tokens: Dict[str, providers.Provider], out_di
         if len(token.listedIn) > MIN_LISTED_COUNT:
             token.verify = True
             verified_count += 1
-        if verify is not None:
+        if (  # Following Providers are exceptions
+            "Natives" not in token.listedIn
+            and "CMC-SC" not in token.listedIn
+        ) and verify is not None:
             if verify == token.verify:
                 all_tokens.append(token)
         else:
@@ -126,7 +141,10 @@ def provider_data_merger(providers_tokens: Dict[str, providers.Provider], out_di
         # if (get_from_list(chain_separated[chainId], token))
         chain_separated[chainId].add(token)
 
-    print(f"\n\n --- Result ::: {len(chain_separated)} chains  ::: {verified_count} verified ::: {len(all_tokens)} total_saved ::: {len(all_tokens) - literally_all_tokens_count} duplicates")
+    print(f"\n\n --- Result ::: {len(chain_separated)} chains  ::: {verified_count} verified ::: {len(all_tokens)} total_saved ::: {literally_all_tokens_count - len(all_tokens)} duplicates ::: Chains :\n")
+    for chain, tokens in chain_separated.items():
+        print(
+            f" \t --- {chain}  :::  {_CHAINS[chain]['name']}  :::  {len(tokens)} :::  { {provider for token in tokens for provider in (token.listedIn or [])  } }")
     for chain, tokens in chain_separated.items():
         # for token in chain_separated[chain].values():
         #     chain_tokens.append(token)
@@ -158,10 +176,6 @@ def provider_data_merger(providers_tokens: Dict[str, providers.Provider], out_di
 
     with open(os.path.join(out_dir, "all_tokens.json"), "w+") as f:
         dump(all_tokens, f)
-    # with open(os.path.join(out_dir, "mainnet_tokens.json"), "w+") as f:
-    #     _r = []
-    #     for chain in c
-    #     dump(_r, f)
 
     return (
         chain_separated_and_merged_by_address,
