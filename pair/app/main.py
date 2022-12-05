@@ -1,14 +1,16 @@
 import os
 import uvicorn
 from fastapi import FastAPI
-
+from dotenv import load_dotenv
 from configs import redis_config, fastapi_config
 
+load_dotenv()
 
-DOMAIN = os.getenv("DOMAIN") or "http://localhost:12345" 
-REDIS_URL = os.getenv("REDIS_URL") or "redis://localhost:6380"
+PORT = int(os.getenv("PORT", 12345))
+DOMAIN = os.getenv("DOMAIN") or "http://localhost"
+REDIS_URL = os.getenv("REDIS_URL") or "redis://localhost:6379"
 
-app = fastapi_config.config(DOMAIN)
+app = fastapi_config.config(DOMAIN, PORT)
 
 
 @app.on_event("startup")
@@ -21,4 +23,4 @@ async def app_boot():
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=12345)
+    uvicorn.run(app, host="0.0.0.0", port=PORT)

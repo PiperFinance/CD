@@ -1,5 +1,5 @@
-from pydantic import BaseModel
 from typing import List, Optional
+from pydantic import BaseModel
 
 from configs.mongo_config import function_selector_client
 from utils.types import HexStr
@@ -13,5 +13,5 @@ class FunctionSelector(BaseModel):
     @staticmethod
     def mongo_client():
         client = function_selector_client("FunctionSelector")
-        client.create_index("hex", unique = True)
+        client.create_index("hex", unique=True)
         return client

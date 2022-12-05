@@ -1,4 +1,5 @@
 from typing import Any, List, Dict, Set
+import requests
 import json
 import functools
 import logging
@@ -69,6 +70,28 @@ verified_count = 0
 literally_all_tokens_count = 0
 
 
+def chose(options, symbol=None, try_request=False, out="./tmp"):
+    options_weight: dict = {}
+    for option in options:
+        if try_request:
+            try:
+                r = requests.get(option)
+                if r.status_code < 300:
+                    # TODO Mohade3 jan inja .....
+                    with open(os.path.join(out, "~".join([symbol or "", (option.split("/")[-1])])), "wb+") as f:
+                        f.write(r.content)
+                else:
+                    continue
+            except Exception as e:
+                print(e)
+                continue
+        if option not in options_weight:
+            options_weight[option] = 0
+        options_weight[option] += 1
+    if options_weight:
+        return sorted(options_weight.items(), key=lambda x: x[1], reverse=True)[0][0]
+
+
 def provider_data_merger(
         providers_tokens: Dict[str, providers.Provider], out_dir="out", verify=None, include_testnet=False):
     """
@@ -81,6 +104,11 @@ def provider_data_merger(
     """
     # For Having everything all at once
     all_tokens_providers: Dict[schema.Token, List[str]] = {}
+    all_tokens_logo: Dict[schema.Token, List[str]] = {}
+    all_tokens_tags: Dict[schema.Token, List[str]] = {}
+    all_tokens_lifiId: Dict[schema.Token, List[str]] = {}
+    all_tokens_coingeckoId: Dict[schema.Token, List[str]] = {}
+
     all_tokens: List[schema.Token] = []
     # For Go portfolio scanner ...
     chain_separated_v2: List[schema.ChainToken] = list()
@@ -96,6 +124,14 @@ def provider_data_merger(
 
     global verified_count, literally_all_tokens_count
 
+    # Get All tokens in a list from all providers ...
+    # Also
+    # - checks for testnet tokens is asked in kwargs
+    # - checks Optional fields like
+    #  - Logo
+    #  - tags
+    #  - lifiId
+    #  - Coingecko
     for provider, items in providers_tokens.items():
         print(f"\nProvider: {provider}\n")
         literally_all_tokens_count += len(items.tokens)
@@ -103,14 +139,34 @@ def provider_data_merger(
             if (not include_testnet) and token.chainId not in _MAINNET_CHAINS_ID:
                 continue
             if token not in all_tokens_providers:
+                all_tokens_logo[token] = []
+                all_tokens_tags[token] = []
+                all_tokens_lifiId[token] = []
                 all_tokens_providers[token] = []
+                all_tokens_coingeckoId[token] = []
             all_tokens_providers[token].append(provider)
+            # NOTE - Later check if following optional fields match ...
+            if token.tags:
+                all_tokens_tags[token].extend(token.tags)
+            if token.logoURI:
+                all_tokens_logo[token].append(token.logoURI)
+            if token.lifiId:
+                all_tokens_lifiId[token].append(token.lifiId)
+            if token.coingeckoId:
+                all_tokens_coingeckoId[token].append(token.coingeckoId)
 
+    # Remove Unverified tokens from list and
     for token, token_providers in all_tokens_providers.items():
+        token: schema.Token
         token.listedIn = token_providers
         if len(token.listedIn) > MIN_LISTED_COUNT:
             token.verify = True
             verified_count += 1
+        token.logoURI = chose(
+            all_tokens_logo[token], symbol=token.symbol, try_request=True, out="./logo")
+        token.coingeckoId = chose(all_tokens_logo[token])
+        token.lifiId = chose(all_tokens_logo[token])
+        token.tags = chose(all_tokens_logo[token])
         if (  # Following Providers are exceptions
             "Natives" not in token.listedIn
             and "CMC-SC" not in token.listedIn

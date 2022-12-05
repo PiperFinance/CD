@@ -15,5 +15,5 @@ class Pair(Chain):
     price: Optional[BigInt]
 
     @staticmethod
-    def mongo_client(chain_id: ChainId) -> MongoClient:
+    def mongo_client(chain_id: ChainId | int) -> MongoClient:
         return client("Pair", chain_id)

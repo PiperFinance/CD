@@ -3,6 +3,8 @@ import logging
 from typing import List
 from utils.types import Price, Decimal, Contract
 
+# MINIMUM_RESERVE =
+
 
 def get_reserves(pair_contract: Contract) -> List[int]:
     try:
@@ -27,10 +29,10 @@ def calculate_lp_price(
         decimals: List[Decimal],
         prices: List[Price],
         total_supply: int) -> Price:
-    
+
     try:
-        lp_price = ((reserves[0] / decimals[0] * prices[0]) +
-                    (reserves[1] / decimals[1] * prices[1])) / total_supply
+        lp_price = (((reserves[0] / 10 ** decimals[0]) * prices[0]) +
+                    ((reserves[1] / 10 ** decimals[1]) * prices[1])) / (total_supply / 10 ** 18)
         return lp_price
     except Exception as e:
         logging.exception(e)

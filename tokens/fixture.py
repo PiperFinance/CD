@@ -102,6 +102,8 @@ def fix_token_address(token: schema.Token) -> Optional[schema.Token]:
             _add = "0x77F86D401e067365dD911271530B0c90DeC3e0f7"
         case "0x06ae7A979D9818B64498c8acaFDd0ccc78bC6fd2#balances":
             _add = "0x06ae7A979D9818B64498c8acaFDd0ccc78bC6fd2"
+        case "0x0000000000000000000000000000000000000000":
+            _add = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"
     try:
         token.address = Web3.toChecksumAddress(_add)
     except Exception as e:

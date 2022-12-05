@@ -178,24 +178,27 @@ def fetch_tokens(providers_url_file=None, provider_dir=None) -> Dict[str, Provid
     providers = {}
     with open(providers_url_file, 'r') as f:
         for provider, url in tqdm(json.load(f).items()):
-            match provider:
-                case "ViaAll":
-                    providers[provider] = ViaProvider.load(
-                        url, provider_dir, provider)
-                case "Via":
-                    providers[provider] = ViaProvider.load(
-                        url, provider_dir, provider)
-                case "LiFi":
-                    providers[provider] = LiFiProvider.load(
-                        url, provider_dir, provider)
-                case "Natives":
-                    providers[provider] = NativeTokensProvider.load(
-                        url, provider_dir, provider)
-                case _:
-                    providers[provider] = Provider.load(
-                        url, provider_dir, provider)
-            if providers[provider] is not None:
-                save_provider(provider_dir, providers[provider])
+            try:
+                match provider:
+                    case "ViaAll":
+                        providers[provider] = ViaProvider.load(
+                            url, provider_dir, provider)
+                    case "Via":
+                        providers[provider] = ViaProvider.load(
+                            url, provider_dir, provider)
+                    case "LiFi":
+                        providers[provider] = LiFiProvider.load(
+                            url, provider_dir, provider)
+                    case "Natives":
+                        providers[provider] = NativeTokensProvider.load(
+                            url, provider_dir, provider)
+                    case _:
+                        providers[provider] = Provider.load(
+                            url, provider_dir, provider)
+                if providers[provider] is not None:
+                    save_provider(provider_dir, providers[provider])
+            except requests.exceptions.RequestException as e:
+                logger.warning(f"ProviderLoader: Error {e}  @ {provider}")
 
     return providers
 
