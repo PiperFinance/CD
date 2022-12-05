@@ -4,26 +4,28 @@ from models import Chain, Trx
 from utils.types import Address, ChainId
 
 
-def get_users_all_token_trxs_len(address: Address) -> int:
+def get_user_all_token_trxs_len(address: Address) -> int:
     trx_len = 0
     for chain_id in Chain.supported_chains():
-        chain_len = get_users_chain_token_trxs_len(chain_id, address)
+        chain_len = get_user_chain_token_trxs_len(chain_id, address)
         trx_len += chain_len
     return trx_len
 
 
-def get_users_all_token_trxs(
+def get_user_all_token_trxs(
     address: Address,
     skip: int,
     limit: int
 ) -> List[Trx]:
     trxs = []
     for chain_id in Chain.supported_chains():
-        trxs.extend(get_users_chain_token_trxs(chain_id, address, skip, limit))
+        chain_trxs = get_user_chain_token_trxs(chain_id, address, skip, limit)
+        if chain_trxs not in [None, []]:
+            trxs.extend(chain_trxs)
     return trxs
 
 
-def get_users_chain_token_trxs_len(
+def get_user_chain_token_trxs_len(
     chain_id: ChainId,
     address: Address,
 ) -> int:
@@ -32,7 +34,7 @@ def get_users_chain_token_trxs_len(
     return len(list(client.find(query)))
 
 
-def get_users_chain_token_trxs(
+def get_user_chain_token_trxs(
     chain_id: ChainId,
     address: Address,
     skip: int,

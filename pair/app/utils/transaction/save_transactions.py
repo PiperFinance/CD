@@ -7,17 +7,17 @@ from .decode_transaction_input import decode_trx_input_data
 from utils.types import Address, ChainId, MongoClient
 
 
-def save_users_all_token_trxs(address: Address):
+def save_user_all_token_trxs(address: Address):
 
     for chain_id in Chain.supported_chains():
-        save_users_chain_token_trxs(chain_id, address)
+        save_user_chain_token_trxs(chain_id, address)
 
 
-def save_users_chain_token_trxs(
+def save_user_chain_token_trxs(
     chain_id: ChainId,
     address: Address
 ):
-    trxs = get_users_chain_token_trxs(
+    trxs = get_user_chain_token_trxs(
         chain_id,
         address
     )
@@ -35,7 +35,7 @@ def save_users_chain_token_trxs(
     )
 
 
-def get_users_chain_token_trxs(
+def get_user_chain_token_trxs(
     chain_id: ChainId,
     address: Address
 ) -> List[Dict]:
@@ -93,15 +93,14 @@ def insert_trxs(
     try:
         client = Trx.mongo_client(chain_id)
         # client.drop()
-        trxs = check_if_trx_exists(client, address, trxs)
+        trxs = check_if_trxs_exist(client, address, trxs)
         if trxs not in [None, []]:
             client.insert_many(trxs)
     except Exception as e:
-        logging.info(
-            f"{str(e)} -> seems like {address} on {chain_id} chain, doesn't have any trx in mongo yet.")
+        logging.exception(e)
 
 
-def check_if_trx_exists(
+def check_if_trxs_exist(
     client: MongoClient,
     address: Address,
     trxs: List[Dict]

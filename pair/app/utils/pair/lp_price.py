@@ -6,7 +6,7 @@ from utils.types import Price, Decimal, Contract
 
 def get_reserves(pair_contract: Contract) -> List[int]:
     try:
-        time.sleep(1)
+        # time.sleep(1)
         reserve0, reserve1, timestamp = pair_contract.functions.getReserves().call()
         return [reserve0, reserve1]
     except Exception as e:
@@ -15,7 +15,7 @@ def get_reserves(pair_contract: Contract) -> List[int]:
 
 def get_total_supply(pair_contract: Contract) -> int:
     try:
-        time.sleep(1)
+        # time.sleep(1)
         total_supply = pair_contract.functions.totalSupply().call()
         return total_supply
     except Exception as e:
