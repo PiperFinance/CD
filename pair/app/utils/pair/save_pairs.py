@@ -151,7 +151,7 @@ def get_pair(
         token1: Address
 ) -> Address:
     try:
-        time.sleep(1)
+        # time.sleep(1)
         pair = factory_contract.functions.getPair(token0, token1).call()
         return pair
     except Exception as e:

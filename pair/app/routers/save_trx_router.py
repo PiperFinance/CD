@@ -33,7 +33,7 @@ async def save_user_chain_trxs(
 ):
     try:
         save_user_chain_token_trxs(
-            request.chain_id,
+            request.chainId,
             request.user_address
         )
         return BaseResponse()
@@ -60,7 +60,7 @@ async def save_multipule_users_chain_trxs(
     try:
         for address in request.user_addresses:
             save_user_chain_token_trxs(
-                request.chain_id,
+                request.chainId,
                 address
             )
         return BaseResponse()
