@@ -70,26 +70,92 @@ verified_count = 0
 literally_all_tokens_count = 0
 
 
+SUPPORTED_IMG_FILE_FORMAT = {
+    "svg": 15,
+    "webp": 15,
+    "png": 10,
+    "jpg": 5,
+}
+# NOTE - file size category in bytes
+OneKiB = 2**10
+OneMiB = 2**10
+FILE_SIZE_SWEET_SPOT = {
+    (0, 100): 1,
+    (100, OneKiB): 10,
+    (OneKiB, 100*OneKiB): 20,
+    (100*OneKiB, OneMiB): 15,
+    (OneMiB, 10*OneMiB): 7,
+    (10*OneMiB, 100*OneMiB): -5
+}
+
+
+def check_file(option: str):
+
+    for file_type in SUPPORTED_IMG_FILE_FORMAT:
+        if file_type in option:
+            token_url_name = option.split("/")[-1]
+            index = token_url_name.index(file_type)
+            return token_url_name[:(index + len(file_type))], file_type
+    return option.split("/")[-1], ""
+
+
+def check_file_type(option):
+    for file_type, score in SUPPORTED_IMG_FILE_FORMAT.items():
+        if file_type in option:
+            return score
+    return -10
+
+
+def check_file_size(img_content):
+    img_size = len(img_content)
+    for (min_size, max_size), score in FILE_SIZE_SWEET_SPOT.items():
+        if img_size > min_size and img_size <= max_size:
+            return score
+    return -10
+
+
 def chose(options, symbol=None, try_request=False, out="./tmp"):
     options_weight: dict = {}
+    res_file: dict = {}
+    res_type: dict = {}
     for option in options:
+
+        if option not in options_weight:
+            options_weight[option] = 0
+
         if try_request:
+
             try:
                 r = requests.get(option)
                 if r.status_code < 300:
-                    # TODO Mohade3 jan inja .....
-                    with open(os.path.join(out, "~".join([symbol or "", (option.split("/")[-1])])), "wb+") as f:
-                        f.write(r.content)
+                    img_content = r.content
+                    file_name, file_type = check_file(option)
+                    file_dir = os.path.join(
+                        out, "tmp", "~".join([symbol or "", file_name]))
+                    options_weight[option] += check_file_size(img_content)
+                    options_weight[option] += check_file_type(option)
+                    with open(file_dir, "wb+") as f:
+                        f.write(img_content)
+                        res_file[option] = img_content
+                    res_type[option] = file_type
                 else:
                     continue
             except Exception as e:
                 print(e)
                 continue
-        if option not in options_weight:
-            options_weight[option] = 0
         options_weight[option] += 1
     if options_weight:
-        return sorted(options_weight.items(), key=lambda x: x[1], reverse=True)[0][0]
+        _chosen_option, _chosen_score = sorted(options_weight.items(),
+                                               key=lambda x: x[1], reverse=True)[0]
+        print(f"Chosen {_chosen_option} with score of {_chosen_score}")
+
+        if try_request and symbol:
+
+            with open(os.path.join(out, f"{symbol}.{res_type[_chosen_option]}"), "wb+") as f:
+                f.write(res_file[_chosen_option])
+        return _chosen_option
+    del res_file
+    del res_type
 
 
 def provider_data_merger(

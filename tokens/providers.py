@@ -15,6 +15,13 @@ from tokens import schema
 logger = logging.getLogger(__name__)
 
 
+def chains(chains_dir: str = os.getenv("CHAINS_DIR", "chains/chains.json")):
+    CHAINS_WITH_MULTICALL: List[int] = [1, 42, 4, 5, 3, 11155111, 10, 69, 420, 42161, 421613, 421611, 137, 80001, 100, 43114, 43113, 4002, 250, 56, 97, 1284, 1285, 1287,
+                                        1666600000, 25, 122, 19, 16, 114, 288, 1313161554, 592, 66, 128, 1088, 30, 31, 9001, 9000, 108, 18, 42262, 42220, 44787, 71402, 71401, 8217, 2001, 321, 106, 40]
+    with open(chains_dir) as f:
+        return json.load(f)
+
+
 def save_provider(provider_dir, provider):
     with open(os.path.join(provider_dir, f"{provider.name}.json"), "w+") as f:
         f.write(provider.json())
@@ -132,26 +139,23 @@ class LiFiProvider(Provider):
         return provider
 
 
-CHAINS_WITH_MULTICALL: List[int] = [1, 42, 4, 5, 3, 11155111, 10, 69, 420, 42161, 421613, 421611, 137, 80001, 100, 43114, 43113, 4002, 250, 56, 97, 1284, 1285, 1287,
-                                    1666600000, 25, 122, 19, 16, 114, 288, 1313161554, 592, 66, 128, 1088, 30, 31, 9001, 9000, 108, 18, 42262, 42220, 44787, 71402, 71401, 8217, 2001, 321, 106, 40]
-
-
 class NativeTokensProvider(Provider):
 
     @classmethod
     def load(cls, url, provider_dir, name=None):
+
         tokens = [
             schema.Token(**{
                 "providers": [
                     "NativeTokens"
                 ],
                 "address": "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
-                "chainId": chainId,
-                "name": "Ether",
-                "symbol": "ETH",
+                "chainId": chain.get('id'),
+                "name": chain.get('nativeCurrency', {}).get('name') or "Ether",
+                "symbol": chain.get('nativeCurrency', {}).get('symbol') or "ETH",
                 "decimals": 18
             })
-            for chainId in CHAINS_WITH_MULTICALL]
+            for chain in chains()]
 
         return cls(
             name=name or "NativeTokens",
