@@ -10,3 +10,5 @@ node_modules/
 *.pyc
 venv/
 wait
+tmp/
+logo/tmp/

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="36px" height="36px" viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 2 Copy 50</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="StaFi-rDOT-Copy-5" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-425.000000, -378.000000)">
+        <g id="Group-2-Copy-50" transform="translate(425.000000, 378.000000)">
+            <ellipse id="Oval-5-Copy-2" fill="#FFFFFF" cx="17.8651479" cy="18" rx="17.8651479" ry="18"></ellipse>
+            <g id="Group-25" transform="translate(11.117647, 6.352941)" fill="#23292F">
+                <polygon id="Rectangle-14" points="6.61764706 0 13.2352941 12.0258621 6.61764706 16.4117647 0 12.1673428"></polygon>
+                <polygon id="Rectangle-14-Copy" points="6.88235294 0 6.88235294 9.19624746 6.88235294 16.4117647 0 12.1673428"></polygon>
+                <polygon id="Rectangle-18" points="6.61764706 9.52941176 13.2352941 12.3088235 6.61764706 16.4117647 0 12.4411765"></polygon>
+                <polygon id="Rectangle-18-Copy" points="6.88235294 9.52941176 6.88235294 12.3088235 6.88235294 16.4117647 0 12.4411765"></polygon>
+                <polygon id="Rectangle-28" points="0 13.2352941 6.61764706 17.4264706 13.2352941 13.2352941 6.61764706 23.2941176"></polygon>
+                <polygon id="Rectangle-28-Copy" points="0 13.2352941 6.88235294 17.4264706 6.88235294 23.2941176"></polygon>
+            </g>
+            <path d="M6,12.8847656 L6,7.2421875 C6.03515643,5.41405336 6.94920979,4.5 8.7421875,4.5 L11.3789062,4.5 L11.3789062,5.71289062 L9.32226562,5.71289062 C8.37304213,5.71289062 7.88085955,6.18749525 7.84570312,7.13671875 L7.84570312,12.8847656 L6,12.8847656 Z" id="r" fill="#00F3AB"></path>
+        </g>
+    </g>
+</svg>
