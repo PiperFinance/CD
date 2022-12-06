@@ -155,13 +155,15 @@ def chose(options, symbol=None, try_request=False, out="./tmp"):
     if options_weight:
         _chosen_option, _chosen_score = sorted(options_weight.items(),
                                                key=lambda x: x[1], reverse=True)[0]
-        print(f"Chosen {_chosen_option} with score of {_chosen_score}")
 
-        if try_request and symbol and _chosen_option in res_file and _chosen_option in res_type:
-
-            with open(os.path.join(out, f"{symbol}.{res_type[_chosen_option]}"), "wb+") as f:
+        if not try_request:
+            return _chosen_option
+        elif _chosen_score > 0 and symbol and _chosen_option in res_file and _chosen_option in res_type:
+            print(f"Chosen {_chosen_option} with score of {_chosen_score}")
+            _file_name = f"{symbol}.{res_type[_chosen_option]}"
+            with open(os.path.join(out, _file_name), "wb+") as f:
                 f.write(res_file[_chosen_option])
-        return _chosen_option
+            return _file_name
     # del res_file
     # del res_type
 
@@ -236,11 +238,11 @@ def provider_data_merger(
         if len(token.listedIn) > MIN_LISTED_COUNT:
             token.verify = True
             verified_count += 1
-        token.logoURI = chose(
-            all_tokens_logo[token], symbol=token.symbol, try_request=True, out="./logo")
         token.coingeckoId = chose(all_tokens_coingeckoId[token])
         token.lifiId = chose(all_tokens_lifiId[token])
-        token.tags = chose(all_tokens_tags[token])
+        token.tags = list(set(all_tokens_tags[token]))
+        token.logoURI = chose(
+            all_tokens_logo[token], symbol=token.symbol, try_request=True, out="./logo")
         if (  # Following Providers are exceptions
             "Natives" not in token.listedIn
             and "CMC-SC" not in token.listedIn
