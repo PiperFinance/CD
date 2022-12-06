@@ -78,7 +78,7 @@ SUPPORTED_IMG_FILE_FORMAT = {
 }
 # NOTE - file size category in bytes
 OneKiB = 2**10
-OneMiB = 2**10
+OneMiB = 2**20
 FILE_SIZE_SWEET_SPOT = {
     (0, 100): 1,
     (100, OneKiB): 10,
