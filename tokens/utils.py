@@ -149,7 +149,7 @@ def chose(options, symbol=None, try_request=False, out="./tmp"):
                                                key=lambda x: x[1], reverse=True)[0]
         print(f"Chosen {_chosen_option} with score of {_chosen_score}")
 
-        if try_request and symbol:
+        if try_request and symbol and _chosen_option in res_file and _chosen_option in res_type:
 
             with open(os.path.join(out, f"{symbol}.{res_type[_chosen_option]}"), "wb+") as f:
                 f.write(res_file[_chosen_option])
