@@ -80,7 +80,7 @@ SUPPORTED_IMG_FILE_FORMAT = {
 OneKiB = 2**10
 OneMiB = 2**20
 FILE_SIZE_SWEET_SPOT = {
-    (0, 100): 1,
+    (0, 100): -10,
     (100, OneKiB): 10,
     (OneKiB, 100*OneKiB): 20,
     (100*OneKiB, OneMiB): 15,
@@ -114,10 +114,13 @@ def check_file_size(img_content):
     return -10
 
 
+res_req: dict = {}
+res_file: dict = {}
+res_type: dict = {}
+
+
 def chose(options, symbol=None, try_request=False, out="./tmp"):
     options_weight: dict = {}
-    res_file: dict = {}
-    res_type: dict = {}
     for option in options:
 
         if option not in options_weight:
@@ -126,8 +129,13 @@ def chose(options, symbol=None, try_request=False, out="./tmp"):
         if try_request:
 
             try:
-                r = requests.get(option)
-                if r.status_code < 300:
+                if option in res_req:
+                    r = res_req[option]
+                else:
+                    r = requests.get(option)
+                    res_req[option] = r
+
+                if r.status_code == 200:
                     img_content = r.content
                     file_name, file_type = check_file(option)
                     file_dir = os.path.join(
@@ -141,7 +149,7 @@ def chose(options, symbol=None, try_request=False, out="./tmp"):
                 else:
                     continue
             except Exception as e:
-                print(e)
+                # print(e)
                 continue
         options_weight[option] += 1
     if options_weight:
@@ -154,8 +162,8 @@ def chose(options, symbol=None, try_request=False, out="./tmp"):
             with open(os.path.join(out, f"{symbol}.{res_type[_chosen_option]}"), "wb+") as f:
                 f.write(res_file[_chosen_option])
         return _chosen_option
-    del res_file
-    del res_type
+    # del res_file
+    # del res_type
 
 
 def provider_data_merger(
@@ -230,9 +238,9 @@ def provider_data_merger(
             verified_count += 1
         token.logoURI = chose(
             all_tokens_logo[token], symbol=token.symbol, try_request=True, out="./logo")
-        token.coingeckoId = chose(all_tokens_logo[token])
-        token.lifiId = chose(all_tokens_logo[token])
-        token.tags = chose(all_tokens_logo[token])
+        token.coingeckoId = chose(all_tokens_coingeckoId[token])
+        token.lifiId = chose(all_tokens_lifiId[token])
+        token.tags = chose(all_tokens_tags[token])
         if (  # Following Providers are exceptions
             "Natives" not in token.listedIn
             and "CMC-SC" not in token.listedIn
