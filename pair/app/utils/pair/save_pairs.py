@@ -9,6 +9,9 @@ from .token_price import get_token_price
 from models import Chain, Pair
 from utils import abis
 from utils.types import Address, Price, ChainId, Name, Symbol, Decimal, Contract, MongoClient
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def save_all_pairs():
@@ -67,12 +70,15 @@ def get_and_create_chain_pairs(
         abi=abis.factory_abi)
 
     pairs = []
-
+    logger.info(
+        f"Fetching {chain.chainId} :::: {dex_name=} ::: {len(tokens)=}")
     for i in range(len(tokens)):
         for j in range(i + 1, len(tokens)):
             token0 = Web3.toChecksumAddress(tokens[i].get("address"))
             token1 = Web3.toChecksumAddress(tokens[j].get("address"))
             pair = get_pair(factory_contract, token0, token1)
+            logger.info(
+                f'Fetching ::: {dex_name=} {(tokens[i].get("symbol"),tokens[j].get("symbol"))}')
             if pair in [None, "0x0000000000000000000000000000000000000000"]:
                 continue
 
@@ -116,6 +122,8 @@ def get_and_create_chain_pairs(
 def insert_pairs(
     chain_id: ChainId,
     pairs: List[Dict]
+
+
 ):
     try:
         client = Pair.mongo_client(chain_id)

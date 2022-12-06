@@ -12,8 +12,8 @@ async def _tt_():
     skip = 0
     limit = 5
 
-    # save_chain_pairs(250)
-    # save_all_pairs()
+    save_chain_pairs(250)  # type: ignore
+    save_all_pairs()
 
     # update_chain_pairs(250)
     # update_all_pairs()
@@ -23,7 +23,7 @@ async def _tt_():
 
     # save_user_chain_token_trxs(
     #     1, "0x416299AAde6443e6F6e8ab67126e65a7F606eeF5")
-    
+
     # save_user_chain_token_trxs(
     #     1, "0x7d1F235a2eD3f71143c7eD0f5CB1A40b5b5d1aa6")
 

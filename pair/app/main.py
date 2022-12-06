@@ -3,9 +3,9 @@ import uvicorn
 from fastapi import FastAPI
 from dotenv import load_dotenv
 from configs import redis_config, fastapi_config
-
+import logging
 load_dotenv()
-
+logging.basicConfig(level="INFO")
 PORT = int(os.getenv("PORT", 12345))
 DOMAIN = os.getenv("DOMAIN") or "http://localhost"
 REDIS_URL = os.getenv("REDIS_URL") or "redis://localhost:6379"

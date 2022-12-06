@@ -168,6 +168,44 @@ class NativeTokensProvider(Provider):
         )
 
 
+class RangoProvider(Provider):
+    @classmethod
+    def load(cls, url, provider_dir, name=None):
+        meta = requests.get(url).json()
+        _chains = {
+            _['name']: chainId
+            for _ in meta['"https://api.rango.exchange/basic/meta?apiKey=c6381a79-2817-4602-83bf-6a641a409e32"']
+            if (chainId := _.get('chainId'))
+        }
+
+        tokens = [
+            schema.Token(**{
+                "providers": [
+                    name
+                ],
+                "address": token['address'],
+                "chainId": _chainId,
+                "name": token['name'],
+                "symbol": token['symbol'],
+                "priceUSD": token.get("usdPrice"),
+                "decimals": token['decimals'],
+                "logoURI": token['image']
+            })
+            for token in meta.get('tokens')
+            if (_chainId := _chains.get(token['blockchain']))
+        ]
+
+        return cls(
+            name=name or "NativeTokens",
+            timestamp=datetime.now().isoformat(),
+            version={},
+            keywords=["NativeTokens"],
+            tags={},
+            logoURI="",
+            tokens=tokens
+        )
+
+
 def fetch_tokens(providers_url_file=None, provider_dir=None) -> Dict[str, Provider]:
     """
     For Providers that follow uniswap schema
@@ -192,6 +230,9 @@ def fetch_tokens(providers_url_file=None, provider_dir=None) -> Dict[str, Provid
                             url, provider_dir, provider)
                     case "LiFi":
                         providers[provider] = LiFiProvider.load(
+                            url, provider_dir, provider)
+                    case "Rango":
+                        providers[provider] = RangoProvider.load(
                             url, provider_dir, provider)
                     case "Natives":
                         providers[provider] = NativeTokensProvider.load(

@@ -1,5 +1,6 @@
 import logging
 from pycoingecko import CoinGeckoAPI
+from functools import lru_cache
 
 from ..sync_redis import cache_coin_id, get_coin_id_from_redis
 from utils.types import Symbol, Price
@@ -27,6 +28,7 @@ def get_coins_id(symbol: Symbol) -> str:
             return coin.get("id")
 
 
+@lru_cache(10000)
 def get_token_price(symbol: Symbol) -> Price:
     try:
         cg = CoinGeckoAPI()

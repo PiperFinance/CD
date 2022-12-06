@@ -31,5 +31,6 @@
     "LiFi": "https://li.quest/v1/tokens",
     "Via": "https://github.com/viaprotocol/tokenlists/blob/main/tokenlists/all.json?raw=true",
     "ViaAll": "https://github.com/viaprotocol/tokenlists/blob/main/all_tokens/all.json?raw=true",
+    "Rango": "https://api.rango.exchange/basic/meta?apiKey=c6381a79-2817-4602-83bf-6a641a409e32",
     "Natives": "~"
 }
