@@ -174,7 +174,7 @@ class RangoProvider(Provider):
         meta = requests.get(url).json()
         _chains = {
             _['name']: chainId
-            for _ in meta['"https://api.rango.exchange/basic/meta?apiKey=c6381a79-2817-4602-83bf-6a641a409e32"']
+            for _ in meta['blockchains']
             if (chainId := _.get('chainId'))
         }
 
@@ -184,7 +184,7 @@ class RangoProvider(Provider):
                     name
                 ],
                 "address": token['address'],
-                "chainId": _chainId,
+                "chainId": int(_chainId),
                 "name": token['name'],
                 "symbol": token['symbol'],
                 "priceUSD": token.get("usdPrice"),
@@ -192,7 +192,7 @@ class RangoProvider(Provider):
                 "logoURI": token['image']
             })
             for token in meta.get('tokens')
-            if (_chainId := _chains.get(token['blockchain']))
+            if token.get('type','') == 'EVM' and (_chainId := _chains.get(token['chainId'])) and (int(_chainId )> 0 ) 
         ]
 
         return cls(
