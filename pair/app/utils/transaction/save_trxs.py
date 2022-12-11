@@ -3,7 +3,7 @@ import logging
 from web3 import Web3
 from typing import List, Dict
 from models import Trx, Chain
-from .decode_transaction_input import decode_trx_input_data
+from .decode_trx_input import decode_trx_input_data
 from utils.types import Address, ChainId, MongoClient
 
 

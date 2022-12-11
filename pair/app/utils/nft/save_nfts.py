@@ -192,7 +192,8 @@ def check_if_nfts_exist(
             )
 
         for nft in nfts:
-            if f'{nft.get("address")}_{nft.get("id")}' in nft_addresses_with_id:
+            address_with_id = f'{nft.get("address")}_{nft.get("id")}'
+            if address_with_id in nft_addresses_with_id:
                 nfts.remove(nft)
         return nfts
     except Exception as e:

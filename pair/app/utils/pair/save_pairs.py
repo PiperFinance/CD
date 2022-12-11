@@ -119,6 +119,7 @@ def insert_pairs(
 ):
     try:
         client = Pair.mongo_client(chain_id)
+        # client.drop()
         pairs = check_if_pairs_exist(client, pairs)
         if pairs in [None, []]:
             return
