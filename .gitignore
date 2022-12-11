@@ -5,3 +5,4 @@ Pipfile.lock
 __pycache__/
 data/
 wait
+nft_images/
