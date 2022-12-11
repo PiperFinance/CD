@@ -55,20 +55,24 @@ def decode_base64(uri: str):
         base64_bytes = base64_data.encode('ascii')
         base64_bytes = base64.b64decode(base64_bytes)
         base64_json = json.loads(base64_bytes)
-        uri = get_image_uri(list(base64_json.values()))
+        uri = get_image_uri(base64_json)
         base_64 = decode_image_uri(uri)
         return decode_base64(base_64)
 
     else:
-        base64_data = re.sub('^data:image/.+;base64,', '', uri)
+        # need_to_be_deleted = f'^data:{uri[5:10]}/.+;base64,'
+        need_to_be_deleted = f'^{uri.split(",")[0]},'
+
+        base64_data = re.sub(need_to_be_deleted, '', uri)
+
         return base64_data, format
 
 
 def decode_https(uri: str):
     res = get_uri_json(uri)
-    uri = get_image_uri(list(res.values()))
+    uri = get_image_uri(res)
     base_64 = decode_image_uri(uri)
-    return base_64
+    return decode_base64(base_64)
 
 
 def get_uri_json(uri: str):
@@ -77,8 +81,10 @@ def get_uri_json(uri: str):
     return res
 
 
-def get_image_uri(data: List):
-    for value in data:
+def get_image_uri(data: Dict):
+    if data.get("image"):
+        return data.get("image")
+    for value in list(data.values()):
         value = str(value)
         if "https" in value or "ipfs" in value or "data" in value:
             return value

@@ -138,7 +138,6 @@ def find_to_trxs(
                 "id": trx.get("tokenID"),
                 "name": trx.get("tokenName"),
                 "symbol": trx.get("tokenSymbol"),
-                "decimal": trx.get("tokenDecimal")
             }
 
     return users_nfts
@@ -164,7 +163,6 @@ def insert_nfts(
 ):
     try:
         client = Nft.mongo_client(chain_id)
-        # client.drop()
         nfts = check_if_nfts_exist(client, address, nfts)
         if nfts not in [None, []]:
             client.insert_many(nfts)

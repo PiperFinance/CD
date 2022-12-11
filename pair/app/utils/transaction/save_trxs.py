@@ -92,7 +92,6 @@ def insert_trxs(
 ):
     try:
         client = Trx.mongo_client(chain_id)
-        # client.drop()
         trxs = check_if_trxs_exist(client, address, trxs)
         if trxs not in [None, []]:
             client.insert_many(trxs)
