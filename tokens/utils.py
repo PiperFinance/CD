@@ -1,6 +1,8 @@
 from typing import Any, List, Dict, Set
 import requests
+import sys
 import json
+from datetime import datetime
 import functools
 import logging
 from pydantic import BaseModel
@@ -11,9 +13,9 @@ from pathlib import Path
 from thefuzz import fuzz
 from tqdm import tqdm
 from web3 import Web3
-from tokens import schema
 from tokens import providers
 from pydantic.json import pydantic_encoder
+from schema import py as schema
 
 logger = logging.getLogger(__name__)
 
@@ -169,34 +171,34 @@ def chose(options, symbol=None, try_request=False, out="./tmp"):
 
 
 def provider_data_merger(
-        providers_tokens: Dict[str, providers.Provider], out_dir="out", verify=None, include_testnet=False):
+        providers_tokens: Dict[str, providers.Provider], out_dir="out", verify=None, include_testnet=False, try_request_token_logo=True, result_readme_file=sys.stdout):
     """
     Merges given providers
-    Tokens follow schema.Token     
+    Tokens follow schema.TokenDetail     
     Exceptions:
     - Natives
     - StableCoins 
         - CMC-SC
     """
     # For Having everything all at once
-    all_tokens_providers: Dict[schema.Token, List[str]] = {}
-    all_tokens_logo: Dict[schema.Token, List[str]] = {}
-    all_tokens_tags: Dict[schema.Token, List[str]] = {}
-    all_tokens_lifiId: Dict[schema.Token, List[str]] = {}
-    all_tokens_coingeckoId: Dict[schema.Token, List[str]] = {}
+    all_tokens_providers: Dict[schema.TokenDetail, List[str]] = {}
+    all_tokens_logo: Dict[schema.TokenDetail, List[str]] = {}
+    all_tokens_tags: Dict[schema.TokenDetail, List[str]] = {}
+    all_tokens_lifiId: Dict[schema.TokenDetail, List[str]] = {}
+    all_tokens_coingeckoId: Dict[schema.TokenDetail, List[str]] = {}
 
-    all_tokens: List[schema.Token] = []
+    all_tokens: Dict[int, schema.Token] = {}
     # For Go portfolio scanner ...
     chain_separated_v2: List[schema.ChainToken] = list()
 
-    chain_separated: Dict[int, set[schema.Token]] = {}
+    chain_separated: Dict[int, set[schema.TokenDetail]] = {}
     chain_separated_and_merged_by_address: Dict[int,
-                                                Dict[str, List[schema.Token]]] = {}
+                                                Dict[str, List[schema.TokenDetail]]] = {}
     # For Human readable style of merging tokens ...
     chain_separated_and_merged_by_symbol: Dict[int,
-                                               Dict[str, List[schema.Token]]] = {}
+                                               Dict[str, List[schema.TokenDetail]]] = {}
     chain_separated_and_merged_by_name: Dict[int,
-                                             Dict[str, List[schema.Token]]] = {}
+                                             Dict[str, List[schema.TokenDetail]]] = {}
 
     global verified_count, literally_all_tokens_count
 
@@ -233,7 +235,7 @@ def provider_data_merger(
 
     # Remove Unverified tokens from list and
     for token, token_providers in all_tokens_providers.items():
-        token: schema.Token
+        token: schema.TokenDetail
         token.listedIn = token_providers
         if len(token.listedIn) > MIN_LISTED_COUNT:
             token.verify = True
@@ -242,17 +244,18 @@ def provider_data_merger(
         token.lifiId = chose(all_tokens_lifiId[token])
         token.tags = list(set(all_tokens_tags[token]))
         token.logoURI = chose(
-            all_tokens_logo[token], symbol=token.symbol, try_request=True, out="./logo")
+            all_tokens_logo[token], symbol=token.symbol, try_request=try_request_token_logo, out="./logo")
         if (  # Following Providers are exceptions
             "Natives" not in token.listedIn
             and "CMC-SC" not in token.listedIn
         ) and verify is not None:
             if verify == token.verify:
-                all_tokens.append(token)
+                all_tokens[token.checksum] = schema.Token(token=token)
         else:
-            all_tokens.append(token)
+            all_tokens[token.checksum] = schema.Token(token=token)
 
-    for token in tqdm(all_tokens):
+    for _token in tqdm(all_tokens.values()):
+        token = _token.token
         if (chainId := token.chainId) not in chain_separated_and_merged_by_address:
             chain_separated[chainId] = set()
             chain_separated_and_merged_by_symbol[chainId] = {}
@@ -273,10 +276,12 @@ def provider_data_merger(
         # if (get_from_list(chain_separated[chainId], token))
         chain_separated[chainId].add(token)
 
-    print(f"\n\n --- Result ::: {len(chain_separated)} chains  ::: {verified_count} verified ::: {len(all_tokens)} total_saved ::: {literally_all_tokens_count - len(all_tokens)} duplicates ::: Chains :\n")
+    result_readme = ""
+    result_readme += (f"# TokenResult Parsed @ {datetime.now()} \n\n## Result \n ::: {len(chain_separated)} chains  ::: {verified_count} verified ::: {len(all_tokens)} total_saved ::: {literally_all_tokens_count - len(all_tokens)} duplicates ::: \n")
     for chain, tokens in chain_separated.items():
-        print(
-            f" \t --- {chain}  :::  {_CHAINS[chain]['name']}  :::  {len(tokens)} :::  { {provider for token in tokens for provider in (token.listedIn or [])  } }")
+        result_readme += (
+            f"- {chain}  :::  {_CHAINS[chain]['name']}  :::  {len(tokens)} :::  { {provider for token in tokens for provider in (token.listedIn or [])  } } \n")
+    print(result_readme, file=result_readme_file, flush=True)
     for chain, tokens in chain_separated.items():
         # for token in chain_separated[chain].values():
         #     chain_tokens.append(token)

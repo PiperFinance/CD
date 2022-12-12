@@ -8,7 +8,8 @@ from utils.types import Address, StringBlockNumber, Symbol, Name, Decimal, Mongo
 
 class Label(BaseModel):
     title: str
-    value: Union[str, int]
+    value: str | int
+    # value: Union[str, int]
 
 
 class Trx(Chain):

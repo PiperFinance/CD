@@ -1,15 +1,25 @@
+import re
 import os
 import requests
 import logging
 from web3 import Web3
-from typing import List, Dict
+from typing import List, Dict, Optional
 
-from models import Chain, Nft
+from models import Chain, Nft, NftType
 from utils.types import Address, ChainId, MongoClient
 from utils.abis import nft_abi_721, nft_abi_1155
 from .save_nfts import get_nft_uri
 
 api_key = os.getenv("NFTBANK_APIKEY") or "b7e9b813bd7c0d8b06a23cd06833ffed"
+
+nft_type_regex = re.compile(r"([a-zA-Z]*)([0-9]+)")
+
+
+def what_is_nft(s: str) -> Optional[NftType]:
+    match = nft_type_regex.match(s)
+    if match is not None:
+        return NftType(match.groups()[-1])
+    return None
 
 
 def save_user_all_nfts_nftbank(
@@ -56,6 +66,7 @@ def save_user_chain_nfts_nftbank(
                 "type": nft.get("item_type").split("c")[1]
             })
         return nfts
+    
 
     except Exception as e:
         logging.exception(e)

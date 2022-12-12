@@ -35,7 +35,7 @@ class Provider(BaseModel):
     keywords: list
     tags: dict
     logoURI: str
-    tokens: List[schema.Token]
+    tokens: List[schema.TokenDetail]
 
     @classmethod
     def load(cls, url, provider_dir, name=None):
@@ -49,7 +49,7 @@ class Provider(BaseModel):
                 if "tokens" in res.keys():
                     tokens = [_token
                               for token in res['tokens']
-                              if (_token := schema.Token.load(token)) is not None
+                              if (_token := schema.TokenDetail(**token)) is not None
                               ]
                     provider = Provider(
                         name=name,
@@ -119,11 +119,13 @@ class LiFiProvider(Provider):
 
         response = requests.get(url, headers={"accept": "application/json"})
 
-        tokens: List[schema.Token] = []
+        tokens: List[schema.TokenDetail] = []
 
         for chain, chain_tokens in response.json().get('tokens', {}).items():
             for _token in chain_tokens:
-                token = schema.Token.load(_token)
+                if "coinkey" in _token:
+                    _token['lifiId'] = _token.pop('coinkey')
+                token = schema.TokenDetail(**_token)
                 if token is not None:
                     tokens.append(token)
         provider = cls(
@@ -145,7 +147,7 @@ class NativeTokensProvider(Provider):
     def load(cls, url, provider_dir, name=None):
 
         tokens = [
-            schema.Token(**{
+            schema.TokenDetail(**{
                 "providers": [
                     "NativeTokens"
                 ],
@@ -179,7 +181,7 @@ class RangoProvider(Provider):
         }
 
         tokens = [
-            schema.Token(**{
+            schema.TokenDetail(**{
                 "providers": [
                     name
                 ],
@@ -192,7 +194,7 @@ class RangoProvider(Provider):
                 "logoURI": token['image']
             })
             for token in meta.get('tokens')
-            if token.get('type','') == 'EVM' and (_chainId := _chains.get(token['chainId'])) and (int(_chainId )> 0 ) 
+            if token.get('type', '') == 'EVM' and (_chainId := _chains.get(token['chainId'])) and (int(_chainId) > 0)
         ]
 
         return cls(

@@ -16,15 +16,16 @@ _cache = {}
 _failed_chains = []
 
 
-def fix_providers(provider_dir, save=True):
+def fix_providers(provider_dir, save=True, fix_symbol=True, fix_address=True):
     providers = get_fetched_providers(provider_dir)
     for provider_name, provider in providers.items():
         _res_tokens = []
         _bad_tokens = []
         print(f"\nProvider: {provider_name}")
         for i, token in tqdm(enumerate(provider.tokens)):
-            token = fix_token_address(token)
-            if token is not None:
+            if fix_address:
+                token = fix_token_address(token)
+            if token is not None and fix_symbol:
                 token = fix_token_symbol(token)
             if token is not None:
                 _res_tokens.append(token)
@@ -35,11 +36,11 @@ def fix_providers(provider_dir, save=True):
             save_provider(provider_dir, provider)
 
 
-def _token_key(token: schema.Token):
+def _token_key(token: schema.TokenDetail):
     return (token.address, token.chainId)
 
 
-def fix_token_symbol(token: schema.Token, provider: Optional[str] = None) -> Optional[schema.Token]:
+def fix_token_symbol(token: schema.TokenDetail, provider: Optional[str] = None) -> Optional[schema.TokenDetail]:
     """Calls Contracts address via web3 clients
 
     Arguments:
@@ -93,7 +94,7 @@ def fix_token_symbol(token: schema.Token, provider: Optional[str] = None) -> Opt
     return token
 
 
-def fix_token_address(token: schema.Token) -> Optional[schema.Token]:
+def fix_token_address(token: schema.TokenDetail) -> Optional[schema.TokenDetail]:
     _add = token.address
     match _add:
         case "0xaa44051bdd76e251aab66dbbe82a97343b4d7da3#code":

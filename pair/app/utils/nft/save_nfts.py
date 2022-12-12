@@ -53,7 +53,7 @@ def create_nfts(
         value["address"] = Web3.toChecksumAddress(key)
         value["type"] = nft_type
         uri = get_nft_uri(
-            nft_type,
+            NftType(nft_type),
             chain_id,
             value.get("address"),
             value.get("id")
@@ -65,14 +65,14 @@ def create_nfts(
 
 
 def get_nft_uri(
-    nft_type: int,
+    nft_type: NftType,
     chain_id: ChainId,
     address: Address,
     id: str
 ):
     try:
         chain = Chain(chainId=chain_id)
-        if nft_type == 721:
+        if nft_type is NftType.ERC721.value:
             nft_contract = chain.w3.eth.contract(
                 address,
                 abi=nft_abi_721
