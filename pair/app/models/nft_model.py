@@ -6,7 +6,6 @@ from configs.mongo_config import client
 from utils.types import (
     Address,
     ChainId,
-    Id,
     Symbol,
     Name,
     Price,
@@ -22,14 +21,23 @@ class NftType(Enum):
 class Nft(Chain):
     userAddress: Address
     address: Address
-    id: Id
+    id: str
     name: Optional[Name]
     symbol: Optional[Symbol]
+    description: Optional[str]
     price: Optional[Price]
     uri: Optional[str]
     verified: bool = False
     type: Optional[int]
+    idAddress: str
+    balance: int
+    totalSupply: int
 
-    @staticmethod
-    def mongo_client(chain_id: ChainId) -> MongoClient:
-        return client("NFT", chain_id)
+    @classmethod
+    def mongo_client(cls, chain_id: ChainId) -> MongoClient:
+        c = client(cls.__name__, chain_id)
+        c.create_index(
+            "idAddress",
+            unique=True
+        )
+        return c

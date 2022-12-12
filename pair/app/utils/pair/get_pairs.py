@@ -1,6 +1,7 @@
+from pydantic import parse_obj_as
 from typing import List, Dict
-from models import Chain, Pair
 
+from models import Chain, Pair
 from utils.types import ChainId
 
 
@@ -45,5 +46,5 @@ def get_chain_pairs(
 def create_pair_objects(pairs: List[Dict]):
     pair_objs = []
     for pair in pairs:
-        pair_objs.append(Pair(**pair))
+        pair_objs.append(parse_obj_as(Pair, pair))
     return pair_objs
