@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 GECKO_TERMINAL = "https://app.geckoterminal.com/api/p1/pools"
 
 
-def fetch_all_pairs() -> List[Pair]:
+def fetch_all_pairs() -> Dict[int, Pair]:
 
     class SetEncoder(json.JSONEncoder):
         def default(self, obj):
@@ -182,7 +182,7 @@ def fetch_all_pairs() -> List[Pair]:
     with open("pair/pairs_chain_separated.json", "w+") as f:
         dump(chain_separated, f)
 
-    all_pairs = [_ for _ in valid_pools.values()]
+    all_pairs = {_.pair.checksum: _ for _ in valid_pools.values()}
     with open("pair/all_pairs.json", "w+") as f:
         dump(all_pairs, f)
 

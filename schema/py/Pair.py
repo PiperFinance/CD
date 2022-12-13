@@ -1,5 +1,5 @@
 from __future__ import annotations
-
+from zlib import crc32
 from typing import List, Dict, Optional
 
 from pydantic import BaseModel
@@ -18,6 +18,10 @@ class PairDetail(BaseModel):
     dex: str
     verified: bool = False
     coingeckoId: Optional[str] = None
+
+    @property
+    def checksum(self) -> int:
+        return crc32("-".join([self.address.lower(), str(self.chainId)]).encode())
 
 
 class Pair(BaseModel):
