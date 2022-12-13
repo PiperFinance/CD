@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List, Optional, Tuple
 
 from . import Chain
 from configs.mongo_config import client
@@ -9,11 +9,18 @@ class Pair(Chain):
     address: Address
     name: Name
     dex: Name
+    chainId: ChainId
+    tokens: Tuple[Address, Address]
     decimals: List[Decimal]
     reserves: List[BigInt]
     totalSupply: BigInt
     price: Optional[BigInt]
 
-    @staticmethod
-    def mongo_client(chain_id: ChainId | int) -> MongoClient:
-        return client("Pair", chain_id)
+    @classmethod
+    def mongo_client(cls, chain_id: ChainId) -> MongoClient:
+        c = client(cls.__name__, chain_id)
+        c.create_index(
+            "address",
+            unique=True
+        )
+        return c

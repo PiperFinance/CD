@@ -20,16 +20,10 @@ test = []
 
 
 def w3(rpc):
-
     w3 = Web3(Web3.HTTPProvider(rpc))
     if not w3.isConnected():
         print(f"RPCUrl {rpc} is not Working")
     return w3
-
-    # "multicall": {
-    #     "address": "0xcA11bde05977b3631167028862bE2a173976CA11",
-    #     "blockCreated":  0
-    # }
 
 
 def isContract(w3: Web3, address):  # multicall address
@@ -122,7 +116,6 @@ for chain in tqdm(chains):
         main.append(o)
 
 print(f"Main: {len(main)} ::: Test: {len(test)} ::: out: {len(all)} ")
-
 
 with open(os.path.join("chains", "mainnet.json"), "w+") as f:
     json.dump(main, f)

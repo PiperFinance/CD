@@ -8,7 +8,8 @@ from utils.types import Address, StringBlockNumber, Symbol, Name, Decimal, Mongo
 
 class Label(BaseModel):
     title: str
-    value: Union[str, int]
+    value: str | int
+    # value: Union[str, int]
 
 
 class Trx(Chain):
@@ -34,6 +35,11 @@ class Trx(Chain):
     input: str
     confirmations: str
 
-    @staticmethod
-    def mongo_client(chain_id: int) -> MongoClient:
-        return client("TX", chain_id)
+    @classmethod
+    def mongo_client(cls, chain_id: int) -> MongoClient:
+        c = client(cls.__name__, chain_id)
+        c.create_index(
+            "hash",
+            unique=True
+        )
+        return c

@@ -12,3 +12,6 @@ venv/
 wait
 tmp/
 logo/tmp/
+wait
+nft_images/
+api_keys.json

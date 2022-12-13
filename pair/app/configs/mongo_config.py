@@ -1,6 +1,6 @@
 import os
 import pymongo
-
+from utils.types import ChainId, Collation
 global _CLIENT
 _CLIENT = None
 
@@ -9,8 +9,8 @@ MONGO_URL = os.getenv("MONGO_URL") or "mongodb://localhost:27017/"
 
 def client(
     class_name: str,
-    chain_id: int
-):
+    chain_id: int | ChainId
+) -> Collation:
     global _CLIENT
     if not _CLIENT:
         _CLIENT = pymongo.MongoClient(MONGO_URL)

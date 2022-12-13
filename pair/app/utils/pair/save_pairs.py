@@ -1,7 +1,8 @@
 import json
-import time
 import logging
 from web3 import Web3
+from pydantic import parse_obj_as
+
 from typing import List, Dict, Tuple
 
 from .lp_price import get_reserves, get_total_supply, calculate_lp_price
@@ -20,10 +21,11 @@ def save_all_pairs():
 
 
 def save_chain_pairs(chain_id: ChainId):
-    factories = get_chain_factories(chain_id)
+    chain = Chain(chainId=chain_id)
+    factories = chain.dexs
     if not factories:
         return
-    tokens = get_chain_tokens(chain_id)
+    tokens = chain.tokens
     if not tokens:
         return
 
@@ -38,24 +40,6 @@ def save_chain_pairs(chain_id: ChainId):
         )
         if chain_pairs not in [None, []]:
             insert_pairs(chain_id, chain_pairs)
-
-
-def get_chain_factories(chain_id: ChainId) -> Dict:
-    with open("utils/dexs.json") as f:
-        factory_dict = json.load(f)
-
-    for key in factory_dict:
-        if key == str(chain_id):
-            return factory_dict[key]
-
-
-def get_chain_tokens(chain_id: ChainId) -> Dict:
-    with open("utils/tokens.json") as f:
-        token_dict = json.load(f)
-
-    for key in token_dict:
-        if key == str(chain_id):
-            return token_dict[key]
 
 
 def get_and_create_chain_pairs(
@@ -114,8 +98,8 @@ def get_and_create_chain_pairs(
                 "totalSupply": str(total_supply),
                 "price": str(lp_price)
             }
-
-            pairs.append(pair_dict)
+            pair_obj = parse_obj_as(Pair, pair_dict)
+            pairs.append(pair_obj.dict())
     return pairs
 
 
@@ -125,32 +109,14 @@ def insert_pairs(
 
 
 ):
-    try:
-        client = Pair.mongo_client(chain_id)
-        pairs = check_if_pairs_exist(client, pairs)
-        if pairs in [None, []]:
-            return
-        client.insert_many(pairs)
-    except Exception as e:
-        logging.exception(e)
-
-
-def check_if_pairs_exist(
-    client: MongoClient,
-    pairs: List[Dict]
-) -> List[Dict]:
-    existing_pairs = list(client.find())
-    if existing_pairs in [None, []]:
-        return pairs
-    pair_addresses = []
-    for existing_pair in existing_pairs:
-        pair_addresses.append(existing_pair.get("address"))
+    client = Pair.mongo_client(chain_id)
 
     for pair in pairs:
-        if pair.get("address") in pair_addresses:
-            pairs.remove(pair)
-
-    return pairs
+        try:
+            client.insert_one(pair)
+        except Exception as e:
+            logging.exception(e)
+            continue
 
 
 def get_pair(

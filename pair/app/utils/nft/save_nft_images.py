@@ -122,6 +122,9 @@ def write_image(
 
     btyes_data = base64.b64decode(base_64)
 
+    f = open(path, 'w+')
+    f.close()
+
     with open(path, "wb") as f:
         f.write(btyes_data)
 

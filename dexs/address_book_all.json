@@ -1,0 +1,452 @@
+{
+    "250": [
+        {
+            "name": "SushiSwap",
+            "factory": "0xc35DADB65012eC5796536bD9864eD8773aBc74C4",
+            "router": "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506",
+            "lp_fee": 9970,
+            "index": 0,
+            "type": 1
+        },
+        {
+            "name": "SpookySwap",
+            "factory": "0x152eE697f2E276fA89E96742e9bB9aB1F2E61bE3",
+            "router": "0xF491e7B69E4244ad4002BC14e878a34207E38c29",
+            "lp_fee": 9980,
+            "index": 1,
+            "type": 1
+        },
+        {
+            "name": "PaintSwap",
+            "factory": "0x733A9D1585f2d14c77b49d39BC7d7dd14CdA4aa5",
+            "router": "0xfD000ddCEa75a2E23059881c3589F6425bFf1AbB",
+            "lp_fee": 9970,
+            "index": 2,
+            "type": 1
+        },
+        {
+            "name": "WakaSwap",
+            "factory": "0xB2435253C71FcA27bE41206EB2793E44e1Df6b6D",
+            "router": "0x7B17021FcB7Bc888641dC3bEdfEd3734fCaf2c87",
+            "lp_fee": 9970,
+            "index": 3,
+            "type": 1
+        },
+        {
+            "name": "SpiritSwap",
+            "factory": "0xEF45d134b73241eDa7703fa787148D9C9F4950b0",
+            "router": "0x16327E3FbDaCA3bcF7E38F5Af2599D2DDc33aE52",
+            "lp_fee": 9970,
+            "index": 4,
+            "type": 1
+        },
+        {
+            "name": "HyperSwap",
+            "factory": "0x991152411A7B5A14A8CF0cDDE8439435328070dF",
+            "router": "0x53c153a0df7E050BbEFbb70eE9632061f12795fB",
+            "lp_fee": 9980,
+            "index": 5,
+            "type": 1
+        },
+        {
+            "name": "ELKSwap",
+            "factory": "0x7Ba73c99e6f01a37f3e33854c8F544BbbadD3420",
+            "router": "0x4D2cf285a519261F30b4d9c2c344Baf260d65Fa2",
+            "lp_fee": 9970,
+            "index": 6,
+            "type": 1
+        },
+        {
+            "name": "OperaSwap",
+            "factory": "0x8ebB6B4eD61b6b2eA663569D0Be3F7b33a481178",
+            "router": "0xE372753F66644A1197AB85Ff529ed02995ED2d6C",
+            "lp_fee": 9980,
+            "index": 7,
+            "type": 1
+        },
+        {
+            "name": "ZooDex Core",
+            "factory": "0x6178C3B21F7cA1adD84c16AD35452c85a85F5df4",
+            "router": "0x40b12a3E261416fF0035586ff96e23c2894560f2",
+            "lp_fee": 9970,
+            "index": 8,
+            "type": 1
+        },
+        {
+            "name": "SoulSwap",
+            "factory": "0x1120e150dA9def6Fe930f4fEDeD18ef57c0CA7eF",
+            "router": "0x6b3d631B87FE27aF29efeC61d2ab8CE4d621cCBF",
+            "lp_fee": 9980,
+            "index": 9,
+            "type": 10
+        },
+        {
+            "name": "fBOMB",
+            "factory": "0xD9473A05b2edf4f614593bA5D1dBd3021d8e0Ebe",
+            "router": "0xb9799De71100e20aC1cdbCc63C69ddA2D0D81710",
+            "lp_fee": 9981,
+            "index": 10,
+            "type": 1
+        },
+        {
+            "name": "ShibaSwap",
+            "factory": "0xeAcC845E4db0aB59A326513347a37ed4E999aBD8",
+            "router": "0xB6f7b3d8CD9dBf30805C0dd79809dace5603Ce6A",
+            "lp_fee": 9970,
+            "index": 11,
+            "type": 1
+        },
+        {
+            "name": "TimechainSwap",
+            "factory": "0x27B73f099AbA34f96b865cE32cf42a63c50070F2",
+            "router": "0xc784BFac74F0319b662D02Ad2E68217601c8041F",
+            "lp_fee": 9970,
+            "index": 12,
+            "type": 1
+        },
+        {
+            "name": "DefySwap",
+            "factory": "0xAffdbEAE1ec595cba4C262Bdb52A6083aEc2e2a6",
+            "router": "0x35e11136FA9a734AF6B81658D66519854fB6793c",
+            "lp_fee": 9970,
+            "index": 13,
+            "type": 1
+        },
+        {
+            "name": "ProtoFi",
+            "factory": "0x39720E5Fe53BEEeb9De4759cb91d8E7d42c17b76",
+            "router": "0xF4C587a0972Ac2039BFF67Bc44574bB403eF5235",
+            "lp_fee": 9985,
+            "index": 14,
+            "type": 1
+        },
+        {
+            "name": "WrathFi",
+            "factory": "0xCC738D2fDE18fe66773b84c8E6C869aB233766D1",
+            "router": "0x8C9E059a729C17fB294cd782eB66Df3871D29173",
+            "lp_fee": 9980,
+            "index": 15,
+            "type": 1
+        },
+        {
+            "name": "Wingswap",
+            "factory": "0xc0719a9A35a2D9eBBFdf1C6d383a5E8E7b2ef7a8",
+            "router": "0x2b660040b289B1B570E053b21dd9A6F1067AD7F5",
+            "lp_fee": 9970,
+            "index": 16,
+            "type": 1
+        },
+        {
+            "name": "DarkKnightswap",
+            "factory": "0x7d82F56ea0820A9d42b01C3C28F1997721732218",
+            "router": "0x045312C737a6b7a115906Be0aD0ef53A6AA38106",
+            "lp_fee": 9980,
+            "index": 17,
+            "type": 1
+        },
+        {
+            "name": "JetswapFi",
+            "factory": "0xf6488205957f0b4497053d6422F49e27944eE3Dd",
+            "router": "0x845E76A8691423fbc4ECb8Dd77556Cb61c09eE25",
+            "lp_fee": 9990,
+            "index": 18,
+            "type": 1
+        },
+        {
+            "name": "MorpheusFinance",
+            "factory": "0x9C454510848906FDDc846607E4baa27Ca999FBB6",
+            "router": "0x8aC868293D97761A1fED6d4A01E9FF17C5594Aa3",
+            "lp_fee": 9985,
+            "index": 19,
+            "type": 1
+        },
+        {
+            "name": "WigoswapFinance",
+            "factory": "0x9C454510848906FDDc846607E4baa27Ca999FBB6",
+            "router": "0x5023882f4D1EC10544FCB2066abE9C1645E95AA0",
+            "lp_fee": 9981,
+            "index": 20,
+            "type": 1
+        },
+        {
+            "factory": "0x27E611FD27b276ACbd5Ffd632E5eAEBEC9761E40",
+            "name": "Curve.fi",
+            "index": 201,
+            "type": 5,
+            "pairs": [
+                {
+                    "A": 450,
+                    "lp_fee": 4000000,
+                    "address": "0x27E611FD27b276ACbd5Ffd632E5eAEBEC9761E40",
+                    "N_COINS": 2,
+                    "reserves": [
+                        0,
+                        0
+                    ],
+                    "decimals": [
+                        18,
+                        6
+                    ],
+                    "dex": "0x27E611FD27b276ACbd5Ffd632E5eAEBEC9761E40",
+                    "type": 5,
+                    "tokens": [
+                        "0x8D11eC38a3EB5E956B052f67Da8Bdc9bef8Abf3E",
+                        "0x04068DA6C83AFCFA0e13ba15A6696662335D5B75"
+                    ],
+                    "rates": [
+                        "1000000000000000000",
+                        "1000000000000000000000000000000"
+                    ]
+                }
+            ]
+        },
+        {
+            "factory": "0x83E5f18Da720119fF363cF63417628eB0e9fd523",
+            "name": "Fronzen Yogurt",
+            "index": 301,
+            "type": 5,
+            "pairs": [
+                {
+                    "A": 1500,
+                    "lp_fee": 4000000,
+                    "address": "0x83E5f18Da720119fF363cF63417628eB0e9fd523",
+                    "N_COINS": 3,
+                    "reserves": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "decimals": [
+                        6,
+                        18,
+                        6
+                    ],
+                    "dex": "0x83E5f18Da720119fF363cF63417628eB0e9fd523",
+                    "type": 5,
+                    "tokens": [
+                        "0x049d68029688eAbF473097a2fC38ef61633A3C7A",
+                        "0x8D11eC38a3EB5E956B052f67Da8Bdc9bef8Abf3E",
+                        "0x04068DA6C83AFCFA0e13ba15A6696662335D5B75"
+                    ],
+                    "rates": [
+                        "1000000000000000000000000000000",
+                        "1000000000000000000",
+                        "1000000000000000000000000000000"
+                    ]
+                }
+            ]
+        }
+    ],
+    "4002": [
+        {
+            "name": "TCSwap",
+            "router": "0x1164c6ce70635977CECC2b847C294c20DEe4Cefe",
+            "factory": "0x5dC074AaB1aB745Dfe6905CD760fec7343CF753a",
+            "lp_fee": 9980,
+            "index": 1,
+            "type": 1
+        }
+    ],
+    "56": [
+        {
+            "name": "PancakeSwapV1",
+            "factory": "0xBCfCcbde45cE874adCB698cC183deBcF17952812",
+            "router": "0x05fF2B0DB69458A0750badebc4f9e13aDd608C7F",
+            "index": 0,
+            "type": 1,
+            "lp_fee": 9980
+        },
+        {
+            "name": "PancakeSwapV2",
+            "factory": "0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73",
+            "MasterChef": "0xa5f8C5Dbd5F286960b9d90548680aE5ebFf07652",
+            "SingleAsset": "0xFfF5812C35eC100dF51D5C9842e8cC3fe60f9ad7",
+            "router": "0x10ED43C718714eb63d5aA57B78B54704E256024E",
+            "type": 1,
+            "index": 1,
+            "lp_fee": 9975
+        },
+        {
+            "name": "Apeswap",
+            "index": 2,
+            "factory": "0x0841BD0B734E4F5853f0dD8d7Ea041c241fb0Da6",
+            "router": "0xC0788A3aD43d79aa53B09c2EaCc313A787d1d607",
+            "lp_fee": 9980,
+            "type": 1
+        },
+        {
+            "name": "BAKE",
+            "index": 3,
+            "factory": "0x01bF7C66c6BD861915CdaaE475042d3c4BaE16A7",
+            "router": "0xcde540d7eafe93ac5fe6233bee57e1270d3e330f",
+            "lp_fee": 9970,
+            "type": 1
+        },
+        {
+            "name": "Street Swap",
+            "index": 4,
+            "factory": "0xaC653cE27E04C6ac565FD87F18128aD33ca03Ba2",
+            "router": "0x3bc677674df90a9e5d741f28f6ca303357d0e4ec",
+            "lp_fee": 9960,
+            "type": 1
+        },
+        {
+            "name": "Swip Swap",
+            "index": 5,
+            "factory": "0x7810D4B7bC4F7faee9deec3242238a39c4f1197d",
+            "router": "0x816278bbbcc529f8cdee8cc72c226fb01def6e6c",
+            "lp_fee": 9970,
+            "type": 1
+        },
+        {
+            "name": "JulSwap",
+            "factory": "0x553990F2CBA90272390f62C5BDb1681fFc899675",
+            "index": 6,
+            "router": "0xbd67d157502A23309Db761c41965600c2Ec788b2",
+            "type": 1,
+            "lp_fee": 9970
+        },
+        {
+            "name": "TwindexSwap",
+            "index": 7,
+            "factory": "0x4E66Fda7820c53C1a2F601F84918C375205Eac3E",
+            "router": "0x6b011d0d53b0da6ace2a3f436fd197a4e35f47ef",
+            "lp_fee": 9970,
+            "type": 1
+        },
+        {
+            "name": "WaultSwap",
+            "factory": "0xB42E3FE71b7E0673335b3331B3e1053BD9822570",
+            "router": "0xd48745e39bbed146eec15b79cbf964884f9877c2",
+            "lp_fee": 9980,
+            "index": 8,
+            "type": 1
+        },
+        {
+            "name": "MDex",
+            "index": 9,
+            "factory": "0x3CD1C46068dAEa5Ebb0d3f55F6915B10648062B8",
+            "router": "0x7DAe51BD3E3376B8c7c4900E9107f12Be3AF1bA8",
+            "type": 2
+        },
+        {
+            "name": "MoonSwap",
+            "factory": "0xD41B24bbA51fAc0E4827b6F94C0D6DDeB183cD64",
+            "index": 22,
+            "router": "0x11111112542d85b3ef69ae05771c2dccff4faa26",
+            "type": 3
+        },
+        {
+            "name": "Spartan",
+            "factory": "0xCaF0366aF95E8A03E269E52DdB3DbB8a00295F91",
+            "index": 11,
+            "UTILS": "0xCaF0366aF95E8A03E269E52DdB3DbB8a00295F91",
+            "router": "0x6239891FC4030dc050fB9F7083aa68a2E4Fe426D",
+            "type": 4
+        },
+        {
+            "factory": "0x160CAed03795365F3A589f10C379FfA7d75d4E76",
+            "name": "Ellipsis Finance",
+            "index": 11,
+            "type": 5,
+            "pairs": [
+                {
+                    "A": 1500,
+                    "lp_fee": 4000000,
+                    "address": "0x160CAed03795365F3A589f10C379FfA7d75d4E76",
+                    "N_COINS": 3,
+                    "reserves": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "dex": "0x160CAed03795365F3A589f10C379FfA7d75d4E76",
+                    "type": 5,
+                    "tokens": [
+                        "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
+                        "0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d",
+                        "0x55d398326f99059fF775485246999027B3197955"
+                    ],
+                    "rates": [
+                        1000000000000000000,
+                        1000000000000000000,
+                        1000000000000000000
+                    ]
+                }
+            ]
+        },
+        {
+            "factory": "0xb3F0C9ea1F05e312093Fdb031E789A756659B0AC",
+            "name": "AcryptoS",
+            "type": 7,
+            "index": 12,
+            "lp_token": "0x83d69ef5c9837e21e2389d47d791714f5771f29b",
+            "pairs": [
+                {
+                    "A": 2000,
+                    "lp_fee": 1000000,
+                    "address": "0xb3F0C9ea1F05e312093Fdb031E789A756659B0AC",
+                    "N_COINS": 4,
+                    "reserves": [
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    "dex": "0xb3F0C9ea1F05e312093Fdb031E789A756659B0AC",
+                    "type": 7,
+                    "tokens": [
+                        "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
+                        "0x55d398326f99059fF775485246999027B3197955",
+                        "0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3",
+                        "0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d"
+                    ],
+                    "rates": [
+                        1000000000000000000,
+                        1000000000000000000,
+                        1000000000000000000,
+                        1000000000000000000
+                    ]
+                }
+            ]
+        },
+        {
+            "index": 13,
+            "name": "ValueLiquidityPool",
+            "router": "0x0a7E1964355020F85FED96a6D8eB10baaC457645",
+            "factory": "0xc6E111637440D1Fe9c1eE45D5a1239771b267122",
+            "type": 6
+        },
+        {
+            "index": 15,
+            "name": "DODOV2",
+            "factory": "0x8F8Dd7DB1bDA5eD3da8C9daf3bfa471c12d58486",
+            "router": "0x8F8Dd7DB1bDA5eD3da8C9daf3bfa471c12d58486",
+            "factories": {
+                "DSPFactory": "0x0fb9815938Ad069Bf90E14FE6C596c514BEDe767",
+                "DVMFactory": "0x790B4A80Fb1094589A3c0eFC8740aA9b0C1733fB",
+                "DPPFactory": "0xAfe0A75DFFb395eaaBd0a7E1BBbd0b11f8609eeF",
+                "UpCrowdPoolingFactory": "0x4F57F6929E58AE564F6AB090fE0AEEcb39B0f270",
+                "CrowdPoolingFactory": "0x778DF5B12170e8af8dF94356BfC864E57CE185DC"
+            },
+            "type": 8
+        },
+        {
+            "name": "DODOV1",
+            "router": "0x8F8Dd7DB1bDA5eD3da8C9daf3bfa471c12d58486",
+            "factory": "0xCA459456a45e300AA7EF447DBB60F87CCcb42828",
+            "index": 14,
+            "type": 9
+        }
+    ],
+    "1": [
+        {
+            "name": "SushiSwap",
+            "factory": "0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f",
+            "router": "0xeB5c2BB5E83B51d83F3534Ae21E84336B8B376ef",
+            "lp_fee": 9970,
+            "index": 0,
+            "type": 1
+        }
+    ]
+}
