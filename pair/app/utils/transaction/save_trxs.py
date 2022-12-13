@@ -1,10 +1,11 @@
 import requests
 import logging
 from web3 import Web3
+from pydantic import parse_obj_as
 from typing import List, Dict
 from models import Trx, Chain
-from .decode_transaction_input import decode_trx_input_data
-from utils.types import Address, ChainId, MongoClient
+from .decode_trx_input import decode_trx_input_data
+from utils.types import Address, ChainId
 
 
 def save_user_all_token_trxs(address: Address):
@@ -30,7 +31,6 @@ def save_user_chain_token_trxs(
     )
     insert_trxs(
         chain_id,
-        address,
         trxs
     )
 
@@ -80,46 +80,21 @@ def create_trxs(
         trx["chainId"] = chain_id
         trx["fromAddress"] = trx.get("from")
         trx["timeStamp"] = int(trx.get("timeStamp"))
-        trxs.append(trx)
+        trx_obj = parse_obj_as(Trx, trx)
+        trxs.append(trx_obj.dict())
 
     return trxs
 
 
 def insert_trxs(
     chain_id: ChainId,
-    address: Address,
     trxs: List[Trx]
 ):
-    try:
-        client = Trx.mongo_client(chain_id)
-        # client.drop()
-        trxs = check_if_trxs_exist(client, address, trxs)
-        if trxs not in [None, []]:
-            client.insert_many(trxs)
-    except Exception as e:
-        logging.exception(e)
+    client = Trx.mongo_client(chain_id)
 
-
-def check_if_trxs_exist(
-    client: MongoClient,
-    address: Address,
-    trxs: List[Dict]
-):
-    try:
-        user_trxs = list(client.find({"userAddress": address}))
-
-        if user_trxs in [None, []]:
-            return trxs
-
-        trx_hashes = []
-
-        for user_trx in user_trxs:
-            trx_hashes.append(user_trx.get("hash"))
-
-        for trx in trxs:
-            if trx.get("hash") in trx_hashes:
-                trxs.remove(trx)
-        return trxs
-    except Exception as e:
-        logging.exception(e)
-        return trxs
+    for trx in trxs:
+        try:
+            client.insert_one(trx)
+        except Exception as e:
+            logging.exception(e)
+            continue

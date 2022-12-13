@@ -1,10 +1,11 @@
 import requests
 import logging
+from pydantic import parse_obj_as
 from typing import List, Dict
 from web3 import Web3
 
 from models import Chain, Nft, NftType
-from utils.types import Address, ChainId, MongoClient
+from utils.types import Address, ChainId
 from utils.abis import nft_abi_721, nft_abi_1155
 
 
@@ -37,7 +38,7 @@ def save_user_chain_nfts(
             users_nfts,
             nft_type.value
         )
-        insert_nfts(chain_id, address, users_nfts)
+        insert_nfts(chain_id, users_nfts)
 
 
 def create_nfts(
@@ -52,6 +53,7 @@ def create_nfts(
         value["chainId"] = chain_id
         value["address"] = Web3.toChecksumAddress(key)
         value["type"] = nft_type
+        value["idAddress"] = f'{value.get("address")}_{value.get("id")}'
         uri = get_nft_uri(
             NftType(nft_type),
             chain_id,
@@ -60,7 +62,9 @@ def create_nfts(
         )
         if uri:
             value["uri"] = uri
-        nfts.append(value)
+        
+        nft = parse_obj_as(Nft, value)
+        nfts.append(nft.dict())
     return nfts
 
 
@@ -135,10 +139,9 @@ def find_to_trxs(
     for trx in nft_trxs:
         if Web3.toChecksumAddress(trx.get("to")) == Web3.toChecksumAddress(address):
             users_nfts[trx.get("contractAddress")] = {
-                "id": trx.get("tokenID"),
+                "id": str(trx.get("tokenID")),
                 "name": trx.get("tokenName"),
                 "symbol": trx.get("tokenSymbol"),
-                "decimal": trx.get("tokenDecimal")
             }
 
     return users_nfts
@@ -159,42 +162,15 @@ def remove_from_trxs(
 
 def insert_nfts(
     chain_id: ChainId,
-    address: Address,
     nfts: List[Dict]
 ):
-    try:
-        client = Nft.mongo_client(chain_id)
-        # client.drop()
-        nfts = check_if_nfts_exist(client, address, nfts)
-        if nfts not in [None, []]:
-            client.insert_many(nfts)
+    client = Nft.mongo_client(chain_id)
+    client.drop()
 
-    except Exception as e:
-        logging.exception(e)
+    for nft in nfts:
+        try:
+            client.insert_one(nft)
 
-
-def check_if_nfts_exist(
-    client: MongoClient,
-    address: Address,
-    nfts: List[Dict]
-) -> List[Dict]:
-    try:
-        user_nfts = list(client.find({"userAddress": address}))
-
-        if user_nfts in [None, []]:
-            return nfts
-
-        nft_addresses_with_id = []
-
-        for user_nft in user_nfts:
-            nft_addresses_with_id.append(
-                f"{user_nft.get('address')}_{user_nft.get('id')}"
-            )
-
-        for nft in nfts:
-            if f'{nft.get("address")}_{nft.get("id")}' in nft_addresses_with_id:
-                nfts.remove(nft)
-        return nfts
-    except Exception as e:
-        logging.exception(e)
-        return nfts
+        except Exception as e:
+            logging.exception(e)
+            continue

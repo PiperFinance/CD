@@ -11,7 +11,7 @@ def decode_trx_input_data(input: str) -> List[Label]:
 
     labels = []
 
-    func_sig_with_args = get_function_selector(input[:11])
+    func_sig_with_args = get_function_selector(input[:10])
 
     if func_sig_with_args:
         labels.append(Label(**{
@@ -19,12 +19,13 @@ def decode_trx_input_data(input: str) -> List[Label]:
             "value": func_sig_with_args.text
         }))
 
-        starter = 11
+        starter = 10
 
-        for arg in func_sig_with_args.args:
+        for arg, arg_type in func_sig_with_args.args:
+
             labels.append(Label(**{
                 "title": arg,
-                "value": input[starter, starter + 64]
+                "value": arg_type.parse(input[starter: (starter + 64)])
             }))
             starter += 64
 

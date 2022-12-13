@@ -1,5 +1,5 @@
 from typing import List
-
+from pydantic import parse_obj_as
 from models import FunctionSelector
 from utils.types import HexStr
 
@@ -45,4 +45,5 @@ def get_function_selector(hex: HexStr) -> FunctionSelector:
     client = FunctionSelector.mongo_client()
     function_selector = client.find_one({"hex": hex})
     if function_selector:
-        return FunctionSelector(**function_selector)
+        return parse_obj_as(FunctionSelector, function_selector)
+        # return FunctionSelector(**function_selector)

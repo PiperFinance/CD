@@ -1,4 +1,5 @@
 from typing import List, Dict
+from pydantic import parse_obj_as
 
 from models import Chain, Nft
 from utils.types import Address, ChainId
@@ -55,6 +56,6 @@ def get_user_chain_nfts(
 def create_nft_objects(nfts: List[Dict]):
     nft_objs = []
     for nft in nfts:
-        nft_objs.append(Nft(**nft))
+        nft_objs.append(parse_obj_as(Nft, nft))
 
     return nft_objs

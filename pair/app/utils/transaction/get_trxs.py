@@ -1,3 +1,4 @@
+from pydantic import parse_obj_as
 from typing import List, Dict
 
 from models import Chain, Trx
@@ -55,5 +56,5 @@ def get_user_chain_token_trxs(
 def create_trx_objects(trxs: List[Dict]):
     trx_objs = []
     for trx in trxs:
-        trx_objs.append(Trx(**trx))
+        trx_objs.append(parse_obj_as(Trx, trx))
     return trx_objs

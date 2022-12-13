@@ -16,6 +16,11 @@ class Pair(Chain):
     totalSupply: BigInt
     price: Optional[BigInt]
 
-    @staticmethod
-    def mongo_client(chain_id: ChainId):
-        return client("Pair", chain_id)
+    @classmethod
+    def mongo_client(cls, chain_id: ChainId) -> MongoClient:
+        c = client(cls.__name__, chain_id)
+        c.create_index(
+            "address",
+            unique=True
+        )
+        return c
