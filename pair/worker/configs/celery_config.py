@@ -1,6 +1,7 @@
 from celery import Celery
 from worker.schedules import all_schedules
 
+from . import gelf_config
 
 def config(REDIS_URL, CELERY_BROKER_URL, CELERY_RESULT_URL):
     '''

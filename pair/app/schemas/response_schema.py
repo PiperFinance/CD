@@ -1,7 +1,7 @@
 from typing import List, Optional, Any
 from pydantic import BaseModel
 
-from models import Trx, Nft, FunctionSelector, Pair
+from models import Pair
 
 
 class BaseResponse(BaseModel):
@@ -12,18 +12,3 @@ class BaseResponse(BaseModel):
 
 class PairList(BaseResponse):
     result: Optional[List[Pair]]
-
-
-class NftList(BaseResponse):
-    result: Optional[List[Nft]]
-
-
-class TrxList(BaseResponse):
-    result: Optional[List[Trx]]
-
-
-class FunctionSelectorList(BaseResponse):
-    result: Optional[List[FunctionSelector]]
-
-class FunctionSelectorResponse(BaseResponse):
-    result: Optional[FunctionSelector]

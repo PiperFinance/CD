@@ -24,9 +24,6 @@ class _Functions:
 
 class RedisNamespace(_Functions, Enum):
     COINGECK_COIN_ID = "cid:"
-    LAST_CACHED_FUN_SELECTOR_PAGE = "lap:"
-    FUNC_SELECTOR = "fus:"
-    RPC_LIMIT = "rpc:"
 
     def __add__(self, v) -> str:
         if isinstance(v, str):
