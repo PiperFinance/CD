@@ -135,7 +135,6 @@ def create_nftbank_nft(
         "address": nft_address,
         "id": nft_id,
         "price": price,
-        "decimal": 0,
         "verified": True
     }
     name = get_nft_name(

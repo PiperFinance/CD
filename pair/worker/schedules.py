@@ -31,6 +31,13 @@ def generate_tasks():
                 'kwargs': {
                         'chain_id': chain_id
                 }
+            },
+            'save_nft_images': {
+                'task': 'save_nft_images',
+                'schedule': crontab(hour='*/24'),
+                'kwargs': {
+                        'chain_id': chain_id
+                }
             }
         }
     return tasks

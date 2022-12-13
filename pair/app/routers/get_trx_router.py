@@ -2,7 +2,7 @@ import logging
 from fastapi import APIRouter, Query
 from typing import List
 
-from utils.transaction.get_transactions import (
+from utils.transaction.get_trxs import (
     get_user_all_token_trxs_len,
     get_user_all_token_trxs,
     get_user_chain_token_trxs_len,

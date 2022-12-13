@@ -9,7 +9,6 @@ from utils.types import (
     Id,
     Symbol,
     Name,
-    Decimal,
     Price,
     MongoClient
 )
@@ -26,7 +25,6 @@ class Nft(Chain):
     id: Id
     name: Optional[Name]
     symbol: Optional[Symbol]
-    decimal: Decimal
     price: Optional[Price]
     uri: Optional[str]
     verified: bool = False
