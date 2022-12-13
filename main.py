@@ -5,10 +5,10 @@ from pair import pairs
 all_pairs = pairs.fetch_all_pairs()
 
 black_list = set()
-# providers.fetch_tokens(
-#     "tokens/providers.url.json",
-#     "tokens/providers"
-# )
+providers.fetch_tokens(
+    "tokens/providers.url.json",
+    "tokens/providers"
+)
 fixture.fix_providers("tokens/providers", fix_symbol=False)
 with open("tokens/README.md", "w+") as f:
     utils.provider_data_merger(
@@ -16,7 +16,7 @@ with open("tokens/README.md", "w+") as f:
         "tokens/outVerified/",
         verify=True,
         include_testnet=False,
-        try_request_token_logo=False,
+        try_request_token_logo=True,
         token_logoURI_BaseURL="https://raw.githubusercontent.com/PiperFinance/LO/main/logo",
         result_readme_file=f,
         avoid_addresses={

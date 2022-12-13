@@ -248,7 +248,7 @@ def provider_data_merger(
                 all_tokens_coingeckoId[token].append(token.coingeckoId)
 
     # Remove Unverified tokens from list and
-    for token, token_providers in all_tokens_providers.items():
+    for token, token_providers in tqdm(all_tokens_providers.items()):
         if token.address in avoid_addresses:
             continue
         token: schema.TokenDetail
@@ -290,7 +290,7 @@ def provider_data_merger(
             chain_separated_and_merged_by_symbol[chainId][token_symbol] = []
         if (token_name := token.name) not in chain_separated_and_merged_by_name[chainId]:
             chain_separated_and_merged_by_name[chainId][token_name] = []
-        if (token_address := token.address) not in chain_separated_and_merged_by_tokenId[chainId]:
+        if (token_address := token.checksum) not in chain_separated_and_merged_by_tokenId[chainId]:
             chain_separated_and_merged_by_tokenId[chainId][token.checksum] = []
         chain_separated_and_merged_by_tokenId[chainId][token.checksum].append(
             schema.Token(token=token))
