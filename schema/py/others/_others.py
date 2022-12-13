@@ -1,0 +1,21 @@
+from typing import NewType
+
+Timestamp = NewType("timestamp", int)
+BigInt = NewType("BigInt", str)  # mongo can't store big integers
+BlockNumber = NewType('BlockNumber', int)
+StringBlockNumber = NewType('StringBlockNumber', str)
+StringTimestamp = NewType("StringTimestamp", str)
+Symbol = NewType("Symbol", str)
+Name = NewType("Name", str)
+RawPrice = NewType("RawPrice", float)
+Price = NewType("Price", RawPrice)
+StringFloat = NewType('StringFloat', str)
+StringInt = NewType('StringInt', str)
+HexStr = NewType('HexStr', str)
+ChainId = NewType("ChainId", int)
+Decimal = NewType("Decimal", int)
+Id = NewType("Id", int)
+Url = NewType("URL", str)
+ApiKey = NewType("ApiKey", str)
+Port = NewType("Port", int)
+ChainId = NewType("ChainId", int)
