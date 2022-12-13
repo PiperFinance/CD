@@ -9,7 +9,7 @@ from utils.types import ChainId
 
 p = Path(os.getcwd()).parent
 
-with open(f'{p}/chains/chains.json') as f:
+with open(f'{p}/chains/mainnet.json') as f:
     _chains = json.load(f)
 
 chains = {}
