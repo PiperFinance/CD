@@ -17,7 +17,8 @@ with open("tokens/README.md", "w+") as f:
         "tokens/outVerified/",
         verify=True,
         include_testnet=False,
-        try_request_token_logo=True,
+        find_logo_in_cache=True,
+        try_request_token_logo=False,
         token_logoURI_BaseURL="https://raw.githubusercontent.com/PiperFinance/LO/main/logo",
         result_readme_file=f,
         avoid_addresses={

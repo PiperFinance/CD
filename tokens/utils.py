@@ -1,3 +1,4 @@
+import glob
 from typing import Any, List, Dict, Set, Optional
 import requests
 import sys
@@ -91,6 +92,12 @@ FILE_SIZE_SWEET_SPOT = {
 }
 
 
+def logo_in_cache(token: schema.TokenDetail, out="./tmp"):
+    # os.path.join(out, "tmp",
+    for file in glob.glob(os.path.join(out, "tmp", f"{token.symbol}*")):
+        return file
+
+
 def check_file(option: str):
 
     for file_type in SUPPORTED_IMG_FILE_FORMAT:
@@ -120,7 +127,7 @@ res_req: dict = {}
 res_type: dict = {}
 
 
-def chose(options, symbol=None, try_request=False,base_url=None, out="./tmp"):
+def chose(options, symbol=None, try_request=False, base_url=None, out="./tmp"):
     options_weight: dict = {}
     for option in options:
 
@@ -136,7 +143,9 @@ def chose(options, symbol=None, try_request=False,base_url=None, out="./tmp"):
                     file_dir = os.path.join(
                         out, "tmp", "~".join([symbol or "", file_name]))
                     # CHECK FILE
+                    print(file_dir)
                     if os.path.exists(file_dir):
+                        print(file_dir)
                         with open(file_dir, "rb") as f:
                             r = f.read()
                     else:
@@ -181,22 +190,23 @@ def provider_data_merger(
         out_dir="out",
         verify=None,
         include_testnet=False,
-        try_request_token_logo=True,
+        find_logo_in_cache=True,
+        try_request_token_logo=False,
         token_logoURI_BaseURL=None,
         result_readme_file=sys.stdout,
         avoid_addresses: Optional[Set[str]] = None
 ):
     """
     Merges given providers
-    Tokens follow schema.TokenDetail     
+    Tokens follow schema.TokenDetail
     Exceptions:
     - Natives
-    - StableCoins 
+    - StableCoins
         - CMC-SC
 
-    #### Token Logo is fetched and saved into a directory 
+    # Token Logo is fetched and saved into a directory
     - token_logoURI_BaseURL : For logo base url (e.g. https://raw.githubusercontent.com/PiperFinance/LO/main/logo)
-    - try_request_token_logo: For request token logo from those chains  
+    - try_request_token_logo: For request token logo from those chains
     """
     if avoid_addresses is None:
         avoid_addresses = set()
@@ -265,13 +275,18 @@ def provider_data_merger(
         token.coingeckoId = chose(all_tokens_coingeckoId[token])
         token.lifiId = chose(all_tokens_lifiId[token])
         token.tags = list(set(all_tokens_tags[token]))
+        if find_logo_in_cache:
+            token.logoURI = logo_in_cache(token)
+            if token.logoURI is not None:
+                token.logoURI = f"{token_logoURI_BaseURL}/{token.logoURI}"
 
-        token.logoURI = chose(
-            all_tokens_logo[token],
-            symbol=token.symbol,
-            try_request=try_request_token_logo,
-            base_url= token_logoURI_BaseURL,
-            out="./logo")
+        elif try_request_token_logo:
+            token.logoURI = chose(
+                all_tokens_logo[token],
+                symbol=token.symbol,
+                try_request=try_request_token_logo,
+                base_url=token_logoURI_BaseURL,
+                out="./logo")
 
         if (  # Following Providers are exceptions
             "Natives" not in token.listedIn
