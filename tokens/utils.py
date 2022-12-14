@@ -93,9 +93,14 @@ FILE_SIZE_SWEET_SPOT = {
 
 
 def logo_in_cache(token: schema.TokenDetail, out="./tmp"):
-    # os.path.join(out, "tmp",
-    for file in glob.glob(os.path.join(out, "tmp", f"{token.symbol}*")):
-        return file
+    for case, file_type in zip(
+        [os.path.exists(f"{out}/{token.symbol}.svg"),
+         os.path.exists(f"{out}/{token.symbol}.webp"),
+         os.path.exists(f"{out}/{token.symbol}.png"),
+         os.path.exists(f"{out}/{token.symbol}.jpg")],
+            ['svg', 'webp', 'png', 'jpg']):
+        if case:
+            return f"{token.symbol}{file_type}"
 
 
 def check_file(option: str):
