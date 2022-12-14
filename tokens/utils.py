@@ -100,7 +100,7 @@ def logo_in_cache(token: schema.TokenDetail, out="./tmp"):
          os.path.exists(f"{out}/{token.symbol}.jpg")],
             ['svg', 'webp', 'png', 'jpg']):
         if case:
-            return f"{token.symbol}{file_type}"
+            return f"{token.symbol}.{file_type}"
 
 
 def check_file(option: str):
