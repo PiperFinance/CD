@@ -281,7 +281,7 @@ def provider_data_merger(
         token.lifiId = chose(all_tokens_lifiId[token])
         token.tags = list(set(all_tokens_tags[token]))
         if find_logo_in_cache:
-            token.logoURI = logo_in_cache(token)
+            token.logoURI = logo_in_cache(token, "./logo")
             if token.logoURI is not None:
                 token.logoURI = f"{token_logoURI_BaseURL}/{token.logoURI}"
 
