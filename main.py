@@ -9,6 +9,7 @@ providers.fetch_tokens(
     "tokens/providers.url.json",
     "tokens/providers"
 )
+
 fixture.fix_providers("tokens/providers", fix_symbol=False)
 with open("tokens/README.md", "w+") as f:
     utils.provider_data_merger(

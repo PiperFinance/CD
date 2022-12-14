@@ -117,7 +117,6 @@ def check_file_size(img_content):
 
 
 res_req: dict = {}
-res_file: dict = {}
 res_type: dict = {}
 
 
@@ -129,30 +128,36 @@ def chose(options, symbol=None, try_request=False, out="./tmp"):
             options_weight[option] = 0
 
         if try_request:
-
             try:
                 if option in res_req:
                     r = res_req[option]
                 else:
-                    r = requests.get(option)
-                    res_req[option] = r
-
-                if r.status_code == 200:
-                    img_content = r.content
                     file_name, file_type = check_file(option)
                     file_dir = os.path.join(
                         out, "tmp", "~".join([symbol or "", file_name]))
+                    # CHECK FILE
+                    if os.path.exists(file_dir):
+                        with open(file_dir, "rb") as f:
+                            r = f.read()
+                    else:
+                        r = requests.get(option)
+                        if r.status_code == 200:
+                            res_req[option] = r.content
+                            with open(file_dir, "wb+") as f:
+                                f.write(r.content)
+                        else:
+                            res_req[option] = None
+
+                if res_req.get(option):
+                    img_content = res_req[option]
+                    file_name, file_type = check_file(option)
                     options_weight[option] += check_file_size(img_content)
                     options_weight[option] += check_file_type(option)
-                    with open(file_dir, "wb+") as f:
-                        f.write(img_content)
-                        res_file[option] = img_content
                     res_type[option] = file_type
-                else:
-                    continue
+
             except Exception as e:
-                # print(e)
                 continue
+
         options_weight[option] += 1
     if options_weight:
         _chosen_option, _chosen_score = sorted(options_weight.items(),
@@ -160,14 +165,13 @@ def chose(options, symbol=None, try_request=False, out="./tmp"):
 
         if not try_request:
             return _chosen_option
-        elif _chosen_score > 0 and symbol and _chosen_option in res_file and _chosen_option in res_type:
+        elif _chosen_score > 0 and symbol and _chosen_option in res_req and _chosen_option in res_type:
+
             print(f"Chosen {_chosen_option} with score of {_chosen_score}")
             _file_name = f"{symbol}.{res_type[_chosen_option]}"
             with open(os.path.join(out, _file_name), "wb+") as f:
-                f.write(res_file[_chosen_option])
+                f.write(res_req[_chosen_option])
             return _file_name
-    # del res_file
-    # del res_type
 
 
 def provider_data_merger(
