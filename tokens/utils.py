@@ -120,7 +120,7 @@ res_req: dict = {}
 res_type: dict = {}
 
 
-def chose(options, symbol=None, try_request=False, out="./tmp"):
+def chose(options, symbol=None, try_request=False,base_url=None, out="./tmp"):
     options_weight: dict = {}
     for option in options:
 
@@ -171,7 +171,9 @@ def chose(options, symbol=None, try_request=False, out="./tmp"):
             _file_name = f"{symbol}.{res_type[_chosen_option]}"
             with open(os.path.join(out, _file_name), "wb+") as f:
                 f.write(res_req[_chosen_option])
-            return _file_name
+            return f"{base_url}/{_file_name}"
+        else:
+            return _chosen_option
 
 
 def provider_data_merger(
@@ -268,10 +270,8 @@ def provider_data_merger(
             all_tokens_logo[token],
             symbol=token.symbol,
             try_request=try_request_token_logo,
+            base_url= token_logoURI_BaseURL,
             out="./logo")
-
-        if token_logoURI_BaseURL is not None:
-            token.logoURI = f"{token_logoURI_BaseURL}/{token.logoURI}"
 
         if (  # Following Providers are exceptions
             "Natives" not in token.listedIn
