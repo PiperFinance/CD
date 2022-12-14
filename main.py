@@ -21,7 +21,7 @@ with open("tokens/README.md", "w+") as f:
         result_readme_file=f,
         avoid_addresses={
             *black_list,
-            *{pair.pair.address for pair in all_pairs.values()}
+            *{pair.detail.address for pair in all_pairs.values()}
 
         }
 

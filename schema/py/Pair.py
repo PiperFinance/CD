@@ -25,7 +25,7 @@ class PairDetail(BaseModel):
 
 
 class Pair(BaseModel):
-    pair: PairDetail
+    detail: PairDetail
     # pair related
     reserves: Optional[List[int]] = None
     totalSupply: Optional[str] = None

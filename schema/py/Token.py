@@ -31,7 +31,7 @@ class TokenDetail(BaseModel):
 
 
 class Token(BaseModel):
-    token: TokenDetail
+    detail: TokenDetail
     priceUSD: Optional[str] = None  # Later convert to float
     balance: Optional[str] = "0"
     value: Optional[str] = "0"
@@ -40,4 +40,4 @@ class Token(BaseModel):
         return hash(self) == hash(other)
 
     def __hash__(self):
-        return hash("-".join([self.token.address.lower(), str(self.token.chainId)]))
+        return hash("-".join([self.detail.address.lower(), str(self.detail.chainId)]))

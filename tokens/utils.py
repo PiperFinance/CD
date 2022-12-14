@@ -274,12 +274,12 @@ def provider_data_merger(
             and "CMC-SC" not in token.listedIn
         ) and verify is not None:
             if verify == token.verify:
-                all_tokens[token.checksum] = schema.Token(token=token)
+                all_tokens[token.checksum] = schema.Token(detail=token)
         else:
-            all_tokens[token.checksum] = schema.Token(token=token)
+            all_tokens[token.checksum] = schema.Token(detail=token)
 
     for _token in tqdm(all_tokens.values()):
-        token = _token.token
+        token = _token.detail
         if (chainId := token.chainId) not in chain_separated_and_merged_by_tokenId:
             chain_separated[chainId] = set()
             chain_separated_and_merged_by_symbol[chainId] = {}
@@ -293,18 +293,18 @@ def provider_data_merger(
         if (token_address := token.checksum) not in chain_separated_and_merged_by_tokenId[chainId]:
             chain_separated_and_merged_by_tokenId[chainId][token.checksum] = []
         chain_separated_and_merged_by_tokenId[chainId][token.checksum].append(
-            schema.Token(token=token))
+            schema.Token(detail=token))
         chain_separated_and_merged_by_name[chainId][token_name].append(token)
         chain_separated_and_merged_by_symbol[chainId][token_symbol].append(
             token)
         # if (get_from_list(chain_separated[chainId], token))
-        chain_separated[chainId].add(schema.Token(token=token))
+        chain_separated[chainId].add(schema.Token(detail=token))
 
     result_readme = ""
     result_readme += (f"# TokenResult Parsed @ {datetime.now()} \n\n## Result \n ::: {len(chain_separated)} chains  ::: {verified_count} verified ::: {len(all_tokens)} total_saved ::: {literally_all_tokens_count - len(all_tokens)} duplicates ::: \n")
     for chain, tokens in chain_separated.items():
         result_readme += (
-            f"- {chain}  :::  {_CHAINS[chain]['name']}  :::  {len(tokens)} :::  { {provider for token in tokens for provider in (token.token.listedIn or [])  } } \n")
+            f"- {chain}  :::  {_CHAINS[chain]['name']}  :::  {len(tokens)} :::  { {provider for token in tokens for provider in (token.detail.listedIn or [])  } } \n")
     print(result_readme, file=result_readme_file, flush=True)
     for chain, tokens in chain_separated.items():
         # for token in chain_separated[chain].values():

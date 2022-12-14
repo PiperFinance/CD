@@ -119,7 +119,7 @@ def fetch_all_pairs() -> Dict[int, Pair]:
 
     for i, (token_id, token) in enumerate(tokens.items()):
         try:
-            valid_tokens[token['id']] = Token(token=TokenDetail(
+            valid_tokens[token['id']] = Token(detail=TokenDetail(
                 chainId=token['network']['attributes']['chain_id'],
                 address=Web3.toChecksumAddress(token['attributes']['address']),
                 symbol=token['attributes']['symbol'],
@@ -145,10 +145,10 @@ def fetch_all_pairs() -> Dict[int, Pair]:
     for i, (pool_id, pool) in enumerate(pools.items()):
         try:
             pool_tokens: Dict[int, Token] = {
-                valid_tokens[_].token.checksum: valid_tokens[_] for _ in pool['tokens']
+                valid_tokens[_].detail.checksum: valid_tokens[_] for _ in pool['tokens']
             }
 
-            valid_pools[pool['id']] = Pair(pair=PairDetail(
+            valid_pools[pool['id']] = Pair(detail=PairDetail(
                 chainId=pool['dex']['network']['attributes']['chain_id'],
                 address=Web3.toChecksumAddress(pool['attributes']['address']),
                 symbol=pool['dex']['attributes']['identifier'] +
@@ -173,7 +173,7 @@ def fetch_all_pairs() -> Dict[int, Pair]:
 
     for pair in valid_pools.values():
         # pair: Pair
-        pair_det = pair.pair
+        pair_det = pair.detail
         if pair_det.chainId not in chain_separated:
             chain_separated[pair_det.chainId] = []
         chain_separated[pair_det.chainId] = pair_det
@@ -182,7 +182,7 @@ def fetch_all_pairs() -> Dict[int, Pair]:
     with open("pair/pairs_chain_separated.json", "w+") as f:
         dump(chain_separated, f)
 
-    all_pairs = {_.pair.checksum: _ for _ in valid_pools.values()}
+    all_pairs = {_.detail.checksum: _ for _ in valid_pools.values()}
     with open("pair/all_pairs.json", "w+") as f:
         dump(all_pairs, f)
 
