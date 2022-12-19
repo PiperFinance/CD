@@ -17,6 +17,7 @@ from web3 import Web3
 from tokens import providers
 from pydantic.json import pydantic_encoder
 from schema import py as schema
+from chains .wagmi import isContractChainId
 
 logger = logging.getLogger(__name__)
 
@@ -199,7 +200,8 @@ def provider_data_merger(
         try_request_token_logo=False,
         token_logoURI_BaseURL=None,
         result_readme_file=sys.stdout,
-        avoid_addresses: Optional[Set[str]] = None
+        black_list: Optional[Set[str]] = None,
+        avoid_self_destructed_contracts=False,
 ):
     """
     Merges given providers
@@ -213,8 +215,8 @@ def provider_data_merger(
     - token_logoURI_BaseURL : For logo base url (e.g. https://raw.githubusercontent.com/PiperFinance/LO/main/logo)
     - try_request_token_logo: For request token logo from those chains
     """
-    if avoid_addresses is None:
-        avoid_addresses = set()
+    if black_list is None:
+        black_list = set()
     # For Having everything all at once
     all_tokens_providers: Dict[schema.TokenDetail, List[str]] = {}
     all_tokens_logo: Dict[schema.TokenDetail, List[str]] = {}
@@ -249,6 +251,11 @@ def provider_data_merger(
         print(f"\nProvider: {provider}\n")
         literally_all_tokens_count += len(items.tokens)
         for token in tqdm(items.tokens):
+            if token.checksum in black_list:
+                continue
+            if avoid_self_destructed_contracts and isContractChainId(token.chainId, token.address) is False:
+                continue
+
             if (not include_testnet) and token.chainId not in _MAINNET_CHAINS_ID:
                 continue
             if token not in all_tokens_providers:
@@ -270,8 +277,6 @@ def provider_data_merger(
 
     # Remove Unverified tokens from list and
     for token, token_providers in tqdm(all_tokens_providers.items()):
-        if token.address in avoid_addresses:
-            continue
         token: schema.TokenDetail
         token.listedIn = token_providers
         if len(token.listedIn) > MIN_LISTED_COUNT:

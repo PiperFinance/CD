@@ -10,6 +10,9 @@ providers.fetch_tokens(
     "tokens/providers"
 )
 
+black_list.update([pair.detail.address for pair in all_pairs.values()])
+print(f"avoiding {len(black_list)} pairs ...")
+
 fixture.fix_providers("tokens/providers", fix_symbol=False)
 with open("tokens/README.md", "w+") as f:
     utils.provider_data_merger(
@@ -21,10 +24,7 @@ with open("tokens/README.md", "w+") as f:
         try_request_token_logo=False,
         token_logoURI_BaseURL="https://raw.githubusercontent.com/PiperFinance/LO/main/logo",
         result_readme_file=f,
-        avoid_addresses={
-            *black_list,
-            *{pair.detail.address for pair in all_pairs.values()}
-
-        }
+        black_list=black_list,
+        avoid_self_destructed_contracts=True
 
     )

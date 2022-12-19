@@ -10,6 +10,7 @@ import requests
 from tqdm import tqdm
 from web3 import Web3
 from ast import literal_eval
+from functools import lru_cache
 
 
 chains = requests.get("https://chainid.network/chains.json").json()
@@ -28,6 +29,20 @@ def w3(rpc):
 
 def isContract(w3: Web3, address):  # multicall address
     return w3.eth.get_code(address).hex != '0x'
+
+
+@lru_cache
+def chain_w3(chainId: int):
+    for chain in main:
+        if chain.get('id') == chainId:
+            if (rpc := chain.get("rpcUrls", {}).get("default", None)):
+                return w3(rpc)
+
+
+@lru_cache
+def isContractChainId(address, chainId: int):
+    if (w3 := chain_w3(chainId)):
+        return isContract(w3, address)
 
 
 def hasMultiCallV3(rpc):
