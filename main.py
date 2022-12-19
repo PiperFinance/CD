@@ -1,3 +1,4 @@
+import json
 from tokens import providers, fixture, utils
 from pair import pairs
 
@@ -10,7 +11,12 @@ providers.fetch_tokens(
     "tokens/providers"
 )
 
-black_list.update([pair.detail.address for pair in all_pairs.values()])
+try:
+    with open("tokens/block_list.json") as f:
+        black_list.update([id for id in json.load(f)])
+finally:
+    black_list.update([pair_id for pair_id in all_pairs.keys()])
+    ...
 print(f"avoiding {len(black_list)} pairs ...")
 
 fixture.fix_providers("tokens/providers", fix_symbol=False)
