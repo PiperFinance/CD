@@ -733,6 +733,8 @@
         "id": 56,
         "name": "BSC",
         "network": "Binance Smart Chain Mainnet",
+        "apiEndpoint": "https://api.bscscan.com/api",
+        "defaultRpcUrl": "https://bsc-dataseed4.ninicoin.io",
         "rpcUrls": {
             "default": "https://bsc-dataseed4.ninicoin.io",
             "public": "https://bsc-dataseed4.ninicoin.io"
@@ -1393,6 +1395,8 @@
         "id": 100,
         "name": "GNO",
         "network": "Gnosis",
+        "apiEndpoint": "https://api.gnosisscan.io/api",
+        "defaultRpcUrl": "https://gnosis-mainnet.public.blastapi.io",
         "rpcUrls": {
             "default": "https://gnosis-mainnet.public.blastapi.io",
             "public": "https://gnosis-mainnet.public.blastapi.io"
@@ -3375,6 +3379,8 @@
         "id": 1284,
         "name": "MOON",
         "network": "Moonbeam",
+        "apiEndpoint": "https://api-moonbeam.moonscan.io/api",
+        "defaultRpcUrl": "https://rpc.api.moonbeam.network",
         "rpcUrls": {
             "default": "https://rpc.api.moonbeam.network",
             "public": "https://rpc.api.moonbeam.network"
@@ -6325,6 +6331,8 @@
         "id": 43114,
         "name": "AVAX",
         "network": "Avalanche C-Chain",
+        "apiEndpoint": "https://api.snowtrace.io/api",
+        "defaultRpcUrl": "https://api.avax.network/ext/bc/C/rpc",
         "rpcUrls": {
             "default": "https://api.avax.network/ext/bc/C/rpc",
             "public": "https://api.avax.network/ext/bc/C/rpc"
@@ -8447,6 +8455,8 @@
         "id": 1313161554,
         "name": "NEAR",
         "network": "Aurora Mainnet",
+        "apiEndpoint": "https://api.aurorascan.dev/api",
+        "defaultRpcUrl": "https://mainnet.aurora.dev",
         "rpcUrls": {
             "default": "https://mainnet.aurora.dev",
             "public": "https://mainnet.aurora.dev"
