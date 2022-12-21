@@ -2,6 +2,7 @@ from pydantic import BaseModel
 from typing import Union, Optional, List
 from schema.py.others import *
 from schema.py.Chain import Chain
+from schema.py.Token import Token
 
 
 class Label(BaseModel):
@@ -31,3 +32,4 @@ class Trx(Chain):
     cumulativeGasUsed: str
     input: str
     confirmations: str
+    token: Optional[Token]
