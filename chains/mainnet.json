@@ -110,7 +110,7 @@
         "id": 10,
         "name": "ETH",
         "network": "Optimism",
-        "defaultRpcUrl": "https://mainnet.optimism.io/",
+        "defaultRpcUrl": "https://optimism-mainnet.public.blastapi.io",
         "rpcUrls": {
             "default": "https://mainnet.optimism.io/",
             "public": "https://mainnet.optimism.io/"
