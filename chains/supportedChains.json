@@ -1,43 +1,59 @@
 [
   {
-    "nativeCurrency": { "name": "Ether", "symbol": "ETH", "decimals": 18 },
+    "nativeCurrency": {
+      "name": "Ether",
+      "symbol": "ETH",
+      "decimals": 18
+    },
     "id": 1,
     "name": "ETH",
     "network": "Ethereum Mainnet",
+    "defaultRpcUrl": "https://cloudflare-eth.com",
     "rpcUrls": {
-      "infura": { "http": ["https://mainnet.infura.io/v3/${INFURA_API_KEY}"] },
-      "default": { "http": ["https://cloudflare-eth.com"] },
-      "public": { "http": ["https://cloudflare-eth.com"] }
+      "infura": "https://mainnet.infura.io/v3/${INFURA_API_KEY}",
+      "default": "https://cloudflare-eth.com",
+      "public": "https://cloudflare-eth.com"
     },
-    "contracts": {
-      "ensRegistry": {
-        "address": "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e"
-      },
-      "multicall3": {
-        "address": "0xcA11bde05977b3631167028862bE2a173976CA11",
-        "blockCreated": 0
-      }
+    "apiEndpoint": "https://api.etherscan.io/api",
+    "ens": {
+      "address": "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e"
+    },
+    "multicall": {
+      "address": "0xcA11bde05977b3631167028862bE2a173976CA11",
+      "blockCreated": 0
     },
     "blockExplorers": {
-      "default": { "name": "etherscan", "url": "https://etherscan.io" },
-      "public": { "name": "etherscan", "url": "https://etherscan.io" }
+      "default": {
+        "name": "etherscan",
+        "url": "https://etherscan.io"
+      },
+      "public": {
+        "name": "etherscan",
+        "url": "https://etherscan.io"
+      }
     },
     "testnet": false
   },
   {
-    "nativeCurrency": { "name": "Ether", "symbol": "ETH", "decimals": 18 },
+    "nativeCurrency": {
+      "name": "Ether",
+      "symbol": "ETH",
+      "decimals": 18
+    },
     "id": 10,
     "name": "ETH",
     "network": "Optimism",
+    "defaultRpcUrl": "https://optimism-mainnet.public.blastapi.io",
     "rpcUrls": {
-      "default": { "http": ["https://mainnet.optimism.io/"] },
-      "public": { "http": ["https://mainnet.optimism.io/"] }
+      "default": "https://purple-blissful-owl.optimism.discover.quiknode.pro/8e4446582c950719c4978ed297ca3889dda2c731/",
+      "public": "https://purple-blissful-owl.optimism.discover.quiknode.pro/8e4446582c950719c4978ed297ca3889dda2c731/",
+      "default2": "https://mainnet.optimism.io/",
+      "public2": "https://mainnet.optimism.io/"
     },
-    "contracts": {
-      "multicall3": {
-        "address": "0xcA11bde05977b3631167028862bE2a173976CA11",
-        "blockCreated": 0
-      }
+    "apiEndpoint": "https://api-optimistic.etherscan.io/api",
+    "multicall": {
+      "address": "0xcA11bde05977b3631167028862bE2a173976CA11",
+      "blockCreated": 0
     },
     "blockExplorers": {
       "default": {
@@ -60,176 +76,214 @@
     "id": 56,
     "name": "BSC",
     "network": "Binance Smart Chain Mainnet",
+    "apiEndpoint": "https://api.bscscan.com/api",
+    "defaultRpcUrl": "https://bsc-dataseed4.ninicoin.io",
     "rpcUrls": {
-      "default": { "http": ["https://bsc-dataseed4.ninicoin.io"] },
-      "public": { "http": ["https://bsc-dataseed4.ninicoin.io"] }
+      "default": "https://bsc-dataseed4.ninicoin.io",
+      "public": "https://bsc-dataseed4.ninicoin.io"
     },
-    "contracts": {
-      "multicall3": {
-        "address": "0xcA11bde05977b3631167028862bE2a173976CA11",
-        "blockCreated": 0
-      }
+    "multicall": {
+      "address": "0xcA11bde05977b3631167028862bE2a173976CA11",
+      "blockCreated": 0
     },
     "blockExplorers": {
-      "default": { "name": "bscscan", "url": "https://bscscan.com" },
-      "public": { "name": "bscscan", "url": "https://bscscan.com" }
+      "default": {
+        "name": "bscscan",
+        "url": "https://bscscan.com"
+      },
+      "public": {
+        "name": "bscscan",
+        "url": "https://bscscan.com"
+      }
     },
     "testnet": false
   },
+
   {
-    "nativeCurrency": { "name": "xDAI", "symbol": "xDAI", "decimals": 18 },
-    "id": 100,
-    "name": "GNO",
-    "network": "Gnosis",
-    "rpcUrls": {
-      "default": { "http": ["https://gnosis-mainnet.public.blastapi.io"] },
-      "public": { "http": ["https://gnosis-mainnet.public.blastapi.io"] }
+    "nativeCurrency": {
+      "name": "MATIC",
+      "symbol": "MATIC",
+      "decimals": 18
     },
-    "contracts": {
-      "multicall3": {
-        "address": "0xcA11bde05977b3631167028862bE2a173976CA11",
-        "blockCreated": 0
-      }
-    },
-    "blockExplorers": {
-      "default": { "name": "gnosisscan", "url": "https://gnosisscan.io" },
-      "public": { "name": "gnosisscan", "url": "https://gnosisscan.io" }
-    },
-    "testnet": false
-  },
-  {
-    "nativeCurrency": { "name": "MATIC", "symbol": "MATIC", "decimals": 18 },
     "id": 137,
     "name": "Polygon",
     "network": "Polygon Mainnet",
+    "defaultRpcUrl": "https://polygon-rpc.com/",
     "rpcUrls": {
-      "default": { "http": ["https://polygon-bor.publicnode.com"] },
-      "public": { "http": ["https://polygon-bor.publicnode.com"] }
+      "default": "https://polygon-bor.publicnode.com",
+      "public": "https://polygon-bor.publicnode.com"
     },
-    "contracts": {
-      "multicall3": {
-        "address": "0xcA11bde05977b3631167028862bE2a173976CA11",
-        "blockCreated": 0
-      }
+    "apiEndpoint": "https://api.polygonscan.com/api",
+    "multicall": {
+      "address": "0xcA11bde05977b3631167028862bE2a173976CA11",
+      "blockCreated": 0
     },
     "blockExplorers": {
-      "default": { "name": "polygonscan", "url": "https://polygonscan.com" },
-      "public": { "name": "polygonscan", "url": "https://polygonscan.com" }
+      "default": {
+        "name": "polygonscan",
+        "url": "https://polygonscan.com"
+      },
+      "public": {
+        "name": "polygonscan",
+        "url": "https://polygonscan.com"
+      }
     },
     "testnet": false
   },
   {
-    "nativeCurrency": { "name": "Fantom", "symbol": "FTM", "decimals": 18 },
+    "nativeCurrency": {
+      "name": "Fantom",
+      "symbol": "FTM",
+      "decimals": 18
+    },
     "id": 250,
     "name": "FTM",
     "network": "Fantom Opera",
+    "defaultRpcUrl": "https://rpc.ftm.tools",
     "rpcUrls": {
-      "default": { "http": ["https://rpc.ftm.tools"] },
-      "public": { "http": ["https://rpc.ftm.tools"] }
+      "default": "https://rpc.ftm.tools",
+      "public": "https://rpc.ftm.tools"
     },
-    "contracts": {
-      "multicall3": {
-        "address": "0xcA11bde05977b3631167028862bE2a173976CA11",
-        "blockCreated": 0
-      }
+    "apiEndpoint": "https://api.ftmscan.com/api",
+    "multicall": {
+      "address": "0xcA11bde05977b3631167028862bE2a173976CA11",
+      "blockCreated": 0
     },
     "blockExplorers": {
-      "default": { "name": "ftmscan", "url": "https://ftmscan.com" },
-      "public": { "name": "ftmscan", "url": "https://ftmscan.com" }
+      "default": {
+        "name": "ftmscan",
+        "url": "https://ftmscan.com"
+      },
+      "public": {
+        "name": "ftmscan",
+        "url": "https://ftmscan.com"
+      }
     },
     "testnet": false
   },
   {
-    "nativeCurrency": { "name": "Glimmer", "symbol": "GLMR", "decimals": 18 },
+    "nativeCurrency": {
+      "name": "Glimmer",
+      "symbol": "GLMR",
+      "decimals": 18
+    },
     "id": 1284,
     "name": "MOON",
     "network": "Moonbeam",
+    "apiEndpoint": "https://api-moonbeam.moonscan.io/api",
+    "defaultRpcUrl": "https://rpc.api.moonbeam.network",
     "rpcUrls": {
-      "default": { "http": ["https://rpc.api.moonbeam.network"] },
-      "public": { "http": ["https://rpc.api.moonbeam.network"] }
+      "default": "https://rpc.api.moonbeam.network",
+      "public": "https://rpc.api.moonbeam.network"
     },
-    "contracts": {
-      "multicall3": {
-        "address": "0xcA11bde05977b3631167028862bE2a173976CA11",
-        "blockCreated": 0
-      }
+    "multicall": {
+      "address": "0xcA11bde05977b3631167028862bE2a173976CA11",
+      "blockCreated": 0
     },
     "blockExplorers": {
-      "default": { "name": "moonscan", "url": "https://moonbeam.moonscan.io" },
-      "public": { "name": "moonscan", "url": "https://moonbeam.moonscan.io" }
+      "default": {
+        "name": "moonscan",
+        "url": "https://moonbeam.moonscan.io"
+      },
+      "public": {
+        "name": "moonscan",
+        "url": "https://moonbeam.moonscan.io"
+      }
     },
     "testnet": false
   },
   {
-    "nativeCurrency": { "name": "Avalanche", "symbol": "AVAX", "decimals": 18 },
-    "id": 43114,
-    "name": "AVAX",
-    "network": "Avalanche C-Chain",
-    "rpcUrls": {
-      "default": { "http": ["https://api.avax.network/ext/bc/C/rpc"] },
-      "public": { "http": ["https://api.avax.network/ext/bc/C/rpc"] }
+    "nativeCurrency": {
+      "name": "Ether",
+      "symbol": "ETH",
+      "decimals": 18
     },
-    "contracts": {
-      "multicall3": {
-        "address": "0xcA11bde05977b3631167028862bE2a173976CA11",
-        "blockCreated": 0
-      }
-    },
-    "blockExplorers": {
-      "default": { "name": "snowtrace", "url": "https://snowtrace.io" },
-      "public": { "name": "snowtrace", "url": "https://snowtrace.io" }
-    },
-    "testnet": false
-  },
-  {
-    "nativeCurrency": { "name": "Ether", "symbol": "ETH", "decimals": 18 },
     "id": 42161,
     "name": "ETH",
     "network": "Arbitrum One",
+    "defaultRpcUrl": "https://arb1.arbitrum.io/rpc",
     "rpcUrls": {
-      "infura": {
-        "http": ["https://arbitrum-mainnet.infura.io/v3/${INFURA_API_KEY}"]
-      },
-      "default": { "http": ["https://arb1.arbitrum.io/rpc"] },
-      "public": { "http": ["https://arb1.arbitrum.io/rpc"] },
-      "alchemy": {
-        "http": ["https://arb-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}"]
-      }
+      "infura": "https://arbitrum-mainnet.infura.io/v3/${INFURA_API_KEY}",
+      "default": "https://arb1.arbitrum.io/rpc",
+      "public": "https://arb1.arbitrum.io/rpc",
+      "alchemy": "https://arb-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}"
     },
-    "contracts": {
-      "multicall3": {
-        "address": "0xcA11bde05977b3631167028862bE2a173976CA11",
-        "blockCreated": 0
-      }
+    "apiEndpoint": "https://api.arbiscan.io/api",
+    "multicall": {
+      "address": "0xcA11bde05977b3631167028862bE2a173976CA11",
+      "blockCreated": 0
     },
     "blockExplorers": {
-      "default": { "name": "Arbiscan", "url": "https://arbiscan.io" },
-      "public": { "name": "Arbiscan", "url": "https://arbiscan.io" }
+      "default": {
+        "name": "Arbiscan",
+        "url": "https://arbiscan.io"
+      },
+      "public": {
+        "name": "Arbiscan",
+        "url": "https://arbiscan.io"
+      }
     },
     "testnet": false
   },
   {
-    "nativeCurrency": { "name": "Ether", "symbol": "ETH", "decimals": 18 },
+    "nativeCurrency": {
+      "name": "Avalanche",
+      "symbol": "AVAX",
+      "decimals": 18
+    },
+    "id": 43114,
+    "name": "AVAX",
+    "network": "Avalanche C-Chain",
+    "apiEndpoint": "https://api.snowtrace.io/api",
+    "defaultRpcUrl": "https://api.avax.network/ext/bc/C/rpc",
+    "rpcUrls": {
+      "default": "https://api.avax.network/ext/bc/C/rpc",
+      "public": "https://api.avax.network/ext/bc/C/rpc"
+    },
+    "multicall": {
+      "address": "0xcA11bde05977b3631167028862bE2a173976CA11",
+      "blockCreated": 0
+    },
+    "blockExplorers": {
+      "default": {
+        "name": "snowtrace",
+        "url": "https://snowtrace.io"
+      },
+      "public": {
+        "name": "snowtrace",
+        "url": "https://snowtrace.io"
+      }
+    },
+    "testnet": false
+  },
+  {
+    "nativeCurrency": {
+      "name": "Ether",
+      "symbol": "ETH",
+      "decimals": 18
+    },
     "id": 1313161554,
     "name": "NEAR",
     "network": "Aurora Mainnet",
+    "apiEndpoint": "https://api.aurorascan.dev/api",
+    "defaultRpcUrl": "https://mainnet.aurora.dev",
     "rpcUrls": {
-      "default": {
-        "http": ["https://mainnet.aurora.dev"]
-      },
-      "public": {
-        "http": ["https://mainnet.aurora.dev"]
-      }
+      "default": "https://mainnet.aurora.dev",
+      "public": "https://mainnet.aurora.dev"
     },
-    "contracts": {
-      "multicall3": {
-        "address": "0xcA11bde05977b3631167028862bE2a173976CA11",
-        "blockCreated": 0
-      }
+    "multicall": {
+      "address": "0xcA11bde05977b3631167028862bE2a173976CA11",
+      "blockCreated": 0
     },
     "blockExplorers": {
-      "default": { "name": "aurorascan.dev", "url": "https://aurorascan.dev" },
-      "public": { "name": "aurorascan.dev", "url": "https://aurorascan.dev" }
+      "default": {
+        "name": "aurorascan.dev",
+        "url": "https://aurorascan.dev"
+      },
+      "public": {
+        "name": "aurorascan.dev",
+        "url": "https://aurorascan.dev"
+      }
     },
     "testnet": false
   }
