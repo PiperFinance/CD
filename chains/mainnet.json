@@ -112,8 +112,8 @@
         "network": "Optimism",
         "defaultRpcUrl": "https://optimism-mainnet.public.blastapi.io",
         "rpcUrls": {
-            "default": "https://endpoints.omniatech.io/v1/op/mainnet/public",
-            "public": "https://endpoints.omniatech.io/v1/op/mainnet/public",
+            "default": "https://purple-blissful-owl.optimism.discover.quiknode.pro/8e4446582c950719c4978ed297ca3889dda2c731/",
+            "public": "https://purple-blissful-owl.optimism.discover.quiknode.pro/8e4446582c950719c4978ed297ca3889dda2c731/",
             "default2": "https://mainnet.optimism.io/",
             "public2": "https://mainnet.optimism.io/"
         },
