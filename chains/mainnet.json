@@ -112,8 +112,10 @@
         "network": "Optimism",
         "defaultRpcUrl": "https://optimism-mainnet.public.blastapi.io",
         "rpcUrls": {
-            "default": "https://mainnet.optimism.io/",
-            "public": "https://mainnet.optimism.io/"
+            "default": "https://endpoints.omniatech.io/v1/op/mainnet/public",
+            "public": "https://endpoints.omniatech.io/v1/op/mainnet/public",
+            "default2": "https://mainnet.optimism.io/",
+            "public2": "https://mainnet.optimism.io/"
         },
         "apiEndpoint": "https://api-optimistic.etherscan.io/api",
         "multicall": {
