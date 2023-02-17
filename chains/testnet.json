@@ -53,15 +53,12 @@
       "symbol": "ETH",
       "decimals": 18
     },
-<<<<<<< Updated upstream
-=======
     "wNativeCurrency": {
-        "address": "0xcd48a86666D2a79e027D82cA6Adf853357c70d02",
-        "name": "Wrapped Goerli Ether",
-        "symbol": "WETH",
-        "decimals": 18
-      },
->>>>>>> Stashed changes
+      "address": "0xcd48a86666D2a79e027D82cA6Adf853357c70d02",
+      "name": "Wrapped Goerli Ether",
+      "symbol": "WETH",
+      "decimals": 18
+    },
     "id": 5,
     "name": "ETH",
     "network": "Goerli",
@@ -70,10 +67,7 @@
       "default": "https://rpc.goerli.mudit.blog/",
       "public": "https://rpc.goerli.mudit.blog/"
     },
-<<<<<<< Updated upstream
-=======
-    "apiEndpoint": "https://explorer.testnet.mantle.xyz/api",
->>>>>>> Stashed changes
+    "apiEndpoint": "https://api-goerli.etherscan.io/",
     "ens": { "address": "0x112234455c3a32fd11230c42e7bccd4a84e02010" },
     "multicall": {
       "address": "0xcA11bde05977b3631167028862bE2a173976CA11",
@@ -2609,8 +2603,17 @@
     "testnet": true
   },
   {
-<<<<<<< Updated upstream
-    "nativeCurrency": { "name": "BIT", "symbol": "BIT", "decimals": 18 },
+    "nativeCurrency": {
+      "name": "BIT",
+      "symbol": "BIT",
+      "decimals": 18
+    },
+    "wNativeCurrency": {
+      "address": "0xB56Ad16FD372143aeF6a92378Cfc721E0605B13f",
+      "name": "Wrapped BIT",
+      "symbol": "WBIT",
+      "decimals": 18
+    },
     "id": 5001,
     "name": "MANTLE",
     "network": "Mantle Testnet",
@@ -2618,6 +2621,7 @@
       "default": "https://rpc.testnet.mantle.xyz/",
       "public": "https://rpc.testnet.mantle.xyz/"
     },
+    "apiEndPoint": "https://explorer.testnet.mantle.xyz/api",
     "multicall": {
       "address": "0xcA11bde05977b3631167028862bE2a173976CA11",
       "blockCreated": 0
@@ -2635,8 +2639,6 @@
     "testnet": true
   },
   {
-=======
->>>>>>> Stashed changes
     "nativeCurrency": { "name": "Ether", "symbol": "ETH", "decimals": 18 },
     "id": 5553,
     "name": "Nahmii",
