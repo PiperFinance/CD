@@ -67,7 +67,7 @@
       "default": "https://rpc.goerli.mudit.blog/",
       "public": "https://rpc.goerli.mudit.blog/"
     },
-    "apiEndpoint": "https://api-goerli.etherscan.io/",
+    "apiEndPoint": "https://api-goerli.etherscan.io/",
     "ens": { "address": "0x112234455c3a32fd11230c42e7bccd4a84e02010" },
     "multicall": {
       "address": "0xcA11bde05977b3631167028862bE2a173976CA11",
