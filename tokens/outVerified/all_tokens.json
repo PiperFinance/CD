@@ -335,25 +335,5 @@
         "priceUSD": null,
         "balance": "0",
         "value": "0"
-    },
-    "2354863154": {
-        "detail": {
-            "chainId": 5001,
-            "address": "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
-            "name": "Testnet BitDAO",
-            "symbol": "BIT",
-            "decimals": 18,
-            "tags": [],
-            "coingeckoId": null,
-            "lifiId": null,
-            "listedIn": [
-                "Natives"
-            ],
-            "logoURI": null,
-            "verify": false
-        },
-        "priceUSD": null,
-        "balance": "0",
-        "value": "0"
     }
 }
