@@ -12,7 +12,9 @@ from web3 import Web3
 from ast import literal_eval
 
 
-chains = requests.get("https://chainid.network/chains.json").json()
+# chains = requests.get("https://chainid.network/chains.json").json()
+with open("chains.json") as f:
+    chains = json.load(f)
 
 all = []
 main = []

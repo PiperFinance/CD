@@ -27,40 +27,44 @@ def save_provider(provider_dir, provider):
         f.write(provider.json())
 
 
-# @dataclass(init=True)
 class Provider(BaseModel):
     name: str
     timestamp: str | datetime
     version: Optional[dict]
     keywords: list
-    tags: dict
-    logoURI: str
+    tags: Optional[dict]
+    logoURI: Optional[str]
     tokens: List[schema.TokenDetail]
+
+    @classmethod
+    def load_data(cls, data: dict, name=None):
+
+        if name is None:
+            name = data.get('name')
+            assert name, "No Value Found for name"
+
+        if "tokens" in data.keys():
+            tokens = [_token
+                      for token in data['tokens']
+                      if (_token := schema.TokenDetail(**token)) is not None
+                      ]
+            provider = Provider(
+                name=name,
+                timestamp=datetime.now().isoformat(),
+                version=data.get("version", {}),
+                keywords=data.get("keywords", []),
+                tags=data.get("tags", {}),
+                logoURI=data.get("logoURI", ""),
+                tokens=tokens
+            )
+            return provider
 
     @classmethod
     def load(cls, url, provider_dir, name=None):
         r = requests.get(url)
         if r.status_code == 200:
             try:
-                res = r.json()
-                if name is None:
-                    name = res.get('name')
-                    assert name, "No Value Found for name"
-                if "tokens" in res.keys():
-                    tokens = [_token
-                              for token in res['tokens']
-                              if (_token := schema.TokenDetail(**token)) is not None
-                              ]
-                    provider = Provider(
-                        name=name,
-                        timestamp=datetime.now().isoformat(),
-                        version=res.get("version", {}),
-                        keywords=res.get("keywords", []),
-                        tags=res.get("tags", {}),
-                        logoURI=res.get("logoURI", ""),
-                        tokens=tokens
-                    )
-                    return provider
+                return cls.load_data(r.json())
             except json.JSONDecodeError:
                 logger.error(f"Bad Request @ {name} :  { r.text}")
         else:
@@ -170,6 +174,14 @@ class NativeTokensProvider(Provider):
         )
 
 
+class FromFileTokensProvider(Provider):
+
+    @classmethod
+    def load(cls, url, provider_dir, name=None):
+        with open(os.path.join(provider_dir, url)) as f:
+            return cls.load_data(json.load(f))
+
+
 class RangoProvider(Provider):
     @classmethod
     def load(cls, url, provider_dir, name=None):
@@ -240,6 +252,9 @@ def fetch_tokens(providers_url_file=None, provider_dir=None) -> Dict[str, Provid
                             url, provider_dir, provider)
                     case "Natives":
                         providers[provider] = NativeTokensProvider.load(
+                            url, provider_dir, provider)
+                    case "File":
+                        providers[provider] = FromFileTokensProvider.load(
                             url, provider_dir, provider)
                     case _:
                         providers[provider] = Provider.load(

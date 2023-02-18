@@ -67,7 +67,7 @@ def get_from_list(items: list, item, default=None):
         return default
 
 
-MIN_LISTED_COUNT = 2
+MIN_LISTED_COUNT = 1
 global verified_count, literally_all_tokens_count
 verified_count = 0
 literally_all_tokens_count = 0
@@ -304,7 +304,9 @@ def provider_data_merger(
 
     for _token in tqdm(all_tokens.values()):
         token = _token.detail
-        if (chainId := token.chainId) not in chain_separated_and_merged_by_tokenId:
+        if (chainId := token.chainId) not in _CHAINS.keys():
+            continue
+        if chainId not in chain_separated_and_merged_by_tokenId:
             chain_separated[chainId] = set()
             chain_separated_and_merged_by_symbol[chainId] = {}
             chain_separated_and_merged_by_name[chainId] = {}
