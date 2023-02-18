@@ -20,27 +20,6 @@
         "balance": "0",
         "value": "0"
     },
-    "72612921": {
-        "detail": {
-            "chainId": 5001,
-            "address": "0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000",
-            "name": "BitDAO",
-            "symbol": "BIT",
-            "decimals": 18,
-            "tags": [],
-            "coingeckoId": null,
-            "lifiId": null,
-            "listedIn": [
-                "Mantle",
-                "File"
-            ],
-            "logoURI": null,
-            "verify": true
-        },
-        "priceUSD": null,
-        "balance": "0",
-        "value": "0"
-    },
     "3681584250": {
         "detail": {
             "chainId": 1,
@@ -331,6 +310,29 @@
             ],
             "logoURI": null,
             "verify": true
+        },
+        "priceUSD": null,
+        "balance": "0",
+        "value": "0"
+    },
+    "2354863154": {
+        "detail": {
+            "chainId": 5001,
+            "address": "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
+            "name": "Testnet BitDAO",
+            "symbol": "BIT",
+            "decimals": 18,
+            "tags": [],
+            "coingeckoId": null,
+            "lifiId": null,
+            "listedIn": [
+                "Natives",
+                "Mantle",
+                "File"
+
+            ],
+            "logoURI": null,
+            "verify": false
         },
         "priceUSD": null,
         "balance": "0",
