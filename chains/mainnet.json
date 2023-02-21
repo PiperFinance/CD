@@ -9,9 +9,9 @@
         "name": "ETH",
         "network": "Goerli",
         "rpcUrls": {
-            "infura": "https://goerli.infura.io/v3/31d72a42f19f4a39a6d831f8b331f875",
-            "default": "https://goerli.infura.io/v3/31d72a42f19f4a39a6d831f8b331f875",
-            "public": "https://goerli.infura.io/v3/31d72a42f19f4a39a6d831f8b331f875"
+            "infura": "https://goerli.infura.io/v3/d9dd09386b714941a8222da387c789f9",
+            "default": "https://goerli.infura.io/v3/d9dd09386b714941a8222da387c789f9",
+            "public": "https://goerli.infura.io/v3/d9dd09386b714941a8222da387c789f9"
         },
         "ens": {
             "address": "0x112234455c3a32fd11230c42e7bccd4a84e02010"
