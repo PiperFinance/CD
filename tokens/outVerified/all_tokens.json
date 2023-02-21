@@ -7,7 +7,7 @@
             "symbol": "BIT",
             "decimals": 18,
             "tags": [],
-            "coingeckoId": null,
+            "coingeckoId": "bitdao",
             "lifiId": null,
             "listedIn": [
                 "Mantle",
@@ -252,6 +252,28 @@
         "balance": "0",
         "value": "0"
     },
+    "287128783": {
+        "detail": {
+            "chainId": 5001,
+            "address": "0x0d7f7eb2efD4c97CA8883D197889B17615796871",
+            "name": "Clown",
+            "symbol": "CLOWN",
+            "decimals": 18,
+            "tags": [],
+            "coingeckoId": null,
+            "lifiId": null,
+            "listedIn": [
+                "Mantle",
+                "File"
+            ],
+            "logoURI": null,
+            "verify": true
+        },
+        "priceUSD": null,
+        "balance": "0",
+        "value": "0"
+    }
+    ,
     "403433757": {
         "detail": {
             "chainId": 1,
@@ -323,7 +345,7 @@
             "symbol": "BIT",
             "decimals": 18,
             "tags": [],
-            "coingeckoId": null,
+            "coingeckoId": "bitdao",
             "lifiId": null,
             "listedIn": [
                 "Natives",
