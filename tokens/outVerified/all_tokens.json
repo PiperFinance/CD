@@ -13,7 +13,7 @@
                 "Mantle",
                 "File"
             ],
-            "logoURI": null,
+            "logoURI": "https://assets.coingecko.com/coins/images/17627/small/rI_YptK8.png?1653983088",
             "verify": true
         },
         "priceUSD": null,
@@ -34,7 +34,7 @@
                 "Mantle",
                 "File"
             ],
-            "logoURI": null,
+            "logoURI": "https://assets.coingecko.com/coins/images/279/small/ethereum.png?1595348880",
             "verify": true
         },
         "priceUSD": null,
@@ -56,7 +56,7 @@
                 "File",
                 "Natives"
             ],
-            "logoURI": null,
+            "logoURI": "https://assets.coingecko.com/coins/images/279/small/ethereum.png?1595348880",
             "verify": true
         },
         "priceUSD": null,
@@ -77,7 +77,7 @@
                 "Mantle",
                 "File"
             ],
-            "logoURI": null,
+            "logoURI": "https://assets.coingecko.com/coins/images/279/small/ethereum.png?1595348880",
             "verify": true
         },
         "priceUSD": null,
@@ -353,7 +353,7 @@
                 "File"
 
             ],
-            "logoURI": null,
+            "logoURI": "https://assets.coingecko.com/coins/images/17627/small/rI_YptK8.png?1653983088",
             "verify": false
         },
         "priceUSD": null,
