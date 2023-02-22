@@ -340,7 +340,7 @@
     "2354863154": {
         "detail": {
             "chainId": 5001,
-            "address": "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
+            "address": "0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000",
             "name": "Testnet BitDAO",
             "symbol": "BIT",
             "decimals": 18,
