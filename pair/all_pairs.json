@@ -1,1 +1,356 @@
-{}
+{
+    "0": {
+        "detail": {
+            "tokens": {
+                "2924966188": {
+                    "detail": {
+                        "chainId": 5001,
+                        "address": "0x0d7f7eb2efD4c97CA8883D197889B17615796871",
+                        "name": "Clown",
+                        "symbol": "CLOWN",
+                        "decimals": 18,
+                        "tags": null,
+                        "coingeckoId": null,
+                        "lifiId": null,
+                        "listedIn": null,
+                        "logoURI": "https://assets.coingecko.com/coins/images/7598/small/wrapped_bitcoin_wbtc.png?1548822744",
+                        "verify": false
+                    },
+                    "priceUSD": null,
+                    "balance": "0",
+                    "value": "0"
+                },
+                "931712508": {
+                    "detail": {
+                        "chainId": 5001,
+                        "address": "0xfA09371349C98e4a57bBFd8cFF6084D6693C7243",
+                        "name": "Wrapped BIT",
+                        "symbol": "WBIT",
+                        "decimals": 18,
+                        "tags": null,
+                        "coingeckoId": null,
+                        "lifiId": null,
+                        "listedIn": null,
+                        "logoURI": "https://assets.coingecko.com/coins/images/6319/small/USD_Coin_icon.png?1547042389",
+                        "verify": false
+                    },
+                    "priceUSD": null,
+                    "balance": "0",
+                    "value": "0"
+                }
+            },
+            "tokensOrder": [
+                2924966188,
+                931712508
+            ],
+            "decimals": 18,
+            "chainId": 5001,
+            "address": "0x1896088fb0a3138124daffdEd4DBc2299cB25d67",
+            "symbol": "UNI-V2",
+            "name": "Uniswap V2",
+            "dex": "UniswapV2",
+            "verified": false,
+            "coingeckoId": null
+        },
+        "reserves": null,
+        "totalSupply": null,
+        "priceUSD": null,
+        "balance": null,
+        "value": null
+    },
+    "1": {
+        "detail": {
+            "tokens": {
+                "2924966188": {
+                    "detail": {
+                        "chainId": 5001,
+                        "address": "0x7e25120039d7c01D1AE43458D382EB0C27ee9FeA",
+                        "name": "BootDAO",
+                        "symbol": "BOOT",
+                        "decimals": 18,
+                        "tags": null,
+                        "coingeckoId": null,
+                        "lifiId": null,
+                        "listedIn": null,
+                        "logoURI": "https://assets.coingecko.com/coins/images/7598/small/wrapped_bitcoin_wbtc.png?1548822744",
+                        "verify": false
+                    },
+                    "priceUSD": null,
+                    "balance": "0",
+                    "value": "0"
+                },
+                "931712508": {
+                    "detail": {
+                        "chainId": 5001,
+                        "address": "0xfA09371349C98e4a57bBFd8cFF6084D6693C7243",
+                        "name": "Wrapped BIT",
+                        "symbol": "WBIT",
+                        "decimals": 18,
+                        "tags": null,
+                        "coingeckoId": null,
+                        "lifiId": null,
+                        "listedIn": null,
+                        "logoURI": "https://assets.coingecko.com/coins/images/6319/small/USD_Coin_icon.png?1547042389",
+                        "verify": false
+                    },
+                    "priceUSD": null,
+                    "balance": "0",
+                    "value": "0"
+                }
+            },
+            "tokensOrder": [
+                2924966188,
+                931712508
+            ],
+            "decimals": 18,
+            "chainId": 5001,
+            "address": "0xe44401626D5209254f4C3096363Ef05a35b89a85",
+            "symbol": "UNI-V2",
+            "name": "Uniswap V2",
+            "dex": "UniswapV2",
+            "verified": false,
+            "coingeckoId": null
+        },
+        "reserves": null,
+        "totalSupply": null,
+        "priceUSD": null,
+        "balance": null,
+        "value": null
+    },
+    "2": {
+        "detail": {
+            "tokens": {
+                "2924966188": {
+                    "detail": {
+                        "chainId": 5001,
+                        "address": "0xdEAddEaDdeadDEadDEADDEAddEADDEAddead1111",
+                        "name": "Ether",
+                        "symbol": "WETH",
+                        "decimals": 18,
+                        "tags": null,
+                        "coingeckoId": null,
+                        "lifiId": null,
+                        "listedIn": null,
+                        "logoURI": "https://assets.coingecko.com/coins/images/7598/small/wrapped_bitcoin_wbtc.png?1548822744",
+                        "verify": false
+                    },
+                    "priceUSD": null,
+                    "balance": "0",
+                    "value": "0"
+                },
+                "931712508": {
+                    "detail": {
+                        "chainId": 5001,
+                        "address": "0xfA09371349C98e4a57bBFd8cFF6084D6693C7243",
+                        "name": "Wrapped BIT",
+                        "symbol": "WBIT",
+                        "decimals": 18,
+                        "tags": null,
+                        "coingeckoId": null,
+                        "lifiId": null,
+                        "listedIn": null,
+                        "logoURI": "https://assets.coingecko.com/coins/images/6319/small/USD_Coin_icon.png?1547042389",
+                        "verify": false
+                    },
+                    "priceUSD": null,
+                    "balance": "0",
+                    "value": "0"
+                }
+            },
+            "tokensOrder": [
+                2924966188,
+                931712508
+            ],
+            "decimals": 18,
+            "chainId": 5001,
+            "address": "0x1A9F85fAD8eeC987e63D6B2082aBDAEa192A182e",
+            "symbol": "UNI-V2",
+            "name": "Uniswap V2",
+            "dex": "UniswapV2",
+            "verified": false,
+            "coingeckoId": null
+        },
+        "reserves": null,
+        "totalSupply": null,
+        "priceUSD": null,
+        "balance": null,
+        "value": null
+    },
+    "3": {
+        "detail": {
+            "tokens": {
+                "2924966188": {
+                    "detail": {
+                        "chainId": 5001,
+                        "address": "0x0d7f7eb2efD4c97CA8883D197889B17615796871",
+                        "name": "Clown",
+                        "symbol": "CLOWN",
+                        "decimals": 18,
+                        "tags": null,
+                        "coingeckoId": null,
+                        "lifiId": null,
+                        "listedIn": null,
+                        "logoURI": "https://assets.coingecko.com/coins/images/7598/small/wrapped_bitcoin_wbtc.png?1548822744",
+                        "verify": false
+                    },
+                    "priceUSD": null,
+                    "balance": "0",
+                    "value": "0"
+                },
+                "931712508": {
+                    "detail": {
+                        "chainId": 5001,
+                        "address": "0xdEAddEaDdeadDEadDEADDEAddEADDEAddead1111",
+                        "name": "Ether",
+                        "symbol": "WETH",
+                        "decimals": 18,
+                        "tags": null,
+                        "coingeckoId": null,
+                        "lifiId": null,
+                        "listedIn": null,
+                        "logoURI": "https://assets.coingecko.com/coins/images/6319/small/USD_Coin_icon.png?1547042389",
+                        "verify": false
+                    },
+                    "priceUSD": null,
+                    "balance": "0",
+                    "value": "0"
+                }
+            },
+            "tokensOrder": [
+                2924966188,
+                931712508
+            ],
+            "decimals": 18,
+            "chainId": 5001,
+            "address": "0xB967E37133dCF0303D43658EDFE3C849BBF836Cb",
+            "symbol": "UNI-V2",
+            "name": "Uniswap V2",
+            "dex": "UniswapV2",
+            "verified": false,
+            "coingeckoId": null
+        },
+        "reserves": null,
+        "totalSupply": null,
+        "priceUSD": null,
+        "balance": null,
+        "value": null
+    },
+    "4": {
+        "detail": {
+            "tokens": {
+                "2924966188": {
+                    "detail": {
+                        "chainId": 5001,
+                        "address": "0x49ADB44869FACbc3bD02FE3ed5BF5CCcaf67BD7A",
+                        "name": "Mug",
+                        "symbol": "MUG",
+                        "decimals": 18,
+                        "tags": null,
+                        "coingeckoId": null,
+                        "lifiId": null,
+                        "listedIn": null,
+                        "logoURI": "https://assets.coingecko.com/coins/images/7598/small/wrapped_bitcoin_wbtc.png?1548822744",
+                        "verify": false
+                    },
+                    "priceUSD": null,
+                    "balance": "0",
+                    "value": "0"
+                },
+                "931712508": {
+                    "detail": {
+                        "chainId": 5001,
+                        "address": "0xfA09371349C98e4a57bBFd8cFF6084D6693C7243",
+                        "name": "Wrapped BIT",
+                        "symbol": "WBIT",
+                        "decimals": 18,
+                        "tags": null,
+                        "coingeckoId": null,
+                        "lifiId": null,
+                        "listedIn": null,
+                        "logoURI": "https://assets.coingecko.com/coins/images/6319/small/USD_Coin_icon.png?1547042389",
+                        "verify": false
+                    },
+                    "priceUSD": null,
+                    "balance": "0",
+                    "value": "0"
+                }
+            },
+            "tokensOrder": [
+                2924966188,
+                931712508
+            ],
+            "decimals": 18,
+            "chainId": 5001,
+            "address": "0x984E615F8100161b39D47a450946aa30c8E0e0F1",
+            "symbol": "UNI-V2",
+            "name": "Uniswap V2",
+            "dex": "UniswapV2",
+            "verified": false,
+            "coingeckoId": null
+        },
+        "reserves": null,
+        "totalSupply": null,
+        "priceUSD": null,
+        "balance": null,
+        "value": null
+    },
+    "5": {
+        "detail": {
+            "tokens": {
+                "2924966188": {
+                    "detail": {
+                        "chainId": 5001,
+                        "address": "0x1C364eA3Af2CBA0faAdcaBBd55b1c34d35Aae59F",
+                        "name": "Mug",
+                        "symbol": "MUG",
+                        "decimals": 18,
+                        "tags": null,
+                        "coingeckoId": null,
+                        "lifiId": null,
+                        "listedIn": null,
+                        "logoURI": "https://assets.coingecko.com/coins/images/7598/small/wrapped_bitcoin_wbtc.png?1548822744",
+                        "verify": false
+                    },
+                    "priceUSD": null,
+                    "balance": "0",
+                    "value": "0"
+                },
+                "931712508": {
+                    "detail": {
+                        "chainId": 5001,
+                        "address": "0xfA09371349C98e4a57bBFd8cFF6084D6693C7243",
+                        "name": "Wrapped BIT",
+                        "symbol": "WBIT",
+                        "decimals": 18,
+                        "tags": null,
+                        "coingeckoId": null,
+                        "lifiId": null,
+                        "listedIn": null,
+                        "logoURI": "https://assets.coingecko.com/coins/images/6319/small/USD_Coin_icon.png?1547042389",
+                        "verify": false
+                    },
+                    "priceUSD": null,
+                    "balance": "0",
+                    "value": "0"
+                }
+            },
+            "tokensOrder": [
+                2924966188,
+                931712508
+            ],
+            "decimals": 18,
+            "chainId": 5001,
+            "address": "0x1c52ED267463755C88a5db04E34A8e27d962a26B",
+            "symbol": "UNI-V2",
+            "name": "Uniswap V2",
+            "dex": "UniswapV2",
+            "verified": false,
+            "coingeckoId": null
+        },
+        "reserves": null,
+        "totalSupply": null,
+        "priceUSD": null,
+        "balance": null,
+        "value": null
+    }
+}
