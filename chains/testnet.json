@@ -48,6 +48,12 @@
     "testnet": true
   },
   {
+    "wNativeCurrency": {
+      "address": "0xcd48a86666D2a79e027D82cA6Adf853357c70d02",
+      "name": "Goerli Ether",
+      "symbol": "ETH",
+      "decimals": 18
+    },
     "nativeCurrency": {
       "name": "Goerli Ether",
       "symbol": "ETH",
@@ -3266,6 +3272,12 @@
   },
   {
     "nativeCurrency": {
+      "name": "Testnet BitDAO",
+      "symbol": "BIT",
+      "decimals": 18
+    },
+    "wNativeCurrency": {
+      "address": "0xB56Ad16FD372143aeF6a92378Cfc721E0605B13f",
       "name": "Testnet BitDAO",
       "symbol": "BIT",
       "decimals": 18
