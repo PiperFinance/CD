@@ -14,7 +14,7 @@
     "id": 1,
     "name": "ETH",
     "network": "Ethereum Mainnet",
-    "networkType": 1,
+    "networkId": 1,
     "rpcUrls": {
       "infura": "https://mainnet.infura.io/v3/${INFURA_API_KEY}",
       "default": "https://cloudflare-eth.com",
@@ -122,7 +122,7 @@
     "id": 10,
     "name": "ETH",
     "network": "Optimism",
-    "networkType": 1,
+    "networkId": 1,
     "rpcUrls": {
       "default": "https://purple-blissful-owl.optimism.discover.quiknode.pro/8e4446582c950719c4978ed297ca3889dda2c731/",
       "public": "https://purple-blissful-owl.optimism.discover.quiknode.pro/8e4446582c950719c4978ed297ca3889dda2c731/",
@@ -753,7 +753,7 @@
     "id": 56,
     "name": "BSC",
     "network": "Binance Smart Chain Mainnet",
-    "networkType": 1,
+    "networkId": 1,
     "apiEndPoint": "https://api.bscscan.com/api",
     "rpcUrls": {
       "default": "https://bsc-dataseed4.ninicoin.io",
@@ -1421,7 +1421,7 @@
     "id": 100,
     "name": "GNO",
     "network": "Gnosis",
-    "networkType": 1,
+    "networkId": 1,
     "apiEndPoint": "https://api.gnosisscan.io/api",
     "rpcUrls": {
       "default": "https://gnosis-mainnet.public.blastapi.io",
@@ -1692,7 +1692,7 @@
     "id": 137,
     "name": "Polygon",
     "network": "Polygon Mainnet",
-    "networkType": 1,
+    "networkId": 1,
     "rpcUrls": {
       "default": "https://polygon-bor.publicnode.com",
       "public": "https://polygon-bor.publicnode.com"
@@ -2119,7 +2119,7 @@
     "id": 250,
     "name": "FTM",
     "network": "Fantom Opera",
-    "networkType": 1,
+    "networkId": 1,
     "rpcUrls": {
       "default": "https://rpc.ftm.tools",
       "public": "https://rpc.ftm.tools"
@@ -3423,7 +3423,7 @@
     "id": 1284,
     "name": "MOON",
     "network": "Moonbeam",
-    "networkType": 1,
+    "networkId": 1,
     "apiEndPoint": "https://api-moonbeam.moonscan.io/api",
     "rpcUrls": {
       "default": "https://rpc.api.moonbeam.network",
@@ -6244,7 +6244,7 @@
     "id": 42161,
     "name": "ETH",
     "network": "Arbitrum One",
-    "networkType": 1,
+    "networkId": 1,
     "rpcUrls": {
       "infura": "https://arbitrum-mainnet.infura.io/v3/${INFURA_API_KEY}",
       "default": "https://arb1.arbitrum.io/rpc",
@@ -6312,7 +6312,7 @@
     "id": 42220,
     "name": "CELO",
     "network": "Celo Mainnet",
-    "networkType": 1,
+    "networkId": 1,
     "rpcUrls": {
       "default": "https://forno.celo.org",
       "public": "https://forno.celo.org"
@@ -6393,7 +6393,7 @@
     "id": 43114,
     "name": "AVAX",
     "network": "Avalanche C-Chain",
-    "networkType": 1,
+    "networkId": 1,
     "apiEndPoint": "https://api.snowtrace.io/api",
     "rpcUrls": {
       "default": "https://api.avax.network/ext/bc/C/rpc",
@@ -8523,7 +8523,7 @@
     "id": 1313161554,
     "name": "NEAR",
     "network": "Aurora Mainnet",
-    "networkType": 1,
+    "networkId": 1,
     "apiEndPoint": "https://api.aurorascan.dev/api",
     "rpcUrls": {
       "default": "https://mainnet.aurora.dev",
