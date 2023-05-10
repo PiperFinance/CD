@@ -4855,8 +4855,8 @@
     "name": "Polygon",
     "network": "Mumbai",
     "rpcUrls": {
-      "default": "https://matic-testnet-archive-rpc.bwarelabs.com",
-      "public": "https://matic-testnet-archive-rpc.bwarelabs.com"
+      "default": "https://polygon-testnet.public.blastapi.io",
+      "public": "https://polygon-testnet.public.blastapi.io"
     },
     "blockExplorers": {
       "default": {
