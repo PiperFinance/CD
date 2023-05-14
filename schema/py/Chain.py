@@ -47,6 +47,7 @@ class Chain(BaseModel):
     chainId: int = Field(0, alias="id")
     name: str
     network: str
+    rpc: List[str]
     rpcUrls: RpcUrls
     ens: Optional[Ens] = None
     multicall: Optional[Multicall] = None
