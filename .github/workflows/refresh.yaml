@@ -5,7 +5,7 @@ on:
     branches: 
     - main
   schedule:
-    - cron: "*/15 * * * *"
+    - cron: "0 */12 * * *"
 jobs:
   # labeler:
   #   runs-on: ubuntu-latest
