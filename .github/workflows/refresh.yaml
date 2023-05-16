@@ -1,11 +1,11 @@
 ---
-name: Refresh Chains + Tokens
+name: Refresh Chains + Tokens Every Two days :) saving precious time
 on:
   push:
     branches: 
     - main
   schedule:
-    - cron: "0 */12 * * *"
+    - cron: "0 0 */2 * *"
 jobs:
   # labeler:
   #   runs-on: ubuntu-latest
