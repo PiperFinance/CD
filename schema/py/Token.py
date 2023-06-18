@@ -1,6 +1,5 @@
 from pydantic import BaseModel
 from typing import Optional, List, Set
-from zlib import crc32
 import logging
 
 logger = logging.getLogger(__name__)
@@ -26,8 +25,8 @@ class TokenDetail(BaseModel):
         return hash("-".join([self.address.lower(), str(self.chainId)]))
 
     @property
-    def checksum(self) -> int:
-        return crc32("-".join([self.address.lower(), str(self.chainId)]).encode())
+    def checksum(self) -> str:
+        return "-".join([self.address.lower(), str(self.chainId)])
 
 
 class Token(BaseModel):

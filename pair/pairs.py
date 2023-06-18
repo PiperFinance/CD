@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 GECKO_TERMINAL = "https://app.geckoterminal.com/api/p1/pools"
 
 
-def fetch_all_pairs() -> Dict[int, Pair]:
+def fetch_all_pairs() -> Dict[str, Pair]:
 
     class SetEncoder(json.JSONEncoder):
         def default(self, obj):
@@ -144,7 +144,7 @@ def fetch_all_pairs() -> Dict[int, Pair]:
 
     for i, (pool_id, pool) in enumerate(pools.items()):
         try:
-            pool_tokens: Dict[int, Token] = {
+            pool_tokens: Dict[str, Token] = {
                 valid_tokens[_].detail.checksum: valid_tokens[_] for _ in pool['tokens']
             }
 

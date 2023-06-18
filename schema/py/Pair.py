@@ -1,5 +1,4 @@
 from __future__ import annotations
-from zlib import crc32
 from typing import List, Dict, Optional
 
 from pydantic import BaseModel
@@ -8,8 +7,8 @@ from schema.py import Token
 
 
 class PairDetail(BaseModel):
-    tokens: Dict[int, Token]
-    tokensOrder: List[int]
+    tokens: Dict[str, Token]
+    tokensOrder: List[str]
     decimals: int
     chainId: int
     address: str
@@ -20,8 +19,8 @@ class PairDetail(BaseModel):
     coingeckoId: Optional[str] = None
 
     @property
-    def checksum(self) -> int:
-        return crc32("-".join([self.address.lower(), str(self.chainId)]).encode())
+    def checksum(self) -> str:
+        return "-".join([self.address.lower(), str(self.chainId)])
 
 
 class Pair(BaseModel):

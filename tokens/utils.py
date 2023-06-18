@@ -222,13 +222,13 @@ def provider_data_merger(
     all_tokens_lifiId: Dict[schema.TokenDetail, List[str]] = {}
     all_tokens_coingeckoId: Dict[schema.TokenDetail, List[str]] = {}
 
-    all_tokens: Dict[int, schema.Token] = {}
+    all_tokens: Dict[str, schema.Token] = {}
     # For Go portfolio scanner ...
     chain_separated_v2: List[schema.ChainToken] = list()
 
     chain_separated: Dict[int, set[schema.Token]] = {}
     chain_separated_and_merged_by_tokenId: Dict[int,
-                                                Dict[int, List[schema.Token]]] = {}
+                                                Dict[str, List[schema.Token]]] = {}
     # For Human readable style of merging tokens ...
     chain_separated_and_merged_by_symbol: Dict[int,
                                                Dict[str, List[schema.TokenDetail]]] = {}
