@@ -107,7 +107,11 @@ def fix_token_address(token: schema.TokenDetail) -> Optional[schema.TokenDetail]
         case "0x0000000000000000000000000000000000000000":
             _add = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"
     try:
-        token.address = Web3.toChecksumAddress(_add)
+        try:
+            token.address = Web3.toChecksumAddress(_add)
+        except AttributeError:
+            token.address = Web3.to_checksum_address(_add)
+            
     except Exception as e:
         logger.warning(f"   --- Bad Address Error {e} @ {_token_key(token)}")
         return None

@@ -21,7 +21,11 @@ def fetch_all_chains():
 
     def w3(rpc):
         w3 = Web3(Web3.HTTPProvider(rpc))
-        if not w3.isConnected():
+        try:
+            connected = w3.isConnected()
+        except AttributeError:
+            connected = w3.is_connected()
+        if not connected:
             print(f"RPCUrl {rpc} is not Working")
         return w3
 

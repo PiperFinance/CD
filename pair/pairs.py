@@ -119,9 +119,14 @@ def fetch_all_pairs() -> Dict[str, Pair]:
 
     for i, (token_id, token) in enumerate(tokens.items()):
         try:
+            try:
+                add = Web3.toChecksumAddress(token['attributes']['address'])
+            except AttributeError:
+                add = Web3.to_checksum_address(token['attributes']['address'])
+                
             valid_tokens[token['id']] = Token(detail=TokenDetail(
                 chainId=token['network']['attributes']['chain_id'],
-                address=Web3.toChecksumAddress(token['attributes']['address']),
+                address=add,
                 symbol=token['attributes']['symbol'],
                 name=token['attributes']['name'],
                 decimals=-1,
@@ -147,10 +152,15 @@ def fetch_all_pairs() -> Dict[str, Pair]:
             pool_tokens: Dict[str, Token] = {
                 valid_tokens[_].detail.checksum: valid_tokens[_] for _ in pool['tokens']
             }
+            
+            try:
+                add = Web3.toChecksumAddress(pool['attributes']['address'])
+            except AttributeError:
+                add = Web3.to_checksum_address(pool['attributes']['address'])
 
             valid_pools[pool['id']] = Pair(detail=PairDetail(
                 chainId=pool['dex']['network']['attributes']['chain_id'],
-                address=Web3.toChecksumAddress(pool['attributes']['address']),
+                address=add,
                 symbol=pool['dex']['attributes']['identifier'] +
                 "LP (" + pool['attributes']['name'] + ")",
                 name=pool['attributes']['name'],
