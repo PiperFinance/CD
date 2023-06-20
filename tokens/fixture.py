@@ -16,7 +16,6 @@ logger = logging.getLogger(__name__)
 _cache = {}
 _failed_chains = []
 
-
 def fix_providers(provider_dir, save=True, fix_symbol=True, fix_address=True):
     providers = get_fetched_providers(provider_dir)
     for provider_name, provider in providers.items():
@@ -117,3 +116,6 @@ def fix_token_address(token: schema.TokenDetail) -> Optional[schema.TokenDetail]
         return None
 
     return token
+
+def fix_special_cases():
+    ...
