@@ -1,1 +1,698 @@
-[{"id": 1027, "name": "Ethereum", "symbol": "ETH", "slug": "ethereum", "token_address": "0xce7F80862Af55CCB8B9728E933Aa5F018Db580A0", "chainId": 1}, {"id": 1839, "name": "BNB", "symbol": "BNB", "slug": "bnb", "token_address": "0xddc357ACAe0cFF6d1421eF058661f0Ac8f2E22bf", "chainId": 56}, {"id": 21794, "name": "Aptos", "symbol": "APT", "slug": "aptos", "token_address": "0x84edd115c901709ef28f3cb66a82264ba91bfd24789500b6fd34ab9e8888e272::coin::DLC", "chainId": -2}, {"id": 11841, "name": "Arbitrum", "symbol": "ARB", "slug": "arbitrum", "token_address": "0x4faA2C69a759D7f0C66c256FfD2E306CcAe2cbB1", "chainId": 42161}, {"id": 11840, "name": "Optimism", "symbol": "OP", "slug": "optimism-ethereum", "token_address": "0x46f21fda29f1339e0ab543763ff683d399e393ec", "chainId": 10}, {"id": 1958, "name": "TRON", "symbol": "TRX", "slug": "tron", "token_address": "TVxA6SiicW236YAQSELRxth52Tp9ypxkr2", "chainId": -3}, {"id": 20947, "name": "Sui", "symbol": "SUI", "slug": "sui", "token_address": "0xf0fe2210b4f0c4e3aff7ed147f14980cf14f1114c6ad8fd531ab748ccf33373b::bswt::BSWT", "chainId": -4}, {"id": 1, "name": "Bitcoin", "symbol": "BTC", "slug": "bitcoin", "token_address": "0d4590ad5ec95ea8eec2e00b4286c82b25315bdc5641e72eb0a72a736abb5ea0i0", "chainId": -5}, {"id": 4256, "name": "Klaytn", "symbol": "KLAY", "slug": "klaytn", "token_address": "0xfbd0314d55eab31c9fc0b2d162748017f1bc7b85", "chainId": 8217}, {"id": 5805, "name": "Avalanche", "symbol": "AVAX", "slug": "avalanche", "token_address": "0xe533B81297B820D2Eb2cd837263926596328E8D2", "chainId": 43114}, {"id": 4642, "name": "Hedera", "symbol": "HBAR", "slug": "hedera", "token_address": "0x00000000000000000000000000000000001a88b2", "chainId": 259}, {"id": 4846, "name": "Kava", "symbol": "KAVA", "slug": "kava", "token_address": "0x443ab8d6ab303ce28f9031be91c19c6b92e59c8a", "chainId": 2222}, {"id": 512, "name": "Stellar", "symbol": "XLM", "slug": "stellar", "token_address": "GCMSCRWZ3QBOI6AF75B5ZWDBXOSMIRW4FSBZH5OI65Y4H4GVH7LPSOYS", "chainId": -6}, {"id": 3890, "name": "Polygon", "symbol": "MATIC", "slug": "polygon", "token_address": "0x0be74a81f22de1d900b32243b075dffff4d5a766", "chainId": 137}, {"id": 3626, "name": "Rootstock Smart Bitcoin", "symbol": "RBTC", "slug": "rsk-smart-bitcoin", "token_address": "0xe700691da7b9851f2f35f8b8182c69c53ccad9db", "chainId": 30}, {"id": 3077, "name": "VeChain", "symbol": "VET", "slug": "vechain", "token_address": "0x0BD802635eb9cEB3fCBe60470D2857B86841aab6", "chainId": 100009}, {"id": 2502, "name": "Huobi Token", "symbol": "HT", "slug": "huobi-token", "token_address": "0x180dae91d6d56235453a892d2e56a3e40ba81df8", "chainId": 128}, {"id": 2010, "name": "Cardano", "symbol": "ADA", "slug": "cardano", "token_address": "078eafce5cd7edafdf63900edef2c1ea759e77f30ca81d6bbdeec92479756d6d69", "chainId": -7}, {"id": 5567, "name": "Celo", "symbol": "CELO", "slug": "celo", "token_address": "0x94140c2eA9D208D8476cA4E3045254169791C59e", "chainId": 42220}, {"id": 2566, "name": "Ontology", "symbol": "ONT", "slug": "ontology", "token_address": "e5a49d7fd57e7178e189d3965d1ee64368a1036d", "chainId": -8}, {"id": 2530, "name": "Fusion", "symbol": "FSN", "slug": "fusion", "token_address": "0x05573124c64c69d85687152b2942bcb0a3b26d99", "chainId": 32659}, {"id": 1376, "name": "Neo", "symbol": "NEO", "slug": "neo", "token_address": "1578103c13e39df15d0d29826d957e85d770d8c9", "chainId": -9}, {"id": 2469, "name": "Zilliqa", "symbol": "ZIL", "slug": "zilliqa", "token_address": "zil1m3m5jqqcaemtefnlk795qpw59daukra8prc43e", "chainId": -10}, {"id": 3794, "name": "Cosmos", "symbol": "ATOM", "slug": "cosmos", "token_address": "ibc/307E5C96C8F60D1CBEE269A9A86C0834E1DB06F2B3788AE4F716EDB97A48B97D", "chainId": -11}, {"id": 5426, "name": "Solana", "symbol": "SOL", "slug": "solana", "token_address": "5Q7EfoEzqDeYZRoqxvcdUjKx8hfQswyxPNdZAr3pwuCu", "chainId": -12}, {"id": 4066, "name": "Chiliz", "symbol": "CHZ", "slug": "chiliz", "token_address": "0x252b88d52c4701a4466671dca7b0f893d721b2ba", "chainId": 88880}, {"id": 2634, "name": "XDC Network", "symbol": "XDC", "slug": "xinfin", "token_address": "xdc536dd70445cea1e97f9bf1bada04cbda5199a2a1", "chainId": 50}, {"id": 12186, "name": "Songbird", "symbol": "SGB", "slug": "songbird", "token_address": "0x0D94e59332732D18CF3a3D457A8886A2AE29eA1B", "chainId": 19}, {"id": 1765, "name": "EOS", "symbol": "EOS", "slug": "eos", "token_address": "0x2a3b2d64960036de519dc4a45cafd532bfa99ff0", "chainId": 59}, {"id": 4030, "name": "Algorand", "symbol": "ALGO", "slug": "algorand", "token_address": "724480511", "chainId": -13}, {"id": 3513, "name": "Fantom", "symbol": "FTM", "slug": "fantom", "token_address": "0x4453e3d49824e2db4a2ee21db03cc0673d238ea4", "chainId": 250}, {"id": 4172, "name": "Terra Classic", "symbol": "LUNC", "slug": "terra-luna", "token_address": "terra14vz4v8adanzph278xyeggll4tfww7teh0xtw2y", "chainId": -14}, {"id": 2011, "name": "Tezos", "symbol": "XTZ", "slug": "tezos", "token_address": "KT1914CUZ7EegAFPbfgQMRkw8Uz5mYkEz2ui", "chainId": -15}, {"id": 8357, "name": "Bitcicoin", "symbol": "BITCI", "slug": "bitcicoin", "token_address": "0x0397b918945ec8A0CCBcFF3cEF95e551ef6B2818/token-transfers", "chainId": -16}, {"id": 2606, "name": "Wanchain", "symbol": "WAN", "slug": "wanchain", "token_address": "0x9b6863f6ab2047069ad1cd15fff8c45af637d67c", "chainId": 888}, {"id": 1831, "name": "Bitcoin Cash", "symbol": "BCH", "slug": "bitcoin-cash", "token_address": "0x77CB87b57F54667978Eb1B199b28a0db8C8E1c0B", "chainId": 10000}, {"id": 6636, "name": "Polkadot", "symbol": "DOT", "slug": "polkadot-new", "token_address": "2032", "chainId": -17}, {"id": 1274, "name": "Waves", "symbol": "WAVES", "slug": "waves", "token_address": "8t4DPWTwPzpatHA9AkTxWAB47THnYzBsDnoY7fQqbG91", "chainId": -18}, {"id": 6836, "name": "Moonbeam", "symbol": "GLMR", "slug": "moonbeam", "token_address": "0xE065ffaf3f7dED69BB5cf5FDd1Fd1dDA2EEe8493", "chainId": 1284}, {"id": 11145, "name": "Pulsechain", "symbol": "PLS", "slug": "pulsechain", "token_address": "0x4B2eeb31681728Fd9C7ab791b0073180a60e7792", "chainId": 369}, {"id": 6892, "name": "MultiversX", "symbol": "EGLD", "slug": "multiversx-egld", "token_address": "VITAL-ab7917", "chainId": -19}, {"id": 21516, "name": "CANTO", "symbol": "CANTO", "slug": "canto", "token_address": "0x38d11b40d2173009adb245b869e90525950ae345", "chainId": 7700}, {"id": 52, "name": "XRP", "symbol": "XRP", "slug": "xrp", "token_address": "r3qWgpz2ry3BhcRJ8JE6rxM8esrfhuKp4R", "chainId": -20}, {"id": 3635, "name": "Cronos", "symbol": "CRO", "slug": "cronos", "token_address": "0x1Ba477CA252C0FF21c488d41759795E7E7812aB4", "chainId": 25}, {"id": 6535, "name": "NEAR Protocol", "symbol": "NEAR", "slug": "near-protocol", "token_address": "token.burrow.near", "chainId": 1313161554}, {"id": 7548, "name": "WEMIX", "symbol": "WEMIX", "slug": "wemix", "token_address": "0x7d72b22a74a216af4a002a1095c8c707d6ec1c5f", "chainId": 1111}, {"id": 24091, "name": "zkSync", "symbol": "TBD", "slug": "zksync", "token_address": "0x90eea899185105d583d04B7BDBfb672FcE902a53", "chainId": 324}, {"id": 12885, "name": "Astar", "symbol": "ASTR", "slug": "astar", "token_address": "0xee8138b3bd03905cf84afe10ccd0dccb820ee08e", "chainId": 592}, {"id": 9285, "name": "Moonriver", "symbol": "MOVR", "slug": "moonriver", "token_address": "0x0d2faA2064129ecBfAccD45be33DEA3bCD3F8863", "chainId": 1285}, {"id": 12220, "name": "Osmosis", "symbol": "OSMO", "slug": "osmosis", "token_address": "ibc/A1AC7F9EE2F643A68E3A35BCEB22040120BEA4059773BB56985C76BDFEBC71D9", "chainId": -21}, {"id": 7505, "name": "Everscale", "symbol": "EVER", "slug": "everscale", "token_address": "0:7d7af239168cfd06353c224aa8b5e805846ae5e556f66fa8e045b5e1ba29e82a", "chainId": -22}, {"id": 2087, "name": "KuCoin Token", "symbol": "KCS", "slug": "kucoin-token", "token_address": "0x00eE2d494258D6C5A30d6B6472A09b27121Ef451", "chainId": -23}, {"id": 5634, "name": "Fuse", "symbol": "FUSE", "slug": "fuse-network", "token_address": "0x0BE9e53fd7EDaC9F859882AfdDa116645287C629", "chainId": 122}, {"id": 11419, "name": "Toncoin", "symbol": "TON", "slug": "toncoin", "token_address": "EQCcLAW537KnRg_aSPrnQJoyYjOZkzqYp6FVmRUvN1crSazV", "chainId": -24}, {"id": 74, "name": "Dogecoin", "symbol": "DOGE", "slug": "dogecoin", "token_address": "0x3f4ae49eabea4cc250a640eea788a321c0ae7eb2", "chainId": -25}, {"id": 139, "name": "Arbitrum Nova", "symbol": "ARBITRUM", "slug": "arbitrum-nova", "token_address": "0x0057Ac2d777797d31CD3f8f13bF5e927571D6Ad0", "chainId": 42170}, {"id": 14803, "name": "Aurora", "symbol": "AURORA", "slug": "aurora-near", "token_address": "0x07f9f7f963c5cd2bbffd30ccfb964be114332e30", "chainId": 1313161554}, {"id": 4847, "name": "Stacks", "symbol": "STX", "slug": "stacks", "token_address": "SP1Z92MPDQEWZXW36VX71Q25HKF5K2EPCJ304F275.stsw-token-v4a", "chainId": -26}, {"id": 7653, "name": "Oasis Network", "symbol": "ROSE", "slug": "oasis-network", "token_address": "0xf02b3e437304892105992512539F769423a515Cb", "chainId": 42262}, {"id": 12319, "name": "DeFi Kingdoms", "symbol": "JEWEL", "slug": "defi-kingdoms", "token_address": "0x77f2656d04e158f915bc22f07b779d94c1dc47ff", "chainId": 53935}, {"id": 23254, "name": "Core", "symbol": "CORE", "slug": "core-dao", "token_address": "0x1c92e17cd1893e8535f48b03fe1207a1b12eaeab", "chainId": 1116}, {"id": 1659, "name": "Gnosis", "symbol": "GNO", "slug": "gnosis-gno", "token_address": "0xc45b3c1c24d5f54e7a2cf288ac668c74dd507a84", "chainId": 100}, {"id": 873, "name": "NEM", "symbol": "XEM", "slug": "nem", "token_address": "rewards4earth:erth", "chainId": -27}, {"id": 10042, "name": "Karura", "symbol": "KAR", "slug": "karura", "token_address": "0x0000000000000000000100000000000000000081", "chainId": 686}, {"id": 5802, "name": "SORA", "symbol": "XOR", "slug": "sora", "token_address": "0x00f2f4fda40a4bf1fc3769d156fa695532eec31e265d75068524462c0b80f674", "chainId": -28}, {"id": 8267, "name": "OKT Chain", "symbol": "OKT", "slug": "okt", "token_address": "0xab0d1578216a545532882e420a8c61ea07b00b12", "chainId": 66}, {"id": 7334, "name": "Conflux", "symbol": "CFX", "slug": "conflux-network", "token_address": "0xbecd75bde87020a4f0d3084bcce9cde794547660", "chainId": 1030}, {"id": 11079, "name": "Bitgert", "symbol": "BRISE", "slug": "bitrise-token", "token_address": "0x9F7Bb6E8386ac9ad5e944d66fBa80F3F7231FA94", "chainId": 32520}, {"id": 11948, "name": "Radix", "symbol": "XRD", "slug": "radix-protocol", "token_address": "dgc_rr1qvnre767vp607yr9pqzqhlprg72q2ny5pj4agn53k0pqy6huxw", "chainId": -29}, {"id": 9640, "name": "MetisDAO", "symbol": "METIS", "slug": "metisdao", "token_address": "0x186573b175aDF5801cF95Fb06b232ccAB123c6F4", "chainId": 1088}, {"id": 20314, "name": "Terra", "symbol": "LUNA", "slug": "terra-luna-v2", "token_address": "terra1xp9hrhthzddnl7j5du83gqqr4wmdjm5t0guzg9jp6jwrtpukwfjsjgy4f3", "chainId": -30}, {"id": 19778, "name": "Step App", "symbol": "FITFI", "slug": "step-app", "token_address": "0x7db4072D6e26BBF35129E826d656f230F791CD2f", "chainId": 1234}, {"id": 3945, "name": "Harmony", "symbol": "ONE", "slug": "harmony", "token_address": "0x725553bc9aa0939362671407dfdeb162dd37d168", "chainId": 1666600000}, {"id": 2777, "name": "IoTeX", "symbol": "IOTX", "slug": "iotex", "token_address": "0x1bc8547e3716680117d7ba26dcf07f2ed9162cd0", "chainId": 4689}, {"id": 8377, "name": "SX Network", "symbol": "SX", "slug": "sportx", "token_address": "0xaa99be3356a11ee92c3f099bd7a038399633566f", "chainId": 416}, {"id": 6724, "name": "Klever", "symbol": "KLV", "slug": "klever", "token_address": "klv16pa6avasdy8wffqn2md788dge4t2wnzm6m85tn5vl25ghv7vksmqz6sjks", "chainId": -31}, {"id": 4660, "name": "Telos", "symbol": "TLOS", "slug": "telos", "token_address": "0x9A271E3748F59222f5581BaE2540dAa5806b3F77", "chainId": 40}, {"id": 2092, "name": "NULS", "symbol": "NULS", "slug": "nuls", "token_address": "NULSd6HgrzcXdTuGvRF9DmkxoXM8XNmXZs95d", "chainId": -32}, {"id": 2492, "name": "Elastos", "symbol": "ELA", "slug": "elastos", "token_address": "0xd39eC832FF1CaaFAb2729c76dDeac967ABcA8F27", "chainId": 20}, {"id": 14556, "name": "Boba Network", "symbol": "BOBA", "slug": "boba-network", "token_address": "0x3A93bD0fA10050d206370eeA53276542A105C885", "chainId": 288}, {"id": 5453, "name": "KardiaChain", "symbol": "KAI", "slug": "kardiachain", "token_address": "0xE9caC5d99375d02Fb506bE890011B2F57fC614E1", "chainId": 24}, {"id": 2315, "name": "HTMLCOIN", "symbol": "HTML", "slug": "html-coin", "token_address": "911106d88ae972bd06d68dc627c2997a6fe8205f", "chainId": 4444}, {"id": 2570, "name": "TomoChain", "symbol": "TOMO", "slug": "tomochain", "token_address": "0x8103bb77ed2035b5da9a3a65d9c313cb6ee41dbd", "chainId": -33}, {"id": 5604, "name": "Secret", "symbol": "SCRT", "slug": "secret", "token_address": "secret1qfql357amn448duf5gvp9gr48sxx9tsnhupu3d", "chainId": 106}, {"id": 4747, "name": "Velas", "symbol": "VLX", "slug": "velas", "token_address": "0xcd7509b76281223f5b7d3ad5d47f8d7aa5c2b9bf", "chainId": 106}, {"id": 1321, "name": "Ethereum Classic", "symbol": "ETC", "slug": "ethereum-classic", "token_address": "0x1fdc495289b590e78d455cf7faa6cd804de5cbc1", "chainId": 61}, {"id": 21296, "name": "EthereumPoW", "symbol": "ETHW", "slug": "ethereum-pow", "token_address": "0xfb351555ce949c67a956e8f4a16ecf4a85711e26", "chainId": 20001}]
+[
+  {
+    "id": 1027,
+    "name": "Ethereum",
+    "symbol": "ETH",
+    "slug": "ethereum",
+    "token_address": "0xce7F80862Af55CCB8B9728E933Aa5F018Db580A0",
+    "chainId": 1
+  },
+  {
+    "id": 1839,
+    "name": "BNB",
+    "symbol": "BNB",
+    "slug": "bnb",
+    "token_address": "0xddc357ACAe0cFF6d1421eF058661f0Ac8f2E22bf",
+    "chainId": 56
+  },
+  {
+    "id": 21794,
+    "name": "Aptos",
+    "symbol": "APT",
+    "slug": "aptos",
+    "token_address": "0x84edd115c901709ef28f3cb66a82264ba91bfd24789500b6fd34ab9e8888e272::coin::DLC",
+    "chainId": -2
+  },
+  {
+    "id": 11841,
+    "name": "Arbitrum",
+    "symbol": "ARB",
+    "slug": "arbitrum",
+    "token_address": "0x4faA2C69a759D7f0C66c256FfD2E306CcAe2cbB1",
+    "chainId": 42161
+  },
+  {
+    "id": 11840,
+    "name": "Optimism",
+    "symbol": "OP",
+    "slug": "optimism-ethereum",
+    "token_address": "0x46f21fda29f1339e0ab543763ff683d399e393ec",
+    "chainId": 10
+  },
+  {
+    "id": 1958,
+    "name": "TRON",
+    "symbol": "TRX",
+    "slug": "tron",
+    "token_address": "TVxA6SiicW236YAQSELRxth52Tp9ypxkr2",
+    "chainId": -3
+  },
+  {
+    "id": 20947,
+    "name": "Sui",
+    "symbol": "SUI",
+    "slug": "sui",
+    "token_address": "0xf0fe2210b4f0c4e3aff7ed147f14980cf14f1114c6ad8fd531ab748ccf33373b::bswt::BSWT",
+    "chainId": -4
+  },
+  {
+    "id": 1,
+    "name": "Bitcoin",
+    "symbol": "BTC",
+    "slug": "bitcoin",
+    "token_address": "0d4590ad5ec95ea8eec2e00b4286c82b25315bdc5641e72eb0a72a736abb5ea0i0",
+    "chainId": -5
+  },
+  {
+    "id": 4256,
+    "name": "Klaytn",
+    "symbol": "KLAY",
+    "slug": "klaytn",
+    "token_address": "0xfbd0314d55eab31c9fc0b2d162748017f1bc7b85",
+    "chainId": 8217
+  },
+  {
+    "id": 5805,
+    "name": "Avalanche",
+    "symbol": "AVAX",
+    "slug": "avalanche",
+    "token_address": "0xe533B81297B820D2Eb2cd837263926596328E8D2",
+    "chainId": 43114
+  },
+  {
+    "id": 4642,
+    "name": "Hedera",
+    "symbol": "HBAR",
+    "slug": "hedera",
+    "token_address": "0x00000000000000000000000000000000001a88b2",
+    "chainId": 259
+  },
+  {
+    "id": 4846,
+    "name": "Kava",
+    "symbol": "KAVA",
+    "slug": "kava",
+    "token_address": "0x443ab8d6ab303ce28f9031be91c19c6b92e59c8a",
+    "chainId": 2222
+  },
+  {
+    "id": 512,
+    "name": "Stellar",
+    "symbol": "XLM",
+    "slug": "stellar",
+    "token_address": "GCMSCRWZ3QBOI6AF75B5ZWDBXOSMIRW4FSBZH5OI65Y4H4GVH7LPSOYS",
+    "chainId": -6
+  },
+  {
+    "id": 3890,
+    "name": "Polygon",
+    "symbol": "MATIC",
+    "slug": "polygon",
+    "token_address": "0x0be74a81f22de1d900b32243b075dffff4d5a766",
+    "chainId": 137
+  },
+  {
+    "id": 3626,
+    "name": "Rootstock Smart Bitcoin",
+    "symbol": "RBTC",
+    "slug": "rsk-smart-bitcoin",
+    "token_address": "0xe700691da7b9851f2f35f8b8182c69c53ccad9db",
+    "chainId": 30
+  },
+  {
+    "id": 3077,
+    "name": "VeChain",
+    "symbol": "VET",
+    "slug": "vechain",
+    "token_address": "0x0BD802635eb9cEB3fCBe60470D2857B86841aab6",
+    "chainId": 100009
+  },
+  {
+    "id": 2502,
+    "name": "Huobi Token",
+    "symbol": "HT",
+    "slug": "huobi-token",
+    "token_address": "0x180dae91d6d56235453a892d2e56a3e40ba81df8",
+    "chainId": 128
+  },
+  {
+    "id": 2010,
+    "name": "Cardano",
+    "symbol": "ADA",
+    "slug": "cardano",
+    "token_address": "078eafce5cd7edafdf63900edef2c1ea759e77f30ca81d6bbdeec92479756d6d69",
+    "chainId": -7
+  },
+  {
+    "id": 5567,
+    "name": "Celo",
+    "symbol": "CELO",
+    "slug": "celo",
+    "token_address": "0x94140c2eA9D208D8476cA4E3045254169791C59e",
+    "chainId": 42220
+  },
+  {
+    "id": 2566,
+    "name": "Ontology",
+    "symbol": "ONT",
+    "slug": "ontology",
+    "token_address": "e5a49d7fd57e7178e189d3965d1ee64368a1036d",
+    "chainId": -8
+  },
+  {
+    "id": 2530,
+    "name": "Fusion",
+    "symbol": "FSN",
+    "slug": "fusion",
+    "token_address": "0x05573124c64c69d85687152b2942bcb0a3b26d99",
+    "chainId": 32659
+  },
+  {
+    "id": 1376,
+    "name": "Neo",
+    "symbol": "NEO",
+    "slug": "neo",
+    "token_address": "1578103c13e39df15d0d29826d957e85d770d8c9",
+    "chainId": -9
+  },
+  {
+    "id": 2469,
+    "name": "Zilliqa",
+    "symbol": "ZIL",
+    "slug": "zilliqa",
+    "token_address": "zil1m3m5jqqcaemtefnlk795qpw59daukra8prc43e",
+    "chainId": -10
+  },
+  {
+    "id": 3794,
+    "name": "Cosmos",
+    "symbol": "ATOM",
+    "slug": "cosmos",
+    "token_address": "ibc/307E5C96C8F60D1CBEE269A9A86C0834E1DB06F2B3788AE4F716EDB97A48B97D",
+    "chainId": -11
+  },
+  {
+    "id": 5426,
+    "name": "Solana",
+    "symbol": "SOL",
+    "slug": "solana",
+    "token_address": "5Q7EfoEzqDeYZRoqxvcdUjKx8hfQswyxPNdZAr3pwuCu",
+    "chainId": -12
+  },
+  {
+    "id": 4066,
+    "name": "Chiliz",
+    "symbol": "CHZ",
+    "slug": "chiliz",
+    "token_address": "0x252b88d52c4701a4466671dca7b0f893d721b2ba",
+    "chainId": 88880
+  },
+  {
+    "id": 2634,
+    "name": "XDC Network",
+    "symbol": "XDC",
+    "slug": "xinfin",
+    "token_address": "xdc536dd70445cea1e97f9bf1bada04cbda5199a2a1",
+    "chainId": 50
+  },
+  {
+    "id": 12186,
+    "name": "Songbird",
+    "symbol": "SGB",
+    "slug": "songbird",
+    "token_address": "0x0D94e59332732D18CF3a3D457A8886A2AE29eA1B",
+    "chainId": 19
+  },
+  {
+    "id": 1765,
+    "name": "EOS",
+    "symbol": "EOS",
+    "slug": "eos",
+    "token_address": "0x2a3b2d64960036de519dc4a45cafd532bfa99ff0",
+    "chainId": 59
+  },
+  {
+    "id": 4030,
+    "name": "Algorand",
+    "symbol": "ALGO",
+    "slug": "algorand",
+    "token_address": "724480511",
+    "chainId": -13
+  },
+  {
+    "id": 3513,
+    "name": "Fantom",
+    "symbol": "FTM",
+    "slug": "fantom",
+    "token_address": "0x4453e3d49824e2db4a2ee21db03cc0673d238ea4",
+    "chainId": 250
+  },
+  {
+    "id": 4172,
+    "name": "Terra Classic",
+    "symbol": "LUNC",
+    "slug": "terra-luna",
+    "token_address": "terra14vz4v8adanzph278xyeggll4tfww7teh0xtw2y",
+    "chainId": -14
+  },
+  {
+    "id": 2011,
+    "name": "Tezos",
+    "symbol": "XTZ",
+    "slug": "tezos",
+    "token_address": "KT1914CUZ7EegAFPbfgQMRkw8Uz5mYkEz2ui",
+    "chainId": -15
+  },
+  {
+    "id": 8357,
+    "name": "Bitcicoin",
+    "symbol": "BITCI",
+    "slug": "bitcicoin",
+    "token_address": "0x0397b918945ec8A0CCBcFF3cEF95e551ef6B2818/token-transfers",
+    "chainId": -16
+  },
+  {
+    "id": 2606,
+    "name": "Wanchain",
+    "symbol": "WAN",
+    "slug": "wanchain",
+    "token_address": "0x9b6863f6ab2047069ad1cd15fff8c45af637d67c",
+    "chainId": 888
+  },
+  {
+    "id": 1831,
+    "name": "Bitcoin Cash",
+    "symbol": "BCH",
+    "slug": "bitcoin-cash",
+    "token_address": "0x77CB87b57F54667978Eb1B199b28a0db8C8E1c0B",
+    "chainId": 10000
+  },
+  {
+    "id": 6636,
+    "name": "Polkadot",
+    "symbol": "DOT",
+    "slug": "polkadot-new",
+    "token_address": "2032",
+    "chainId": -17
+  },
+  {
+    "id": 1274,
+    "name": "Waves",
+    "symbol": "WAVES",
+    "slug": "waves",
+    "token_address": "8t4DPWTwPzpatHA9AkTxWAB47THnYzBsDnoY7fQqbG91",
+    "chainId": -18
+  },
+  {
+    "id": 6836,
+    "name": "Moonbeam",
+    "symbol": "GLMR",
+    "slug": "moonbeam",
+    "token_address": "0xE065ffaf3f7dED69BB5cf5FDd1Fd1dDA2EEe8493",
+    "chainId": 1284
+  },
+  {
+    "id": 11145,
+    "name": "Pulsechain",
+    "symbol": "PLS",
+    "slug": "pulsechain",
+    "token_address": "0x4B2eeb31681728Fd9C7ab791b0073180a60e7792",
+    "chainId": 369
+  },
+  {
+    "id": 6892,
+    "name": "MultiversX",
+    "symbol": "EGLD",
+    "slug": "multiversx-egld",
+    "token_address": "VITAL-ab7917",
+    "chainId": -19
+  },
+  {
+    "id": 21516,
+    "name": "CANTO",
+    "symbol": "CANTO",
+    "slug": "canto",
+    "token_address": "0x38d11b40d2173009adb245b869e90525950ae345",
+    "chainId": 7700
+  },
+  {
+    "id": 52,
+    "name": "XRP",
+    "symbol": "XRP",
+    "slug": "xrp",
+    "token_address": "r3qWgpz2ry3BhcRJ8JE6rxM8esrfhuKp4R",
+    "chainId": -20
+  },
+  {
+    "id": 3635,
+    "name": "Cronos",
+    "symbol": "CRO",
+    "slug": "cronos",
+    "token_address": "0x1Ba477CA252C0FF21c488d41759795E7E7812aB4",
+    "chainId": 25
+  },
+  {
+    "id": 6535,
+    "name": "NEAR Protocol",
+    "symbol": "NEAR",
+    "slug": "near-protocol",
+    "token_address": "token.burrow.near",
+    "chainId": -50
+  },
+  {
+    "id": 7548,
+    "name": "WEMIX",
+    "symbol": "WEMIX",
+    "slug": "wemix",
+    "token_address": "0x7d72b22a74a216af4a002a1095c8c707d6ec1c5f",
+    "chainId": 1111
+  },
+  {
+    "id": 24091,
+    "name": "zkSync",
+    "symbol": "TBD",
+    "slug": "zksync",
+    "token_address": "0x90eea899185105d583d04B7BDBfb672FcE902a53",
+    "chainId": 324
+  },
+  {
+    "id": 12885,
+    "name": "Astar",
+    "symbol": "ASTR",
+    "slug": "astar",
+    "token_address": "0xee8138b3bd03905cf84afe10ccd0dccb820ee08e",
+    "chainId": 592
+  },
+  {
+    "id": 9285,
+    "name": "Moonriver",
+    "symbol": "MOVR",
+    "slug": "moonriver",
+    "token_address": "0x0d2faA2064129ecBfAccD45be33DEA3bCD3F8863",
+    "chainId": 1285
+  },
+  {
+    "id": 12220,
+    "name": "Osmosis",
+    "symbol": "OSMO",
+    "slug": "osmosis",
+    "token_address": "ibc/A1AC7F9EE2F643A68E3A35BCEB22040120BEA4059773BB56985C76BDFEBC71D9",
+    "chainId": -21
+  },
+  {
+    "id": 7505,
+    "name": "Everscale",
+    "symbol": "EVER",
+    "slug": "everscale",
+    "token_address": "0:7d7af239168cfd06353c224aa8b5e805846ae5e556f66fa8e045b5e1ba29e82a",
+    "chainId": -22
+  },
+  {
+    "id": 2087,
+    "name": "KuCoin Token",
+    "symbol": "KCS",
+    "slug": "kucoin-token",
+    "token_address": "0x00eE2d494258D6C5A30d6B6472A09b27121Ef451",
+    "chainId": -23
+  },
+  {
+    "id": 5634,
+    "name": "Fuse",
+    "symbol": "FUSE",
+    "slug": "fuse-network",
+    "token_address": "0x0BE9e53fd7EDaC9F859882AfdDa116645287C629",
+    "chainId": 122
+  },
+  {
+    "id": 11419,
+    "name": "Toncoin",
+    "symbol": "TON",
+    "slug": "toncoin",
+    "token_address": "EQCcLAW537KnRg_aSPrnQJoyYjOZkzqYp6FVmRUvN1crSazV",
+    "chainId": -24
+  },
+  {
+    "id": 74,
+    "name": "Dogecoin",
+    "symbol": "DOGE",
+    "slug": "dogecoin",
+    "token_address": "0x3f4ae49eabea4cc250a640eea788a321c0ae7eb2",
+    "chainId": -25
+  },
+  {
+    "id": 139,
+    "name": "Arbitrum Nova",
+    "symbol": "ARBITRUM",
+    "slug": "arbitrum-nova",
+    "token_address": "0x0057Ac2d777797d31CD3f8f13bF5e927571D6Ad0",
+    "chainId": 42170
+  },
+  {
+    "id": 14803,
+    "name": "Aurora",
+    "symbol": "AURORA",
+    "slug": "aurora-near",
+    "token_address": "0x07f9f7f963c5cd2bbffd30ccfb964be114332e30",
+    "chainId": 1313161554
+  },
+  {
+    "id": 4847,
+    "name": "Stacks",
+    "symbol": "STX",
+    "slug": "stacks",
+    "token_address": "SP1Z92MPDQEWZXW36VX71Q25HKF5K2EPCJ304F275.stsw-token-v4a",
+    "chainId": -26
+  },
+  {
+    "id": 7653,
+    "name": "Oasis Network",
+    "symbol": "ROSE",
+    "slug": "oasis-network",
+    "token_address": "0xf02b3e437304892105992512539F769423a515Cb",
+    "chainId": 42262
+  },
+  {
+    "id": 12319,
+    "name": "DeFi Kingdoms",
+    "symbol": "JEWEL",
+    "slug": "defi-kingdoms",
+    "token_address": "0x77f2656d04e158f915bc22f07b779d94c1dc47ff",
+    "chainId": 53935
+  },
+  {
+    "id": 23254,
+    "name": "Core",
+    "symbol": "CORE",
+    "slug": "core-dao",
+    "token_address": "0x1c92e17cd1893e8535f48b03fe1207a1b12eaeab",
+    "chainId": 1116
+  },
+  {
+    "id": 1659,
+    "name": "Gnosis",
+    "symbol": "GNO",
+    "slug": "gnosis-gno",
+    "token_address": "0xc45b3c1c24d5f54e7a2cf288ac668c74dd507a84",
+    "chainId": 100
+  },
+  {
+    "id": 873,
+    "name": "NEM",
+    "symbol": "XEM",
+    "slug": "nem",
+    "token_address": "rewards4earth:erth",
+    "chainId": -27
+  },
+  {
+    "id": 10042,
+    "name": "Karura",
+    "symbol": "KAR",
+    "slug": "karura",
+    "token_address": "0x0000000000000000000100000000000000000081",
+    "chainId": 686
+  },
+  {
+    "id": 5802,
+    "name": "SORA",
+    "symbol": "XOR",
+    "slug": "sora",
+    "token_address": "0x00f2f4fda40a4bf1fc3769d156fa695532eec31e265d75068524462c0b80f674",
+    "chainId": -28
+  },
+  {
+    "id": 8267,
+    "name": "OKT Chain",
+    "symbol": "OKT",
+    "slug": "okt",
+    "token_address": "0xab0d1578216a545532882e420a8c61ea07b00b12",
+    "chainId": 66
+  },
+  {
+    "id": 7334,
+    "name": "Conflux",
+    "symbol": "CFX",
+    "slug": "conflux-network",
+    "token_address": "0xbecd75bde87020a4f0d3084bcce9cde794547660",
+    "chainId": 1030
+  },
+  {
+    "id": 11079,
+    "name": "Bitgert",
+    "symbol": "BRISE",
+    "slug": "bitrise-token",
+    "token_address": "0x9F7Bb6E8386ac9ad5e944d66fBa80F3F7231FA94",
+    "chainId": 32520
+  },
+  {
+    "id": 11948,
+    "name": "Radix",
+    "symbol": "XRD",
+    "slug": "radix-protocol",
+    "token_address": "dgc_rr1qvnre767vp607yr9pqzqhlprg72q2ny5pj4agn53k0pqy6huxw",
+    "chainId": -29
+  },
+  {
+    "id": 9640,
+    "name": "MetisDAO",
+    "symbol": "METIS",
+    "slug": "metisdao",
+    "token_address": "0x186573b175aDF5801cF95Fb06b232ccAB123c6F4",
+    "chainId": 1088
+  },
+  {
+    "id": 20314,
+    "name": "Terra",
+    "symbol": "LUNA",
+    "slug": "terra-luna-v2",
+    "token_address": "terra1xp9hrhthzddnl7j5du83gqqr4wmdjm5t0guzg9jp6jwrtpukwfjsjgy4f3",
+    "chainId": -30
+  },
+  {
+    "id": 19778,
+    "name": "Step App",
+    "symbol": "FITFI",
+    "slug": "step-app",
+    "token_address": "0x7db4072D6e26BBF35129E826d656f230F791CD2f",
+    "chainId": 1234
+  },
+  {
+    "id": 3945,
+    "name": "Harmony",
+    "symbol": "ONE",
+    "slug": "harmony",
+    "token_address": "0x725553bc9aa0939362671407dfdeb162dd37d168",
+    "chainId": 1666600000
+  },
+  {
+    "id": 2777,
+    "name": "IoTeX",
+    "symbol": "IOTX",
+    "slug": "iotex",
+    "token_address": "0x1bc8547e3716680117d7ba26dcf07f2ed9162cd0",
+    "chainId": 4689
+  },
+  {
+    "id": 8377,
+    "name": "SX Network",
+    "symbol": "SX",
+    "slug": "sportx",
+    "token_address": "0xaa99be3356a11ee92c3f099bd7a038399633566f",
+    "chainId": 416
+  },
+  {
+    "id": 6724,
+    "name": "Klever",
+    "symbol": "KLV",
+    "slug": "klever",
+    "token_address": "klv16pa6avasdy8wffqn2md788dge4t2wnzm6m85tn5vl25ghv7vksmqz6sjks",
+    "chainId": -31
+  },
+  {
+    "id": 4660,
+    "name": "Telos",
+    "symbol": "TLOS",
+    "slug": "telos",
+    "token_address": "0x9A271E3748F59222f5581BaE2540dAa5806b3F77",
+    "chainId": 40
+  },
+  {
+    "id": 2092,
+    "name": "NULS",
+    "symbol": "NULS",
+    "slug": "nuls",
+    "token_address": "NULSd6HgrzcXdTuGvRF9DmkxoXM8XNmXZs95d",
+    "chainId": -32
+  },
+  {
+    "id": 2492,
+    "name": "Elastos",
+    "symbol": "ELA",
+    "slug": "elastos",
+    "token_address": "0xd39eC832FF1CaaFAb2729c76dDeac967ABcA8F27",
+    "chainId": 20
+  },
+  {
+    "id": 14556,
+    "name": "Boba Network",
+    "symbol": "BOBA",
+    "slug": "boba-network",
+    "token_address": "0x3A93bD0fA10050d206370eeA53276542A105C885",
+    "chainId": 288
+  },
+  {
+    "id": 5453,
+    "name": "KardiaChain",
+    "symbol": "KAI",
+    "slug": "kardiachain",
+    "token_address": "0xE9caC5d99375d02Fb506bE890011B2F57fC614E1",
+    "chainId": 24
+  },
+  {
+    "id": 2315,
+    "name": "HTMLCOIN",
+    "symbol": "HTML",
+    "slug": "html-coin",
+    "token_address": "911106d88ae972bd06d68dc627c2997a6fe8205f",
+    "chainId": 4444
+  },
+  {
+    "id": 2570,
+    "name": "TomoChain",
+    "symbol": "TOMO",
+    "slug": "tomochain",
+    "token_address": "0x8103bb77ed2035b5da9a3a65d9c313cb6ee41dbd",
+    "chainId": 88
+  },
+  {
+    "id": 5604,
+    "name": "Secret",
+    "symbol": "SCRT",
+    "slug": "secret",
+    "token_address": "secret1qfql357amn448duf5gvp9gr48sxx9tsnhupu3d",
+    "chainId": -60
+  },
+  {
+    "id": 4747,
+    "name": "Velas",
+    "symbol": "VLX",
+    "slug": "velas",
+    "token_address": "0xcd7509b76281223f5b7d3ad5d47f8d7aa5c2b9bf",
+    "chainId": 106
+  },
+  {
+    "id": 1321,
+    "name": "Ethereum Classic",
+    "symbol": "ETC",
+    "slug": "ethereum-classic",
+    "token_address": "0x1fdc495289b590e78d455cf7faa6cd804de5cbc1",
+    "chainId": 61
+  },
+  {
+    "id": 21296,
+    "name": "EthereumPoW",
+    "symbol": "ETHW",
+    "slug": "ethereum-pow",
+    "token_address": "0xfb351555ce949c67a956e8f4a16ecf4a85711e26",
+    "chainId": 20001
+  }
+]

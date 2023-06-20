@@ -13,6 +13,7 @@ class TokenDetail(BaseModel):
     decimals: int = -1
     tags: Optional[List[str]]
     coingeckoId: Optional[str]
+    cmcId: Optional[str]
     lifiId: Optional[str]
     listedIn: Optional[List[str]]
     logoURI: Optional[str]
