@@ -3238,6 +3238,8 @@
     "shortName": "aurora",
     "chainId": 1313161554,
     "networkId": 1313161554,
+    "maxGetLogHeight": 15,
+    "maxMulticallSize": 300,
     "explorers": [
       {
         "name": "aurorascan.dev",
