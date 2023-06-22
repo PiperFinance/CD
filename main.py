@@ -11,6 +11,7 @@ logger = getLogger(__name__)
 #     logger.exception(e)
 
 try:
+    ## TODO - NEEDS Refactor ... !
     all_pairs = pairs.fetch_all_pairs()
 except Exception as e:
     all_pairs = {}

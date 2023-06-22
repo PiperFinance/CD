@@ -41,15 +41,15 @@ def fetch_all_pairs() -> Dict[str, Pair]:
 
     r = []
     # NOTE - TO FETCH ALL TOKENS
-    for page_number in range(1, page_count()):
-        try:
-            r.append(page_result(page_number))
-        except Exception as e:
-            print(e)
+    # for page_number in range(1, page_count()):
+    #     try:
+    #         r.append(page_result(page_number))
+    #     except Exception as e:
+    #         print(e)
 
     #  NOTE - already fetched once
-    # with open("pair/gecko_terminal_pools.json") as f:
-    #     r = json.load(f)
+    with open("pair/gecko_terminal_pools.json") as f:
+        r = json.load(f)
 
     dexs = {}
     tokens = {}
