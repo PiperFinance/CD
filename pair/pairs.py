@@ -1,6 +1,7 @@
 from web3 import Web3
 import functools
 import logging
+from datetime import datetime
 from typing import Optional, List, Set, Dict
 from pydantic import BaseModel
 import json
@@ -14,7 +15,7 @@ GECKO_TERMINAL = "https://app.geckoterminal.com/api/p1/pools"
 
 
 def fetch_all_pairs() -> Dict[str, Pair]:
-
+    readme_result = f"# PairParser @ {datetime.utcnow()=}"
     class SetEncoder(json.JSONEncoder):
         def default(self, obj):
             if isinstance(obj, BaseModel):
@@ -40,15 +41,15 @@ def fetch_all_pairs() -> Dict[str, Pair]:
 
     r = []
     # NOTE - TO FETCH ALL TOKENS
-    # for page_number in range(1, page_count()):
-    #     try:
-    #         r.append(page_result(page_number))
-    #     except Exception as e:
-    #         print(e)
+    for page_number in range(1, page_count()):
+        try:
+            r.append(page_result(page_number))
+        except Exception as e:
+            print(e)
 
     #  NOTE - already fetched once
-    with open("pair/gecko_terminal_pools.json") as f:
-        r = json.load(f)
+    # with open("pair/gecko_terminal_pools.json") as f:
+    #     r = json.load(f)
 
     dexs = {}
     tokens = {}
@@ -87,6 +88,7 @@ def fetch_all_pairs() -> Dict[str, Pair]:
                     pool_metric[element['id']] = element
 
     print(_types, count)
+    readme_result += f"{_types=}\nall pool count:{count}\n"
 
     for _type in _types:
         type_result = results[_type]
@@ -113,8 +115,8 @@ def fetch_all_pairs() -> Dict[str, Pair]:
             for rel_type in rel_types:
                 if rel_type not in type_result[type_id]:
                     type_result[type_id][rel_type] = None
-    print({k: len(v) for k, v in results.items()})
-
+    _tmp = str({k: len(v) for k, v in results.items()})
+    readme_result+=f"{_tmp}\n" 
     valid_tokens: Dict[str, Token] = {}
 
     for i, (token_id, token) in enumerate(tokens.items()):
@@ -122,7 +124,7 @@ def fetch_all_pairs() -> Dict[str, Pair]:
             try:
                 add = Web3.toChecksumAddress(token['attributes']['address'])
             except AttributeError:
-                add = Web3.to_checksum_address(token['attributes']['address'])
+                add = Web3.to_checksum_address(token['attributes']['address']) # type:ignore
                 
             valid_tokens[token['id']] = Token(detail=TokenDetail(
                 chainId=token['network']['attributes']['chain_id'],
@@ -134,7 +136,8 @@ def fetch_all_pairs() -> Dict[str, Pair]:
                 listedIn=None,
                 lifiId=None,
                 coingeckoId=None,
-                tags=None
+                tags=None,
+                cmcId=None
             ))
         except ValueError as e:
             # print(token_id, token['network']['attributes']['chain_id'], e)
@@ -143,7 +146,7 @@ def fetch_all_pairs() -> Dict[str, Pair]:
             print(i)
             raise e
 
-    print(f"\n\n{len(valid_tokens)=}  errors {len(tokens)- len(valid_tokens)=}")
+    readme_result += f"\n\n{len(valid_tokens)=}  errors {len(tokens)- len(valid_tokens)=}"
 
     valid_pools: Dict[str, Pair] = {}
 
@@ -156,7 +159,7 @@ def fetch_all_pairs() -> Dict[str, Pair]:
             try:
                 add = Web3.toChecksumAddress(pool['attributes']['address'])
             except AttributeError:
-                add = Web3.to_checksum_address(pool['attributes']['address'])
+                add = Web3.to_checksum_address(pool['attributes']['address']) # type:ignore
 
             valid_pools[pool['id']] = Pair(detail=PairDetail(
                 chainId=pool['dex']['network']['attributes']['chain_id'],
@@ -196,5 +199,7 @@ def fetch_all_pairs() -> Dict[str, Pair]:
     with open("pair/all_pairs.json", "w+") as f:
         dump(all_pairs, f)
 
-    print(count)
+    readme_result += f"result {count=}"
+    with open("pairs/README.md", "w+") as f:
+        f.write(readme_result)
     return all_pairs

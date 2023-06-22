@@ -5,10 +5,10 @@ from pair import pairs
 
 logger = getLogger(__name__)
 
-try:
-    all_chains = main.fetch_all_chains()
-except Exception as e:
-    logger.exception(e)
+# try:
+#     all_chains = main.fetch_all_chains()
+# except Exception as e:
+#     logger.exception(e)
 
 try:
     all_pairs = pairs.fetch_all_pairs()

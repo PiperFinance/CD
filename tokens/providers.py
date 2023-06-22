@@ -226,6 +226,9 @@ def fetch_tokens(providers_url_file=None, provider_dir=None) -> Dict[str, Provid
         for provider, url in tqdm(json.load(f).items()):
             try:
                 match provider:
+                    case "Natives":
+                        providers[provider] = NativeTokensProvider.load(
+                            url, provider_dir, provider)
                     case "ViaAll":
                         providers[provider] = ViaProvider.load(
                             url, provider_dir, provider)
@@ -237,9 +240,6 @@ def fetch_tokens(providers_url_file=None, provider_dir=None) -> Dict[str, Provid
                             url, provider_dir, provider)
                     case "Rango":
                         providers[provider] = RangoProvider.load(
-                            url, provider_dir, provider)
-                    case "Natives":
-                        providers[provider] = NativeTokensProvider.load(
                             url, provider_dir, provider)
                     case _:
                         providers[provider] = Provider.load(

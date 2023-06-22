@@ -109,7 +109,7 @@ def fix_token_address(token: schema.TokenDetail) -> Optional[schema.TokenDetail]
         try:
             token.address = Web3.toChecksumAddress(_add)
         except AttributeError:
-            token.address = Web3.to_checksum_address(_add)
+            token.address = Web3.to_checksum_address(_add) #type:ignore
             
     except Exception as e:
         logger.warning(f"   --- Bad Address Error {e} @ {_token_key(token)}")

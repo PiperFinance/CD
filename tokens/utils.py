@@ -321,7 +321,6 @@ def provider_data_merger(
         chain_separated_and_merged_by_name[chainId][token_name].append(token)
         chain_separated_and_merged_by_symbol[chainId][token_symbol].append(
             token)
-        # if (get_from_list(chain_separated[chainId], token))
         chain_separated[chainId].add(schema.Token(detail=token))
 
     result_readme = ""
@@ -331,9 +330,6 @@ def provider_data_merger(
             f"- {chain}  :::  {_CHAINS[chain]['name']}  :::  {len(tokens)} :::  { {provider for token in tokens for provider in (token.detail.listedIn or [])  } } \n")
     print(result_readme, file=result_readme_file, flush=True)
     for chain, tokens in chain_separated.items():
-        # for token in chain_separated[chain].values():
-        #     chain_tokens.append(token)
-
         chain_separated_v2.append(schema.ChainToken(**{
             "chainId": chain,
             "tokens": list(tokens)
