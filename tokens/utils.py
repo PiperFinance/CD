@@ -1,5 +1,5 @@
 import glob
-from typing import Any, List, Dict, Set, Optional
+from typing import Any, Callable, List, Dict, Set, Optional
 import requests
 import sys
 import json
@@ -199,7 +199,8 @@ def provider_data_merger(
         try_request_token_logo=False,
         token_logoURI_BaseURL=None,
         result_readme_file=sys.stdout,
-        avoid_addresses: Optional[Set[str]] = None
+        avoid_addresses: Optional[Set[str]] = None,
+        late_night_fixes: Optional[Callable[[schema.TokenDetail],schema.TokenDetail]] = None
 ):
     """
     Merges given providers
@@ -292,8 +293,12 @@ def provider_data_merger(
                 try_request=try_request_token_logo,
                 base_url=token_logoURI_BaseURL,
                 out="./logo")
+        
+        if late_night_fixes is not None:
+            token = late_night_fixes(token)
 
         if (  # Following Providers are exceptions
+            token.listedIn and 
             "Natives" not in token.listedIn
             and "CMC-SC" not in token.listedIn
         ) and verify is not None:

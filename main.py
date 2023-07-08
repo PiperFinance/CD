@@ -1,5 +1,6 @@
 from logging import getLogger
 from chains import main
+from schema.py.Token import TokenDetail
 from tokens import providers, fixture, utils
 from pair import pairs
 
@@ -16,6 +17,13 @@ try:
 except Exception as e:
     all_pairs = {}
     logger.exception(e)
+
+
+def late_night_fixes(token_det: TokenDetail):
+    if token_det.checksum == "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee-100":
+        token_det.coingeckoId = "xdai"
+    return token_det
+
 
 try:
     black_list = set()
@@ -35,6 +43,7 @@ try:
                 *black_list,
                 *{pair.detail.address for pair in all_pairs.values()},
             },
+            late_night_fixes=late_night_fixes,
         )
 except Exception as e:
     logger.exception(e)
