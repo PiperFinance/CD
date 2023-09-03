@@ -1,31 +1,31 @@
-# TokenResult Parsed @ 2023-09-01 00:53:37.928946 
+# TokenResult Parsed @ 2023-09-03 00:53:11.409128 
 
 ## Result 
- ::: 519 chains  ::: 6560 verified ::: 7068 total_saved ::: 41974 duplicates ::: 
-- 1  :::  ETH  :::  3459 :::  {'Gemini', 'MyCrypto', 'TokenSoftWrapped', 'CoinGecko', 'DefiPrime', 'BA', 'Agora', 'CMC-SC', 'Zerion', '1inch', 'Furucombo', 'ViaAll', 'CMC-DEFI', 'Aave', 'Via', 'TokenNameService', 'CMC-ERC20', 'Uniswap', 'UMA', 'Compound', 'Rango', 'Natives', 'Messari', 'Optimism', 'LiFi', 'Set', 'Dharma', 'Kleros', 'RollSocialMoney'} 
-- 10  :::  ETH  :::  144 :::  {'Natives', 'Optimism', 'LiFi', 'DefiPrime', 'Uniswap', 'Via', 'ViaAll', 'Rango'} 
-- 592  :::  ASTR  :::  1 :::  {'ViaAll', 'Natives'} 
-- 1284  :::  MOON  :::  42 :::  {'Natives', 'LiFi', 'Via', 'ViaAll', 'Rango'} 
-- 42161  :::  ETH  :::  151 :::  {'Natives', 'LiFi', 'DefiPrime', 'Uniswap', 'Via', 'ViaAll', 'Rango'} 
-- 56  :::  BSC  :::  1077 :::  {'Natives', 'PancakeSwapDefault', 'LiFi', 'DefiPrime', 'Uniswap', 'PancakeSwap100', 'Via', 'PancakeSwapAll', 'ViaAll', 'PancakeSwapExtended', 'Rango'} 
-- 66  :::  okxchain  :::  44 :::  {'Natives', 'LiFi', 'Via', 'ViaAll', 'Rango'} 
-- 250  :::  FTM  :::  225 :::  {'ViaAll', 'Via', 'Natives', 'LiFi'} 
-- 42220  :::  CELO  :::  3 :::  {'ViaAll', 'Via', 'Uniswap', 'Natives'} 
-- 137  :::  Polygon  :::  641 :::  {'Natives', 'LiFi', 'Uniswap', 'Via', 'ViaAll', 'Rango'} 
-- 43114  :::  AVAX  :::  288 :::  {'Natives', 'LiFi', 'DefiPrime', 'Uniswap', 'Via', 'ViaAll', 'Rango'} 
-- 1285  :::  MOON  :::  55 :::  {'Natives', 'LiFi', 'Via', 'ViaAll', 'Rango'} 
-- 25  :::  CRO  :::  54 :::  {'ViaAll', 'Via', 'Rango', 'Natives'} 
-- 288  :::  ETH  :::  26 :::  {'Natives', 'LiFi', 'Via', 'ViaAll', 'Rango'} 
-- 1313161554  :::  NEAR  :::  86 :::  {'Natives', 'LiFi', 'Via', 'ViaAll', 'Rango'} 
-- 100  :::  GNO  :::  102 :::  {'Natives', 'LiFi', 'Via', 'ViaAll', 'Rango'} 
-- 9001  :::  Evmos  :::  20 :::  {'ViaAll', 'Via', 'Rango', 'Natives'} 
-- 42  :::  LUKSO  :::  5 :::  {'Natives', 'Uniswap', 'Via', 'Compound', 'ViaAll'} 
-- 122  :::  FUSE  :::  27 :::  {'Natives', 'LiFi', 'Via', 'ViaAll', 'Rango'} 
-- 128  :::  Heco  :::  106 :::  {'ViaAll', 'Via', 'Rango', 'Natives'} 
-- 40  :::  TLOS  :::  6 :::  {'ViaAll', 'Via', 'Rango', 'Natives'} 
-- 321  :::  KCC  :::  9 :::  {'ViaAll', 'Via', 'Rango', 'Natives'} 
-- 106  :::  Velas  :::  1 :::  {'Natives', 'LiFi'} 
-- 1101  :::  Polygon  :::  1 :::  {'Natives', 'LiFi'} 
+ ::: 519 chains  ::: 6536 verified ::: 7044 total_saved ::: 41856 duplicates ::: 
+- 1  :::  ETH  :::  3427 :::  {'UMA', 'Dharma', 'BA', 'ViaAll', 'Uniswap', 'Kleros', 'CoinGecko', 'Gemini', 'TokenNameService', 'TokenSoftWrapped', 'Messari', 'RollSocialMoney', 'CMC-ERC20', 'CMC-SC', 'Zerion', 'Compound', 'LiFi', '1inch', 'MyCrypto', 'Agora', 'Natives', 'Via', 'CMC-DEFI', 'DefiPrime', 'Optimism', 'Set', 'Furucombo', 'Rango', 'Aave'} 
+- 10  :::  ETH  :::  144 :::  {'LiFi', 'Via', 'ViaAll', 'DefiPrime', 'Optimism', 'Rango', 'Natives', 'Uniswap'} 
+- 592  :::  ASTR  :::  1 :::  {'Natives', 'ViaAll'} 
+- 1284  :::  MOON  :::  42 :::  {'LiFi', 'Via', 'ViaAll', 'Rango', 'Natives'} 
+- 42161  :::  ETH  :::  157 :::  {'LiFi', 'Via', 'ViaAll', 'DefiPrime', 'Rango', 'Natives', 'Uniswap'} 
+- 56  :::  BSC  :::  1067 :::  {'LiFi', 'PancakeSwap100', 'Via', 'PancakeSwapAll', 'ViaAll', 'Natives', 'DefiPrime', 'PancakeSwapDefault', 'Rango', 'PancakeSwapExtended', 'Uniswap'} 
+- 66  :::  okxchain  :::  49 :::  {'LiFi', 'Via', 'ViaAll', 'Rango', 'Natives'} 
+- 250  :::  FTM  :::  225 :::  {'LiFi', 'ViaAll', 'Via', 'Natives'} 
+- 42220  :::  CELO  :::  3 :::  {'Natives', 'Uniswap', 'ViaAll', 'Via'} 
+- 137  :::  Polygon  :::  641 :::  {'LiFi', 'Via', 'ViaAll', 'Rango', 'Natives', 'Uniswap'} 
+- 43114  :::  AVAX  :::  308 :::  {'LiFi', 'Via', 'ViaAll', 'DefiPrime', 'Rango', 'Natives', 'Uniswap'} 
+- 1285  :::  MOON  :::  55 :::  {'LiFi', 'Via', 'ViaAll', 'Rango', 'Natives'} 
+- 25  :::  CRO  :::  54 :::  {'Natives', 'Via', 'ViaAll', 'Rango'} 
+- 288  :::  ETH  :::  28 :::  {'LiFi', 'Via', 'ViaAll', 'Rango', 'Natives'} 
+- 1313161554  :::  NEAR  :::  86 :::  {'LiFi', 'Via', 'ViaAll', 'Rango', 'Natives'} 
+- 100  :::  GNO  :::  102 :::  {'LiFi', 'Via', 'ViaAll', 'Rango', 'Natives'} 
+- 9001  :::  Evmos  :::  5 :::  {'Natives', 'Via', 'ViaAll', 'Rango'} 
+- 42  :::  LUKSO  :::  5 :::  {'Via', 'ViaAll', 'Compound', 'Natives', 'Uniswap'} 
+- 122  :::  FUSE  :::  27 :::  {'LiFi', 'Via', 'ViaAll', 'Rango', 'Natives'} 
+- 128  :::  Heco  :::  106 :::  {'Natives', 'Via', 'ViaAll', 'Rango'} 
+- 40  :::  TLOS  :::  6 :::  {'Natives', 'Via', 'ViaAll', 'Rango'} 
+- 321  :::  KCC  :::  9 :::  {'Natives', 'Via', 'ViaAll', 'Rango'} 
+- 106  :::  Velas  :::  1 :::  {'LiFi', 'Natives'} 
+- 1101  :::  Polygon  :::  1 :::  {'LiFi', 'Natives'} 
 - 2  :::  EXP  :::  1 :::  {'Natives'} 
 - 7  :::  TCH  :::  1 :::  {'Natives'} 
 - 8  :::  UBQ  :::  1 :::  {'Natives'} 
