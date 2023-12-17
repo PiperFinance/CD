@@ -1,26 +1,26 @@
-# TokenResult Parsed @ 2023-12-15 00:55:09.880935 
+# TokenResult Parsed @ 2023-12-17 00:58:10.726481 
 
 ## Result 
- ::: 519 chains  ::: 5104 verified ::: 5611 total_saved ::: 42626 duplicates ::: 
-- 1  :::  ETH  :::  2383 :::  {'Zerion', 'MyCrypto', 'ViaAll', 'Natives', 'Dharma', 'DefiPrime', 'Messari', 'Agora', 'CMC-ERC20', 'UMA', 'Aave', 'Set', 'Compound', 'Via', 'Kleros', 'BA', 'TokenSoftWrapped', 'TokenNameService', 'Uniswap', 'CoinGecko', 'CMC-DEFI', 'Optimism', 'LiFi', 'CMC-SC', 'Gemini', 'Furucombo', '1inch', 'RollSocialMoney'} 
-- 42161  :::  ETH  :::  105 :::  {'ViaAll', 'Natives', 'DefiPrime', 'TokenNameService', 'Via', 'Uniswap', 'LiFi'} 
-- 10  :::  ETH  :::  105 :::  {'ViaAll', 'Natives', 'DefiPrime', 'TokenNameService', 'Via', 'Uniswap', 'Optimism', 'LiFi'} 
-- 56  :::  BSC  :::  1457 :::  {'ViaAll', 'Kleros', 'Natives', 'DefiPrime', 'PancakeSwap100', 'PancakeSwapDefault', 'PancakeSwapExtended', 'Via', 'Uniswap', 'PancakeSwapAll', 'LiFi'} 
-- 43114  :::  AVAX  :::  227 :::  {'ViaAll', 'Natives', 'DefiPrime', 'Via', 'Uniswap', 'LiFi'} 
-- 137  :::  Polygon  :::  436 :::  {'ViaAll', 'Kleros', 'Natives', 'Via', 'Uniswap', 'LiFi'} 
-- 100  :::  GNO  :::  86 :::  {'ViaAll', 'Kleros', 'Natives', 'Via', 'LiFi'} 
+ ::: 519 chains  ::: 5111 verified ::: 5618 total_saved ::: 42689 duplicates ::: 
+- 1  :::  ETH  :::  2382 :::  {'TokenSoftWrapped', 'RollSocialMoney', 'UMA', 'Furucombo', 'Natives', 'Gemini', 'Compound', 'Via', 'Dharma', 'LiFi', 'CoinGecko', 'Aave', 'CMC-DEFI', 'CMC-SC', 'Set', 'Zerion', 'Kleros', 'MyCrypto', 'CMC-ERC20', 'Uniswap', '1inch', 'Messari', 'ViaAll', 'BA', 'Optimism', 'Agora', 'TokenNameService', 'DefiPrime'} 
+- 42161  :::  ETH  :::  106 :::  {'Via', 'DefiPrime', 'Natives', 'Uniswap', 'LiFi', 'TokenNameService', 'ViaAll'} 
+- 10  :::  ETH  :::  105 :::  {'Via', 'DefiPrime', 'Natives', 'Optimism', 'Uniswap', 'LiFi', 'TokenNameService', 'ViaAll'} 
+- 56  :::  BSC  :::  1455 :::  {'PancakeSwapDefault', 'PancakeSwapExtended', 'Via', 'DefiPrime', 'Natives', 'Kleros', 'Uniswap', 'LiFi', 'ViaAll', 'PancakeSwapAll', 'PancakeSwap100'} 
+- 43114  :::  AVAX  :::  228 :::  {'Via', 'DefiPrime', 'Natives', 'Uniswap', 'LiFi', 'ViaAll'} 
+- 137  :::  Polygon  :::  434 :::  {'Via', 'Natives', 'Kleros', 'Uniswap', 'LiFi', 'ViaAll'} 
+- 100  :::  GNO  :::  86 :::  {'Via', 'Natives', 'Kleros', 'LiFi', 'ViaAll'} 
 - 592  :::  ASTR  :::  1 :::  {'ViaAll', 'Natives'} 
-- 1284  :::  MOON  :::  26 :::  {'ViaAll', 'Via', 'Natives', 'LiFi'} 
-- 66  :::  okxchain  :::  31 :::  {'ViaAll', 'Via', 'Natives', 'LiFi'} 
-- 250  :::  FTM  :::  152 :::  {'ViaAll', 'Via', 'Natives', 'LiFi'} 
-- 42220  :::  CELO  :::  4 :::  {'ViaAll', 'Via', 'Natives', 'Uniswap'} 
-- 1285  :::  MOON  :::  26 :::  {'ViaAll', 'Via', 'Natives', 'LiFi'} 
+- 1284  :::  MOON  :::  26 :::  {'ViaAll', 'Natives', 'LiFi', 'Via'} 
+- 66  :::  okxchain  :::  31 :::  {'ViaAll', 'Natives', 'LiFi', 'Via'} 
+- 250  :::  FTM  :::  150 :::  {'ViaAll', 'Natives', 'LiFi', 'Via'} 
+- 42220  :::  CELO  :::  4 :::  {'ViaAll', 'Natives', 'Uniswap', 'Via'} 
+- 1285  :::  MOON  :::  26 :::  {'ViaAll', 'Natives', 'LiFi', 'Via'} 
 - 25  :::  CRO  :::  1 :::  {'ViaAll', 'Natives', 'Via'} 
-- 288  :::  ETH  :::  7 :::  {'ViaAll', 'Via', 'Natives', 'LiFi'} 
-- 1313161554  :::  NEAR  :::  39 :::  {'ViaAll', 'Via', 'Natives', 'LiFi'} 
-- 9001  :::  Evmos  :::  19 :::  {'ViaAll', 'Via', 'Natives', 'LiFi'} 
-- 42  :::  LUKSO  :::  5 :::  {'ViaAll', 'Natives', 'Compound', 'Via', 'Uniswap'} 
-- 122  :::  FUSE  :::  1 :::  {'ViaAll', 'Natives', 'LiFi'} 
+- 288  :::  ETH  :::  7 :::  {'ViaAll', 'Natives', 'LiFi', 'Via'} 
+- 1313161554  :::  NEAR  :::  40 :::  {'ViaAll', 'Natives', 'LiFi', 'Via'} 
+- 9001  :::  Evmos  :::  19 :::  {'ViaAll', 'Natives', 'LiFi', 'Via'} 
+- 42  :::  LUKSO  :::  5 :::  {'Compound', 'Via', 'Natives', 'Uniswap', 'ViaAll'} 
+- 122  :::  FUSE  :::  12 :::  {'ViaAll', 'Natives', 'LiFi', 'Via'} 
 - 128  :::  Heco  :::  1 :::  {'ViaAll', 'Natives'} 
 - 321  :::  KCC  :::  1 :::  {'ViaAll', 'Natives'} 
 - 324  :::  ETH  :::  1 :::  {'Natives', 'LiFi'} 
