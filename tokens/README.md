@@ -1,26 +1,26 @@
-# TokenResult Parsed @ 2024-01-01 00:58:58.204823 
+# TokenResult Parsed @ 2024-01-03 00:54:02.987530 
 
 ## Result 
- ::: 519 chains  ::: 5158 verified ::: 5665 total_saved ::: 43378 duplicates ::: 
-- 1  :::  ETH  :::  2389 :::  {'Uniswap', 'CoinGecko', '1inch', 'RollSocialMoney', 'MyCrypto', 'Furucombo', 'LiFi', 'Dharma', 'TokenNameService', 'Set', 'DefiPrime', 'ViaAll', 'Zerion', 'Compound', 'CMC-DEFI', 'TokenSoftWrapped', 'Messari', 'Optimism', 'Gemini', 'Aave', 'CMC-SC', 'Agora', 'CMC-ERC20', 'BA', 'Via', 'UMA', 'Natives', 'Kleros'} 
-- 42161  :::  ETH  :::  102 :::  {'TokenNameService', 'Uniswap', 'DefiPrime', 'Via', 'ViaAll', 'Natives', 'LiFi'} 
-- 10  :::  ETH  :::  105 :::  {'TokenNameService', 'Uniswap', 'DefiPrime', 'Optimism', 'Via', 'ViaAll', 'Natives', 'LiFi'} 
-- 56  :::  BSC  :::  1496 :::  {'PancakeSwapDefault', 'PancakeSwapExtended', 'Uniswap', 'PancakeSwapAll', 'DefiPrime', 'Via', 'ViaAll', 'Natives', 'PancakeSwap100', 'LiFi', 'Kleros'} 
-- 43114  :::  AVAX  :::  222 :::  {'Uniswap', 'DefiPrime', 'Via', 'ViaAll', 'Natives', 'LiFi'} 
-- 137  :::  Polygon  :::  439 :::  {'Uniswap', 'Via', 'ViaAll', 'Natives', 'LiFi', 'Kleros'} 
-- 100  :::  GNO  :::  83 :::  {'Via', 'ViaAll', 'Natives', 'LiFi', 'Kleros'} 
+ ::: 519 chains  ::: 5175 verified ::: 5682 total_saved ::: 43476 duplicates ::: 
+- 1  :::  ETH  :::  2391 :::  {'Via', 'Kleros', 'TokenNameService', 'TokenSoftWrapped', '1inch', 'Zerion', 'CMC-SC', 'RollSocialMoney', 'Furucombo', 'Messari', 'ViaAll', 'Compound', 'CMC-DEFI', 'CMC-ERC20', 'BA', 'Gemini', 'Set', 'LiFi', 'UMA', 'Optimism', 'CoinGecko', 'Agora', 'MyCrypto', 'Uniswap', 'DefiPrime', 'Aave', 'Dharma', 'Natives'} 
+- 42161  :::  ETH  :::  102 :::  {'Via', 'DefiPrime', 'Uniswap', 'ViaAll', 'TokenNameService', 'LiFi', 'Natives'} 
+- 10  :::  ETH  :::  105 :::  {'Via', 'Uniswap', 'DefiPrime', 'ViaAll', 'TokenNameService', 'LiFi', 'Optimism', 'Natives'} 
+- 56  :::  BSC  :::  1509 :::  {'Via', 'Uniswap', 'Kleros', 'PancakeSwapDefault', 'DefiPrime', 'PancakeSwapExtended', 'ViaAll', 'LiFi', 'PancakeSwapAll', 'Natives', 'PancakeSwap100'} 
+- 43114  :::  AVAX  :::  223 :::  {'Via', 'Uniswap', 'DefiPrime', 'ViaAll', 'LiFi', 'Natives'} 
+- 137  :::  Polygon  :::  441 :::  {'Via', 'Uniswap', 'Kleros', 'ViaAll', 'LiFi', 'Natives'} 
+- 100  :::  GNO  :::  82 :::  {'Via', 'Kleros', 'ViaAll', 'LiFi', 'Natives'} 
 - 592  :::  ASTR  :::  1 :::  {'Natives', 'ViaAll'} 
-- 1284  :::  MOON  :::  26 :::  {'Natives', 'LiFi', 'Via', 'ViaAll'} 
-- 66  :::  okxchain  :::  30 :::  {'Natives', 'LiFi', 'Via', 'ViaAll'} 
-- 250  :::  FTM  :::  153 :::  {'Natives', 'LiFi', 'Via', 'ViaAll'} 
-- 42220  :::  CELO  :::  4 :::  {'Via', 'Natives', 'Uniswap', 'ViaAll'} 
-- 1285  :::  MOON  :::  30 :::  {'Natives', 'LiFi', 'Via', 'ViaAll'} 
+- 1284  :::  MOON  :::  26 :::  {'Natives', 'Via', 'ViaAll', 'LiFi'} 
+- 66  :::  okxchain  :::  30 :::  {'Natives', 'Via', 'ViaAll', 'LiFi'} 
+- 250  :::  FTM  :::  153 :::  {'Natives', 'Via', 'ViaAll', 'LiFi'} 
+- 42220  :::  CELO  :::  4 :::  {'Uniswap', 'Natives', 'Via', 'ViaAll'} 
+- 1285  :::  MOON  :::  30 :::  {'Natives', 'Via', 'ViaAll', 'LiFi'} 
 - 25  :::  CRO  :::  1 :::  {'Natives', 'Via', 'ViaAll'} 
-- 288  :::  ETH  :::  7 :::  {'Natives', 'LiFi', 'Via', 'ViaAll'} 
-- 1313161554  :::  NEAR  :::  41 :::  {'Natives', 'LiFi', 'Via', 'ViaAll'} 
-- 9001  :::  Evmos  :::  19 :::  {'Natives', 'LiFi', 'Via', 'ViaAll'} 
-- 42  :::  LUKSO  :::  5 :::  {'Uniswap', 'Via', 'ViaAll', 'Natives', 'Compound'} 
-- 122  :::  FUSE  :::  12 :::  {'Natives', 'LiFi', 'Via', 'ViaAll'} 
+- 288  :::  ETH  :::  7 :::  {'Natives', 'Via', 'ViaAll', 'LiFi'} 
+- 1313161554  :::  NEAR  :::  41 :::  {'Natives', 'Via', 'ViaAll', 'LiFi'} 
+- 9001  :::  Evmos  :::  19 :::  {'Natives', 'Via', 'ViaAll', 'LiFi'} 
+- 42  :::  LUKSO  :::  5 :::  {'Via', 'Uniswap', 'ViaAll', 'Compound', 'Natives'} 
+- 122  :::  FUSE  :::  12 :::  {'Natives', 'Via', 'ViaAll', 'LiFi'} 
 - 128  :::  Heco  :::  1 :::  {'Natives', 'ViaAll'} 
 - 321  :::  KCC  :::  1 :::  {'Natives', 'ViaAll'} 
 - 324  :::  ETH  :::  1 :::  {'Natives', 'LiFi'} 
