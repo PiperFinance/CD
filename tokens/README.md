@@ -1,25 +1,25 @@
-# TokenResult Parsed @ 2024-02-19 00:52:34.540203 
+# TokenResult Parsed @ 2024-02-21 00:51:34.638556 
 
 ## Result 
- ::: 519 chains  ::: 5166 verified ::: 5673 total_saved ::: 44344 duplicates ::: 
-- 1  :::  ETH  :::  2422 :::  {'CMC-DEFI', 'Via', 'Set', 'CoinGecko', 'Uniswap', 'CMC-ERC20', 'Optimism', 'Agora', 'ViaAll', 'MyCrypto', 'Furucombo', '1inch', 'Zerion', 'Natives', 'LiFi', 'Kleros', 'Messari', 'BA', 'Compound', 'TokenNameService', 'UMA', 'TokenSoftWrapped', 'Dharma', 'CMC-SC', 'DefiPrime', 'RollSocialMoney', 'Gemini', 'Aave'} 
-- 42  :::  LUKSO  :::  5 :::  {'ViaAll', 'Via', 'Compound', 'Natives', 'Uniswap'} 
-- 56  :::  BSC  :::  1495 :::  {'Kleros', 'PancakeSwapExtended', 'PancakeSwapAll', 'ViaAll', 'Via', 'PancakeSwapDefault', 'DefiPrime', 'PancakeSwap100', 'Natives', 'Uniswap', 'LiFi'} 
-- 1284  :::  MOON  :::  23 :::  {'LiFi', 'Natives', 'ViaAll', 'Via'} 
-- 42161  :::  ETH  :::  106 :::  {'Kleros', 'ViaAll', 'Via', 'DefiPrime', 'Natives', 'TokenNameService', 'Uniswap', 'LiFi'} 
-- 66  :::  okxchain  :::  29 :::  {'LiFi', 'Natives', 'ViaAll', 'Via'} 
-- 250  :::  FTM  :::  147 :::  {'Kleros', 'ViaAll', 'Via', 'Natives', 'LiFi'} 
-- 42220  :::  CELO  :::  4 :::  {'Natives', 'Uniswap', 'ViaAll', 'Via'} 
-- 10  :::  ETH  :::  108 :::  {'Kleros', 'Optimism', 'ViaAll', 'Via', 'DefiPrime', 'Natives', 'TokenNameService', 'Uniswap', 'LiFi'} 
-- 137  :::  Polygon  :::  427 :::  {'Kleros', 'ViaAll', 'Via', 'Natives', 'Uniswap', 'LiFi'} 
-- 43114  :::  AVAX  :::  217 :::  {'Kleros', 'ViaAll', 'Via', 'DefiPrime', 'Natives', 'Uniswap', 'LiFi'} 
-- 1285  :::  MOON  :::  29 :::  {'LiFi', 'Natives', 'ViaAll', 'Via'} 
-- 25  :::  CRO  :::  1 :::  {'Natives', 'ViaAll', 'Via'} 
-- 288  :::  ETH  :::  8 :::  {'LiFi', 'Natives', 'ViaAll', 'Via'} 
-- 1313161554  :::  NEAR  :::  41 :::  {'LiFi', 'Natives', 'ViaAll', 'Via'} 
-- 100  :::  GNO  :::  83 :::  {'Kleros', 'ViaAll', 'Via', 'Natives', 'LiFi'} 
-- 9001  :::  Evmos  :::  17 :::  {'LiFi', 'Natives', 'ViaAll', 'Via'} 
-- 122  :::  FUSE  :::  10 :::  {'LiFi', 'Natives', 'ViaAll', 'Via'} 
+ ::: 519 chains  ::: 5175 verified ::: 5682 total_saved ::: 44583 duplicates ::: 
+- 1  :::  ETH  :::  2427 :::  {'Optimism', 'Gemini', 'RollSocialMoney', 'Via', 'Set', 'Natives', 'Uniswap', '1inch', 'Furucombo', 'CMC-DEFI', 'Agora', 'LiFi', 'Aave', 'Zerion', 'Compound', 'MyCrypto', 'Messari', 'DefiPrime', 'ViaAll', 'Kleros', 'BA', 'UMA', 'CoinGecko', 'TokenNameService', 'CMC-ERC20', 'CMC-SC', 'TokenSoftWrapped', 'Dharma'} 
+- 42  :::  LUKSO  :::  5 :::  {'ViaAll', 'Via', 'Natives', 'Compound', 'Uniswap'} 
+- 56  :::  BSC  :::  1498 :::  {'PancakeSwap100', 'LiFi', 'ViaAll', 'Kleros', 'Via', 'PancakeSwapDefault', 'Natives', 'PancakeSwapAll', 'PancakeSwapExtended', 'Uniswap', 'DefiPrime'} 
+- 1284  :::  MOON  :::  23 :::  {'Natives', 'Via', 'ViaAll', 'LiFi'} 
+- 42161  :::  ETH  :::  106 :::  {'LiFi', 'Kleros', 'ViaAll', 'Via', 'TokenNameService', 'Natives', 'Uniswap', 'DefiPrime'} 
+- 66  :::  okxchain  :::  29 :::  {'Natives', 'Via', 'ViaAll', 'LiFi'} 
+- 250  :::  FTM  :::  147 :::  {'LiFi', 'Kleros', 'ViaAll', 'Via', 'Natives'} 
+- 42220  :::  CELO  :::  4 :::  {'Natives', 'Via', 'ViaAll', 'Uniswap'} 
+- 10  :::  ETH  :::  108 :::  {'Optimism', 'ViaAll', 'LiFi', 'Kleros', 'Via', 'TokenNameService', 'Natives', 'Uniswap', 'DefiPrime'} 
+- 137  :::  Polygon  :::  427 :::  {'LiFi', 'Kleros', 'ViaAll', 'Via', 'Natives', 'Uniswap'} 
+- 43114  :::  AVAX  :::  217 :::  {'LiFi', 'Kleros', 'ViaAll', 'Via', 'Natives', 'Uniswap', 'DefiPrime'} 
+- 1285  :::  MOON  :::  30 :::  {'Natives', 'Via', 'ViaAll', 'LiFi'} 
+- 25  :::  CRO  :::  1 :::  {'Natives', 'Via', 'ViaAll'} 
+- 288  :::  ETH  :::  8 :::  {'Natives', 'Via', 'ViaAll', 'LiFi'} 
+- 1313161554  :::  NEAR  :::  41 :::  {'Natives', 'Via', 'ViaAll', 'LiFi'} 
+- 100  :::  GNO  :::  83 :::  {'LiFi', 'ViaAll', 'Kleros', 'Via', 'Natives'} 
+- 9001  :::  Evmos  :::  17 :::  {'Natives', 'Via', 'ViaAll', 'LiFi'} 
+- 122  :::  FUSE  :::  10 :::  {'Natives', 'Via', 'ViaAll', 'LiFi'} 
 - 2  :::  EXP  :::  1 :::  {'Natives'} 
 - 7  :::  TCH  :::  1 :::  {'Natives'} 
 - 8  :::  UBQ  :::  1 :::  {'Natives'} 
