@@ -1,26 +1,26 @@
-# TokenResult Parsed @ 2024-04-29 00:54:41.122801 
+# TokenResult Parsed @ 2024-05-01 00:57:38.660811 
 
 ## Result 
- ::: 519 chains  ::: 5222 verified ::: 5729 total_saved ::: 48414 duplicates ::: 
-- 1  :::  ETH  :::  2469 :::  {'CoinGecko', 'Gemini', 'DefiPrime', 'Uniswap', 'UMA', 'BA', 'Kleros', 'Furucombo', 'TokenSoftWrapped', 'Natives', 'Optimism', 'Via', 'LiFi', 'CMC-SC', 'Agora', 'CMC-ERC20', 'Compound', 'Aave', 'TokenNameService', 'MyCrypto', 'Messari', 'Set', 'Zerion', 'RollSocialMoney', 'Dharma', '1inch', 'CMC-DEFI', 'ViaAll'} 
-- 56  :::  BSC  :::  1530 :::  {'PancakeSwapExtended', 'DefiPrime', 'Kleros', 'PancakeSwapAll', 'Uniswap', 'PancakeSwapDefault', 'PancakeSwap100', 'Natives', 'Via', 'LiFi', 'ViaAll'} 
-- 10  :::  ETH  :::  113 :::  {'DefiPrime', 'Kleros', 'Uniswap', 'Natives', 'TokenNameService', 'Optimism', 'Via', 'LiFi', 'ViaAll'} 
-- 42  :::  LUKSO  :::  5 :::  {'Uniswap', 'Compound', 'Natives', 'Via', 'ViaAll'} 
-- 137  :::  Polygon  :::  406 :::  {'Uniswap', 'LiFi', 'Natives', 'Via', 'Kleros', 'ViaAll'} 
-- 42161  :::  ETH  :::  114 :::  {'DefiPrime', 'Uniswap', 'LiFi', 'Natives', 'TokenNameService', 'Via', 'Kleros', 'ViaAll'} 
-- 42220  :::  CELO  :::  6 :::  {'Uniswap', 'Natives', 'Via', 'Kleros', 'ViaAll'} 
-- 43114  :::  AVAX  :::  224 :::  {'DefiPrime', 'Uniswap', 'LiFi', 'Natives', 'Via', 'Kleros', 'ViaAll'} 
+ ::: 519 chains  ::: 5195 verified ::: 5702 total_saved ::: 48367 duplicates ::: 
+- 1  :::  ETH  :::  2460 :::  {'BA', 'RollSocialMoney', 'DefiPrime', 'TokenNameService', 'Via', 'MyCrypto', 'ViaAll', 'CMC-DEFI', '1inch', 'Zerion', 'UMA', 'Messari', 'Dharma', 'Uniswap', 'Compound', 'Aave', 'Optimism', 'Natives', 'Agora', 'TokenSoftWrapped', 'CMC-ERC20', 'CMC-SC', 'Set', 'CoinGecko', 'Kleros', 'Gemini', 'Furucombo', 'LiFi'} 
+- 56  :::  BSC  :::  1523 :::  {'PancakeSwapAll', 'ViaAll', 'Uniswap', 'PancakeSwap100', 'PancakeSwapExtended', 'DefiPrime', 'Kleros', 'PancakeSwapDefault', 'Natives', 'Via', 'LiFi'} 
+- 10  :::  ETH  :::  113 :::  {'ViaAll', 'Uniswap', 'DefiPrime', 'Optimism', 'Kleros', 'TokenNameService', 'Natives', 'Via', 'LiFi'} 
+- 42  :::  LUKSO  :::  5 :::  {'ViaAll', 'Uniswap', 'Compound', 'Natives', 'Via'} 
+- 137  :::  Polygon  :::  404 :::  {'ViaAll', 'Uniswap', 'Kleros', 'Natives', 'Via', 'LiFi'} 
+- 42161  :::  ETH  :::  115 :::  {'ViaAll', 'Uniswap', 'DefiPrime', 'Kleros', 'TokenNameService', 'Natives', 'Via', 'LiFi'} 
+- 42220  :::  CELO  :::  6 :::  {'ViaAll', 'Uniswap', 'Kleros', 'Natives', 'Via'} 
+- 43114  :::  AVAX  :::  221 :::  {'ViaAll', 'Uniswap', 'DefiPrime', 'Kleros', 'Natives', 'Via', 'LiFi'} 
 - 592  :::  ASTR  :::  1 :::  {'Natives', 'ViaAll'} 
-- 1284  :::  MOON  :::  20 :::  {'Natives', 'Via', 'LiFi', 'ViaAll'} 
+- 1284  :::  MOON  :::  20 :::  {'Via', 'ViaAll', 'Natives', 'LiFi'} 
 - 66  :::  okxchain  :::  1 :::  {'Natives', 'Via', 'ViaAll'} 
-- 250  :::  FTM  :::  156 :::  {'LiFi', 'Natives', 'Via', 'Kleros', 'ViaAll'} 
-- 1285  :::  MOON  :::  27 :::  {'Natives', 'Via', 'LiFi', 'ViaAll'} 
+- 250  :::  FTM  :::  149 :::  {'ViaAll', 'Kleros', 'Natives', 'Via', 'LiFi'} 
+- 1285  :::  MOON  :::  27 :::  {'Via', 'ViaAll', 'Natives', 'LiFi'} 
 - 25  :::  CRO  :::  1 :::  {'Natives', 'Via', 'ViaAll'} 
-- 288  :::  ETH  :::  7 :::  {'Natives', 'Via', 'LiFi', 'ViaAll'} 
-- 1313161554  :::  NEAR  :::  41 :::  {'Natives', 'Via', 'LiFi', 'ViaAll'} 
-- 100  :::  GNO  :::  83 :::  {'Kleros', 'Natives', 'Via', 'LiFi', 'ViaAll'} 
-- 9001  :::  Evmos  :::  15 :::  {'Natives', 'Via', 'LiFi', 'ViaAll'} 
-- 122  :::  FUSE  :::  10 :::  {'Natives', 'Via', 'LiFi', 'ViaAll'} 
+- 288  :::  ETH  :::  7 :::  {'Via', 'ViaAll', 'Natives', 'LiFi'} 
+- 1313161554  :::  NEAR  :::  41 :::  {'Via', 'ViaAll', 'Natives', 'LiFi'} 
+- 100  :::  GNO  :::  83 :::  {'ViaAll', 'Kleros', 'Natives', 'Via', 'LiFi'} 
+- 9001  :::  Evmos  :::  15 :::  {'Via', 'ViaAll', 'Natives', 'LiFi'} 
+- 122  :::  FUSE  :::  10 :::  {'Via', 'ViaAll', 'Natives', 'LiFi'} 
 - 128  :::  Heco  :::  1 :::  {'Natives', 'ViaAll'} 
 - 321  :::  KCC  :::  1 :::  {'Natives', 'ViaAll'} 
 - 2  :::  EXP  :::  1 :::  {'Natives'} 
