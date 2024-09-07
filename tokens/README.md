@@ -1,27 +1,27 @@
-# TokenResult Parsed @ 2024-09-05 01:04:00.651917 
+# TokenResult Parsed @ 2024-09-07 01:02:49.054751 
 
 ## Result 
- ::: 519 chains  ::: 4995 verified ::: 5502 total_saved ::: 51049 duplicates ::: 
-- 1  :::  ETH  :::  2419 :::  {'Zerion', 'TokenNameService', 'RollSocialMoney', 'ViaAll', 'Compound', 'CMC-DEFI', 'Natives', 'Dharma', 'Agora', 'CMC-ERC20', 'CoinGecko', 'CMC-SC', 'Via', 'Kleros', 'Furucombo', 'MyCrypto', 'Aave', 'Optimism', 'UMA', 'TokenSoftWrapped', 'LiFi', '1inch', 'Uniswap', 'BA', 'Set', 'Messari', 'DefiPrime', 'Gemini'} 
-- 10  :::  ETH  :::  122 :::  {'LiFi', 'Uniswap', 'TokenNameService', 'Natives', 'DefiPrime', 'Optimism', 'Via', 'ViaAll', 'Kleros'} 
-- 42161  :::  ETH  :::  113 :::  {'LiFi', 'Uniswap', 'TokenNameService', 'Natives', 'DefiPrime', 'Via', 'ViaAll', 'Kleros'} 
-- 42  :::  LUKSO  :::  5 :::  {'Compound', 'Uniswap', 'Natives', 'Via', 'ViaAll'} 
-- 56  :::  BSC  :::  1366 :::  {'LiFi', 'PancakeSwapDefault', 'Uniswap', 'Natives', 'PancakeSwapExtended', 'DefiPrime', 'Via', 'PancakeSwap100', 'ViaAll', 'Kleros', 'PancakeSwapAll'} 
-- 137  :::  Polygon  :::  355 :::  {'LiFi', 'Uniswap', 'Natives', 'Via', 'ViaAll', 'Kleros'} 
-- 42220  :::  CELO  :::  41 :::  {'LiFi', 'Uniswap', 'Natives', 'Via', 'ViaAll', 'Kleros'} 
-- 43114  :::  AVAX  :::  209 :::  {'LiFi', 'Uniswap', 'Natives', 'DefiPrime', 'Via', 'ViaAll', 'Kleros'} 
+ ::: 519 chains  ::: 5009 verified ::: 5516 total_saved ::: 51512 duplicates ::: 
+- 1  :::  ETH  :::  2410 :::  {'TokenSoftWrapped', '1inch', 'Aave', 'CMC-SC', 'Uniswap', 'RollSocialMoney', 'Natives', 'Compound', 'CoinGecko', 'UMA', 'Gemini', 'Kleros', 'CMC-DEFI', 'LiFi', 'Set', 'CMC-ERC20', 'Dharma', 'Furucombo', 'Agora', 'ViaAll', 'DefiPrime', 'Optimism', 'Via', 'TokenNameService', 'MyCrypto', 'Messari', 'Zerion', 'BA'} 
+- 10  :::  ETH  :::  122 :::  {'Optimism', 'TokenNameService', 'Kleros', 'LiFi', 'Uniswap', 'ViaAll', 'DefiPrime', 'Natives', 'Via'} 
+- 42161  :::  ETH  :::  113 :::  {'TokenNameService', 'Kleros', 'LiFi', 'Uniswap', 'ViaAll', 'DefiPrime', 'Natives', 'Via'} 
+- 42  :::  LUKSO  :::  5 :::  {'Compound', 'Via', 'Uniswap', 'ViaAll', 'Natives'} 
+- 56  :::  BSC  :::  1360 :::  {'PancakeSwap100', 'Natives', 'PancakeSwapDefault', 'Kleros', 'PancakeSwapAll', 'LiFi', 'PancakeSwapExtended', 'Uniswap', 'ViaAll', 'DefiPrime', 'Via'} 
+- 137  :::  Polygon  :::  355 :::  {'Via', 'LiFi', 'Uniswap', 'ViaAll', 'Natives', 'Kleros'} 
+- 42220  :::  CELO  :::  41 :::  {'Via', 'LiFi', 'Uniswap', 'ViaAll', 'Natives', 'Kleros'} 
+- 43114  :::  AVAX  :::  208 :::  {'Kleros', 'LiFi', 'Uniswap', 'ViaAll', 'DefiPrime', 'Natives', 'Via'} 
 - 30  :::  RSK  :::  1 :::  {'LiFi', 'Natives'} 
-- 100  :::  GNO  :::  157 :::  {'LiFi', 'Natives', 'Via', 'ViaAll', 'Kleros'} 
-- 122  :::  FUSE  :::  9 :::  {'LiFi', 'ViaAll', 'Via', 'Natives'} 
-- 250  :::  FTM  :::  100 :::  {'LiFi', 'Natives', 'Via', 'ViaAll', 'Kleros'} 
-- 288  :::  ETH  :::  7 :::  {'LiFi', 'ViaAll', 'Via', 'Natives'} 
+- 100  :::  GNO  :::  156 :::  {'Via', 'Kleros', 'LiFi', 'ViaAll', 'Natives'} 
+- 122  :::  FUSE  :::  9 :::  {'LiFi', 'ViaAll', 'Natives', 'Via'} 
+- 250  :::  FTM  :::  133 :::  {'Via', 'Kleros', 'LiFi', 'ViaAll', 'Natives'} 
+- 288  :::  ETH  :::  7 :::  {'LiFi', 'ViaAll', 'Natives', 'Via'} 
 - 324  :::  ETH  :::  1 :::  {'LiFi', 'Natives'} 
 - 1101  :::  Polygon  :::  1 :::  {'LiFi', 'Natives'} 
-- 1284  :::  MOON  :::  23 :::  {'LiFi', 'ViaAll', 'Via', 'Natives'} 
-- 1285  :::  MOON  :::  24 :::  {'LiFi', 'ViaAll', 'Via', 'Natives'} 
+- 1284  :::  MOON  :::  23 :::  {'LiFi', 'ViaAll', 'Natives', 'Via'} 
+- 1285  :::  MOON  :::  23 :::  {'LiFi', 'ViaAll', 'Natives', 'Via'} 
 - 5000  :::  ETH  :::  1 :::  {'LiFi', 'Natives'} 
-- 9001  :::  Evmos  :::  15 :::  {'LiFi', 'ViaAll', 'Via', 'Natives'} 
-- 1313161554  :::  NEAR  :::  34 :::  {'LiFi', 'ViaAll', 'Via', 'Natives'} 
+- 9001  :::  Evmos  :::  15 :::  {'LiFi', 'ViaAll', 'Natives', 'Via'} 
+- 1313161554  :::  NEAR  :::  33 :::  {'LiFi', 'ViaAll', 'Natives', 'Via'} 
 - 2  :::  EXP  :::  1 :::  {'Natives'} 
 - 7  :::  TCH  :::  1 :::  {'Natives'} 
 - 8  :::  UBQ  :::  1 :::  {'Natives'} 
